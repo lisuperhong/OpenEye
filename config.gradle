@@ -1,0 +1,77 @@
+def supportVersion = "27.1.1"
+def retrofitVersion = "2.4.0"
+def okHttpVersion = "3.11.0"
+def butterKnifeVersion = "8.8.1"
+def daggerVersion = "2.16"
+def rxAndroidVersion = "2.0.2"
+def rxJavaVersion = "2.1.16"
+def BRVAHVersion = "2.9.40"
+def glideVersion = "4.7.1"
+def statusBarVersion = "1.5.1"
+def loggerVersion = "2.2.0"
+
+ext {
+    android = [
+            compileSdkVersion: 27,
+            buildToolsVersion: "27.0.3",
+            minSdkVersion    : 21,
+            targetSdkVersion : 27,
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+
+    dependencies = [
+            //android-support
+            support_v4                     : "com.android.support:support-v4:${supportVersion}",
+            appcompat_v7                   : "com.android.support:appcompat-v7:${supportVersion}",
+            design                         : "com.android.support:design:${supportVersion}",
+            recyclerview_v7                : "com.android.support:recyclerview-v7:${supportVersion}",
+            cardview_v7                    : "com.android.support:cardview-v7:${supportVersion}",
+            constraint_layout              : "com.android.support.constraint:constraint-layout:1.0.2",
+
+            //java8-support
+            stream                         : "com.annimon:stream:1.0.8",
+
+            //rx
+            rxandroid                      : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxjava                         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+
+            //retrofit
+            retrofit                       : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            adapter_rxjava2                : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            converter_gson                 : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+
+            //dagger
+            dagger                         : "com.google.dagger:dagger:${daggerVersion}",
+            dagger_compiler                : "com.google.dagger:dagger-compiler:${daggerVersion}",
+
+            //butterKnife
+            butterknife                    : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterknife_compiler           : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            butterknife_plugin             : "com.jakewharton:butterknife-gradle-plugin:${butterKnifeVersion}",
+
+            //okHttp3
+            okhttp3                        : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okhttp3_logging_interceptor    : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+
+            //BaseRecyclerViewAdapterHelper
+            BRVAH                          : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${BRVAHVersion}",
+
+            //glide
+            glide                          : "com.github.bumptech.glide:glide:${glideVersion}",
+            glide_compiler                 : "com.github.bumptech.glide:compiler:${glideVersion}",
+
+            //StatusBarUtil
+            statusBar                      : "com.jaeger.statusbarutil:library:${statusBarVersion}",
+
+            //logger
+            logger                         : "com.orhanobut:logger:${loggerVersion}",
+
+            //others
+            ormlite_android                : "com.j256.ormlite:ormlite-android:5.0",
+            fastjson                       : "com.alibaba:fastjson:1.2.31",
+
+            //test
+            junit                          : "junit:junit:4.12"
+    ]
+}

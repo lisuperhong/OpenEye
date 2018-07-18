@@ -1,13 +1,20 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'  //kapt3插件
+
+def config = rootProject.ext.android
+def librarys = rootProject.ext.dependencies
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
     defaultConfig {
         applicationId "com.lisuperhong.openeye"
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,10 +27,24 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation librarys.appcompat_v7
+    implementation librarys.design
+    implementation librarys.constraint_layout
+    // rx
+    implementation librarys.rxjava
+    implementation librarys.rxandroid
+    // retrofit
+    implementation librarys.retrofit
+    implementation librarys.adapter_rxjava2
+    implementation librarys.converter_gson
+    // okhttp3
+    implementation librarys.okhttp3
+    implementation librarys.okhttp3_logging_interceptor
+    // glide
+    implementation librarys.glide
+    kapt librarys.glide_compiler
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
