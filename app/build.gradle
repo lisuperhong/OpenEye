@@ -43,6 +43,9 @@ dependencies {
     // glide
     implementation librarys.glide
     kapt librarys.glide_compiler
+    // butterknife
+    implementation librarys.butterknife
+    implementation librarys.butterknife_compiler
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
