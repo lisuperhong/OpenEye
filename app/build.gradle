@@ -7,7 +7,6 @@ def librarys = rootProject.ext.dependencies
 
 android {
     compileSdkVersion config.compileSdkVersion
-    buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
         applicationId "com.lisuperhong.openeye"
@@ -46,6 +45,8 @@ dependencies {
     // butterknife
     implementation librarys.butterknife
     implementation librarys.butterknife_compiler
+    // logger
+    implementation librarys.logger
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

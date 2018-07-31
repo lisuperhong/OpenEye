@@ -14,9 +14,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
-        unBinder = ButterKnife.bind(this)
         ActivityManager.addActivity(this)
-        val intent= intent
+        unBinder = ButterKnife.bind(this)
+        val intent = intent
         if (intent != null) {
             handleIntent(intent)
         }
@@ -27,10 +27,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        ActivityManager.remove(this)
         if (unBinder != null) {
             unBinder!!.unbind()
         }
-        ActivityManager.remove(this)
     }
 
     /**

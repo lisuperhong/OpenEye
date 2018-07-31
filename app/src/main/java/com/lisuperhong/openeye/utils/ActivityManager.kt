@@ -1,24 +1,51 @@
 package com.lisuperhong.openeye.utils
 
 import com.lisuperhong.openeye.base.BaseActivity
-
-import java.util.ArrayList
+import java.util.*
 
 object ActivityManager {
 
-    private val baseActivityList = ArrayList<BaseActivity>()
+    private val activityStack = Stack<BaseActivity>()
 
+    /**
+     * 添加Activity到栈中
+     */
     fun addActivity(baseActivity: BaseActivity) {
-        baseActivityList.add(baseActivity)
+        activityStack.push(baseActivity)
     }
 
+    /**
+     * 移除指定的Activity
+     */
     fun remove(baseActivity: BaseActivity) {
-        baseActivityList.remove(baseActivity)
+        baseActivity.finish()
+        activityStack.remove(baseActivity)
     }
 
-    fun finishedAll() {
-        if (baseActivityList.size > 0) {
-            baseActivityList.clear()
+    /**
+     * 获取当前Activity
+     */
+    fun currentActivity(): BaseActivity {
+        return activityStack.lastElement()
+    }
+
+    /**
+     * 结束指定Activity
+     */
+    fun finishActivity(baseActivity: BaseActivity) {
+        if (!baseActivity.isFinishing) {
+            baseActivity.finish()
         }
     }
+
+    /**
+     * 结束所有Activity
+     */
+    fun finishedAll() {
+        for (item in activityStack) {
+            finishActivity(item)
+        }
+        activityStack.clear()
+    }
+
 }

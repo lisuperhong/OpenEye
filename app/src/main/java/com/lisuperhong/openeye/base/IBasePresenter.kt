@@ -1,6 +1,6 @@
 package com.lisuperhong.openeye.base
 
-interface IBasePresenter<in V: IBaseView> {
+interface IBasePresenter<in V : IBaseView> {
 
     /**
      * 绑定view
