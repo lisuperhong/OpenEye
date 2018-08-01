@@ -1,6 +1,7 @@
 package com.lisuperhong.openeye.http
 
 import com.lisuperhong.openeye.BaseApplication
+import com.lisuperhong.openeye.utils.CommonUtil
 import com.lisuperhong.openeye.utils.NetworkUtil
 import okhttp3.CacheControl
 import okhttp3.Interceptor
@@ -62,6 +63,7 @@ class RetrofitManager private constructor() {
 
         val builder = OkHttpClient.Builder()
         builder.addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(addQueryParameterInterceptor())
             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -78,8 +80,13 @@ class RetrofitManager private constructor() {
             val originalRequest = chain.request()
             val request: Request
             val modifiedUrl = originalRequest.url().newBuilder()
-                .addQueryParameter("platform", "")
-                .addQueryParameter("version", "")
+                .addQueryParameter("uuid", "525fe2e3c24149e69947443589b7a9b137a01aaf")
+                .addQueryParameter("vc", "381")
+                .addQueryParameter("vn", CommonUtil.getVersionName())
+                .addQueryParameter("deviceModel", CommonUtil.getDeviceModel())
+                .addQueryParameter("first_channel", "eyepetizer_zhihuiyun_market")
+                .addQueryParameter("last_channel", "eyepetizer_zhihuiyun_market")
+                .addQueryParameter("system_version_code", CommonUtil.getSystemVersion().toString())
                 .build()
             request = originalRequest.newBuilder().url(modifiedUrl).build()
             chain.proceed(request)
