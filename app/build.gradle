@@ -26,7 +26,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation librarys.support_v4
     implementation librarys.appcompat_v7
+    implementation librarys.recyclerview_v7
     implementation librarys.design
     implementation librarys.constraint_layout
     // rx
@@ -44,9 +46,11 @@ dependencies {
     kapt librarys.glide_compiler
     // butterknife
     implementation librarys.butterknife
-    implementation librarys.butterknife_compiler
+    kapt librarys.butterknife_compiler
     // logger
     implementation librarys.logger
+    // 底部菜单栏
+    implementation librarys.flycoTab
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

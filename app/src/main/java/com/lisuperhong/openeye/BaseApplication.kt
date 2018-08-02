@@ -11,7 +11,6 @@ import kotlin.properties.Delegates
 class BaseApplication : Application() {
 
     companion object {
-
         var context: Context by Delegates.notNull()
             private set
     }
@@ -24,7 +23,7 @@ class BaseApplication : Application() {
     }
 
     private val callbacks = object : Application.ActivityLifecycleCallbacks {
-        override fun onActivityCreated(activity: Activity, bundle: Bundle) {
+        override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
             Logger.d(activity.componentName.className + " onCreate")
         }
 

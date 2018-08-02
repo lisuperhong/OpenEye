@@ -22,7 +22,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         initView()
-        initData()
+        initData(savedInstanceState)
     }
 
     override fun onDestroy() {
@@ -80,5 +80,5 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 初始化数据，从服务端或本地加载数据
      */
-    protected abstract fun initData()
+    protected abstract fun initData(savedInstanceState: Bundle?)
 }

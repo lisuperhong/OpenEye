@@ -9,6 +9,7 @@ def BRVAHVersion = "2.9.40"
 def glideVersion = "4.7.1"
 def statusBarVersion = "1.5.1"
 def loggerVersion = "2.2.0"
+def flycoTabVersion = "2.1.2@aar"
 
 ext {
     android = [
@@ -66,6 +67,9 @@ ext {
 
             //logger
             logger                         : "com.orhanobut:logger:${loggerVersion}",
+
+            // flycoTabLayout
+            flycoTab                       : "com.flyco.tablayout:FlycoTabLayout_Lib:${flycoTabVersion}",
 
             //others
             ormlite_android                : "com.j256.ormlite:ormlite-android:5.0",
