@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:minHeight="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways">
 
             </android.support.v7.widget.Toolbar>
@@ -44,17 +44,15 @@
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:tl_divider_color="@color/black"
-        app:tl_iconHeight="20dp"
-        app:tl_iconWidth="20dp"
         app:tl_indicator_color="@color/colorPrimary"
         app:tl_indicator_height="0dp"
         app:tl_textSelectColor="@color/black"
         app:tl_textUnselectColor="@color/gray"
-        app:tl_textsize="10sp"
+        app:tl_textsize="12sp"
         app:tl_underline_color="#DDDDDD"
         app:tl_underline_height="1dp" />
 </RelativeLayout>

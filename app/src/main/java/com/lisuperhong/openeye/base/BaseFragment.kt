@@ -60,8 +60,8 @@ abstract class BaseFragment : Fragment() {
             rootView = inflater.inflate(layoutId, null)
             unBinder = ButterKnife.bind(this, rootView!!)
         }
-        val parent = rootView!!.parent as ViewGroup
-        parent.removeView(rootView)
+//        val parent = rootView?.parent as ViewGroup
+//        parent.removeView(rootView)
         return rootView
     }
 
@@ -70,7 +70,6 @@ abstract class BaseFragment : Fragment() {
         isPrepared = true
         isFirstLoad = true
         initView()
-        initListener()
         lazyLoad()
     }
 
@@ -137,8 +136,6 @@ abstract class BaseFragment : Fragment() {
             }
         }
     }
-
-    protected abstract fun initListener()
 
     /**
      * 若把初始化内容放到initData实现

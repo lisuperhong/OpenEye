@@ -43,6 +43,7 @@ dependencies {
     implementation librarys.okhttp3_logging_interceptor
     // glide
     implementation librarys.glide
+    implementation 'com.android.support:support-v4:27.1.1'
     kapt librarys.glide_compiler
     // butterknife
     implementation librarys.butterknife
@@ -50,9 +51,13 @@ dependencies {
     // logger
     implementation librarys.logger
     // 底部菜单栏
-    implementation librarys.flycoTab
+    implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()
 }
+
+apply plugin: 'kotlin-android-extensions'
