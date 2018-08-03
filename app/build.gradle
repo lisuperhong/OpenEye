@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'  //kapt3插件
 
 def config = rootProject.ext.android
@@ -44,16 +45,16 @@ dependencies {
     // glide
     implementation librarys.glide
     implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     kapt librarys.glide_compiler
-    // butterknife
-    implementation librarys.butterknife
-    kapt librarys.butterknife_compiler
     // logger
     implementation librarys.logger
     // 底部菜单栏
     implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar') {
         exclude group: 'com.android.support', module: 'support-v4'
     }
+    // 顶部状态栏
+    implementation librarys.statusBar
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

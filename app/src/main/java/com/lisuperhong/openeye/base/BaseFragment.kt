@@ -8,9 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import butterknife.ButterKnife
-import butterknife.Unbinder
-
 abstract class BaseFragment : Fragment() {
 
     protected val TAG = BaseFragment::class.java.simpleName
@@ -39,8 +36,7 @@ abstract class BaseFragment : Fragment() {
      */
     private var forceLoad = false
 
-    private var unBinder: Unbinder? = null
-    private var baseActivity: BaseActivity? = null
+    protected var baseActivity: BaseActivity? = null
 
     // 缓存Fragment的view
     private var rootView: View? = null
@@ -55,13 +51,14 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         if (rootView == null) {
             rootView = inflater.inflate(layoutId, null)
-            unBinder = ButterKnife.bind(this, rootView!!)
         }
-//        val parent = rootView?.parent as ViewGroup
-//        parent.removeView(rootView)
         return rootView
     }
 
@@ -106,9 +103,6 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         isPrepared = false
-        if (unBinder != null) {
-            unBinder!!.unbind()
-        }
     }
 
     protected fun onVisible() {

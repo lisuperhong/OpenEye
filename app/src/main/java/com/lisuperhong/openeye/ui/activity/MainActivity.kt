@@ -2,14 +2,14 @@ package com.lisuperhong.openeye.ui.activity
 
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.widget.Toolbar
-import butterknife.BindView
-import com.flyco.tablayout.CommonTabLayout
+import android.view.KeyEvent
+import android.view.View
+import android.widget.Toast
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
+import com.jaeger.library.StatusBarUtil
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
-import com.lisuperhong.openeye.base.BaseFragment
 import com.lisuperhong.openeye.mvp.model.bean.TabEntity
 import com.lisuperhong.openeye.ui.fragment.AttentionFragment
 import com.lisuperhong.openeye.ui.fragment.HomeFragment
@@ -18,11 +18,6 @@ import com.lisuperhong.openeye.ui.fragment.RankFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
-
-//    @BindView(R.id.toolbar)
-//    lateinit var toolbar: Toolbar
-//    @BindView(R.id.tab_layout)
-//    var tabLayout: CommonTabLayout? = null
 
     private val tabTitles = listOf("首页", "排行", "关注", "我的")
     // 选中图标
@@ -41,12 +36,12 @@ class MainActivity : BaseActivity() {
     )
 
     private val tabEntities = ArrayList<CustomTabEntity>()
+    private var exitTime: Long = 0
     private var curIndex = 0
     private var homeFragment: HomeFragment? = null
     private var rankFragment: RankFragment? = null
     private var attentionFragment: AttentionFragment? = null
     private var myFragment: MyFragment? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
@@ -54,7 +49,7 @@ class MainActivity : BaseActivity() {
         }
         super.onCreate(savedInstanceState)
         initTab()
-        tab_layout.currentTab = curIndex
+        tabLayout.currentTab = curIndex
         setCurrentFragment(curIndex)
     }
 
@@ -67,19 +62,13 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-//        if (savedInstanceState != null) {
-//            curIndex = savedInstanceState.getInt("curTabIndex")
-//        }
-//        tab_layout.currentTab = curIndex
-//        initTab()
-//        setCurrentFragment(curIndex)
     }
 
     private fun initTab() {
         (0 until tabTitles.size)
             .mapTo(tabEntities) { TabEntity(tabTitles[it], selectedIcons[it], unSelectedIcons[it]) }
-        tab_layout.setTabData(tabEntities)
-        tab_layout.setOnTabSelectListener(object : OnTabSelectListener {
+        tabLayout.setTabData(tabEntities)
+        tabLayout.setOnTabSelectListener(object : OnTabSelectListener {
             override fun onTabSelect(position: Int) {
                 setCurrentFragment(position)
             }
@@ -128,7 +117,7 @@ class MainActivity : BaseActivity() {
         }
 
         curIndex = index
-        tab_layout.currentTab = index
+        tabLayout.currentTab = index
         transaction.commitAllowingStateLoss()
     }
 
@@ -139,11 +128,32 @@ class MainActivity : BaseActivity() {
         myFragment?.let { transaction.hide(it) }
     }
 
+    fun hideToolbar() {
+        toolbar.visibility = View.GONE
+    }
+
+    fun showToolbar(title: String) {
+        toolbar.visibility = View.VISIBLE
+        titleTv.text = title
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
-        //记录fragment的位置,防止崩溃 activity被系统回收时，fragment错乱
-        if (tab_layout != null) {
-            outState.putInt("curTabIndex", curIndex)
-        }
+        //记录fragment的位置，防止崩溃时activity被系统回收，再加载导致fragment错乱
+        outState.putInt("curTabIndex", curIndex)
         super.onSaveInstanceState(outState)
     }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis().minus(exitTime) <= 2000) {
+                finish()
+            } else {
+                exitTime = System.currentTimeMillis()
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show()
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
 }

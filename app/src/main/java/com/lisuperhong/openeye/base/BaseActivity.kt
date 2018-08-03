@@ -3,19 +3,14 @@ package com.lisuperhong.openeye.base
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.lisuperhong.openeye.utils.ActivityManager
 
 abstract class BaseActivity : AppCompatActivity() {
-
-    private var unBinder: Unbinder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
         ActivityManager.addActivity(this)
-        unBinder = ButterKnife.bind(this)
         val intent = intent
         if (intent != null) {
             handleIntent(intent)
@@ -28,9 +23,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         ActivityManager.remove(this)
-        if (unBinder != null) {
-            unBinder!!.unbind()
-        }
     }
 
     /**

@@ -19,11 +19,19 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
+                android:layout_height="40dp"
+                app:title=""
                 android:background="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways">
 
+                <TextView
+                    android:id="@+id/titleTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="OpenEye"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
@@ -38,21 +46,23 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_above="@+id/tab_layout"
+        android:layout_above="@+id/tabLayout"
         android:background="@color/gray" />
 
     <com.flyco.tablayout.CommonTabLayout
-        android:id="@+id/tab_layout"
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:tl_divider_color="@color/black"
         app:tl_indicator_color="@color/colorPrimary"
         app:tl_indicator_height="0dp"
+        app:tl_iconWidth="20dp"
+        app:tl_iconHeight="20dp"
+        app:tl_iconGravity="TOP"
         app:tl_textSelectColor="@color/black"
         app:tl_textUnselectColor="@color/gray"
-        app:tl_textsize="12sp"
+        app:tl_textsize="10sp"
         app:tl_underline_color="#DDDDDD"
         app:tl_underline_height="1dp" />
 </RelativeLayout>
