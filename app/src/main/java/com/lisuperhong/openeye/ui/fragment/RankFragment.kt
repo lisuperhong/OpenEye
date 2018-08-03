@@ -8,11 +8,14 @@ import com.lisuperhong.openeye.ui.activity.MainActivity
 
 class RankFragment : BaseFragment() {
 
+    private var mainActivity: MainActivity? = null
+
     override val layoutId: Int
         get() = R.layout.fragment_rank
 
     override fun initView() {
-        (baseActivity as MainActivity).showToolbar("排行榜")
+        mainActivity = context as MainActivity
+        mainActivity?.showToolbar("排行榜")
     }
 
     override fun initData() {
@@ -20,7 +23,7 @@ class RankFragment : BaseFragment() {
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
-        (baseActivity as MainActivity).showToolbar("排行榜")
+        (context as MainActivity).showToolbar("排行榜")
         super.onHiddenChanged(hidden)
     }
 }

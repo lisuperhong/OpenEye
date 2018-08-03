@@ -18,7 +18,7 @@ class MyFragment : BaseFragment() {
         get() = R.layout.fragment_my
 
     override fun initView() {
-        (baseActivity as MainActivity).hideToolbar()
+        (context as MainActivity).hideToolbar()
     }
 
     override fun initData() {
@@ -26,7 +26,7 @@ class MyFragment : BaseFragment() {
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
-        (baseActivity as MainActivity).hideToolbar()
+        (context as MainActivity).hideToolbar()
         super.onHiddenChanged(hidden)
     }
 }

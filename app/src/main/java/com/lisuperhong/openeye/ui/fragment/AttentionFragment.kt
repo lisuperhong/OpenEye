@@ -11,7 +11,7 @@ class AttentionFragment : BaseFragment() {
         get() = R.layout.fragment_attention
 
     override fun initView() {
-        (baseActivity as MainActivity).showToolbar("关注")
+        (context as MainActivity).showToolbar("关注")
     }
 
     override fun initData() {
@@ -19,7 +19,7 @@ class AttentionFragment : BaseFragment() {
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
-        (baseActivity as MainActivity).showToolbar("关注")
+        (context as MainActivity).showToolbar("关注")
         super.onHiddenChanged(hidden)
     }
 }

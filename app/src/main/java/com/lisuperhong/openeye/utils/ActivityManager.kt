@@ -18,7 +18,7 @@ object ActivityManager {
      * 移除指定的Activity
      */
     fun remove(baseActivity: BaseActivity) {
-//        baseActivity.finish()
+//        context.finish()
         activityStack.remove(baseActivity)
     }
 

@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Toast
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
-import com.jaeger.library.StatusBarUtil
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
 import com.lisuperhong.openeye.mvp.model.bean.TabEntity
@@ -15,6 +14,7 @@ import com.lisuperhong.openeye.ui.fragment.AttentionFragment
 import com.lisuperhong.openeye.ui.fragment.HomeFragment
 import com.lisuperhong.openeye.ui.fragment.MyFragment
 import com.lisuperhong.openeye.ui.fragment.RankFragment
+import com.lisuperhong.openeye.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -58,10 +58,13 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(this)
+        StatusBarUtil.setPaddingSmart(this, toolbar)
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+
     }
 
     private fun initTab() {

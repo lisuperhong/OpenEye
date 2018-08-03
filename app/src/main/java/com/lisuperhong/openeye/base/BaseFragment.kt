@@ -36,7 +36,7 @@ abstract class BaseFragment : Fragment() {
      */
     private var forceLoad = false
 
-    protected var baseActivity: BaseActivity? = null
+    protected var context: BaseActivity? = null
 
     // 缓存Fragment的view
     private var rootView: View? = null
@@ -47,7 +47,7 @@ abstract class BaseFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is BaseActivity) {
-            this.baseActivity = this.activity as BaseActivity?
+            this.context = this.activity as BaseActivity?
         }
     }
 
