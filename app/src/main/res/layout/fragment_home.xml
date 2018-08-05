@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="首页"/>
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/slidingTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            app:tl_tab_space_equal="true"
+            app:tl_indicator_color="@color/black"
+            app:tl_indicator_width="10dp"
+            app:tl_indicator_height="3dp"
+            app:tl_textSelectColor="@color/black"
+            app:tl_textUnselectColor="@color/gray"
+            app:tl_textsize="14sp"
+            app:tl_textBold="BOTH"
+            app:tl_underline_height="0dp"
+            app:tl_underline_gravity="BOTTOM">
+        </com.flyco.tablayout.SlidingTabLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_marginTop="4dp"
+            android:background="#DDDDDD"/>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

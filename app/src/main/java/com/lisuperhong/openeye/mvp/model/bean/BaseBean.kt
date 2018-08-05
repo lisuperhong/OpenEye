@@ -7,7 +7,7 @@ import java.io.Serializable
  * Time: Create on 2018/8/1 19:23
  * Desc:
  */
-data class HomeBean(
+data class BaseBean(
     var count: Int,
     var total: Int,
     var nextPageUrl: String,
@@ -27,6 +27,6 @@ data class HomeBean(
     }
 
     override fun toString(): String {
-        return "HomeBean{itemList:${itemList.forEach { it -> it.toString() }}, nextPageUrl:$nextPageUrl, count:$count, total:$total, adExist:$adExist}"
+        return "BaseBean{itemList:${itemList.forEach { it -> it.toString() }}, nextPageUrl:$nextPageUrl, count:$count, total:$total, adExist:$adExist}"
     }
 }

@@ -5,7 +5,7 @@ import android.app.Activity
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-class BasePresenter<T : IBaseView> : IBasePresenter<T> {
+open class BasePresenter<T : IBaseView> : IBasePresenter<T> {
 
     private var rootView: T? = null
     private var compositeDisposable: CompositeDisposable? = null
@@ -56,6 +56,6 @@ class BasePresenter<T : IBaseView> : IBasePresenter<T> {
     }
 
 
-    private class MvpViewNotAttachedException internal constructor()
-        : RuntimeException("Please call IPresenter.attachView(IBaseView) before" + " requesting data to the IPresenter")
+    private class MvpViewNotAttachedException internal constructor() :
+        RuntimeException("Please call IPresenter.attachView(IBaseView) before" + " requesting data to the IPresenter")
 }

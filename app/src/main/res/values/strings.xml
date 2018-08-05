@@ -4,4 +4,7 @@
     <!-- Splash -->
     <string name="splash_intro_eg">Daily appetizers for your eyes, Bon eyepetit.</string>
     <string name="splash_intro">每日精选视频推介，让你大开眼界</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -2,24 +2,20 @@ package com.lisuperhong.openeye.ui.fragment
 
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
-import com.lisuperhong.openeye.ui.activity.MainActivity
-
+import com.lisuperhong.openeye.utils.StatusBarUtil
+import kotlinx.android.synthetic.main.fragment_rank.*
 
 class AttentionFragment : BaseFragment() {
 
     override val layoutId: Int
-        get() = R.layout.fragment_attention
+        get() = R.layout.fragment_rank
 
     override fun initView() {
-        (context as MainActivity).showToolbar("关注")
+        StatusBarUtil.setPaddingSmart(getContext()!!, toolbar)
+        titleTv.text = "关注"
     }
 
     override fun initData() {
 
-    }
-
-    override fun onHiddenChanged(hidden: Boolean) {
-        (context as MainActivity).showToolbar("关注")
-        super.onHiddenChanged(hidden)
     }
 }

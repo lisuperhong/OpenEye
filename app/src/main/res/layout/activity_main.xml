@@ -6,42 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.MainActivity">
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/container"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:title=""
-                android:background="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-                <TextView
-                    android:id="@+id/titleTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="OpenEye"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        </FrameLayout>
-    </android.support.design.widget.CoordinatorLayout>
+        android:layout_height="match_parent">
+    </FrameLayout>
 
     <View
         android:layout_width="match_parent"

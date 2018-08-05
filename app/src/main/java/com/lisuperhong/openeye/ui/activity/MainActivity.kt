@@ -3,7 +3,6 @@ package com.lisuperhong.openeye.ui.activity
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
 import android.view.KeyEvent
-import android.view.View
 import android.widget.Toast
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
@@ -11,7 +10,7 @@ import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
 import com.lisuperhong.openeye.mvp.model.bean.TabEntity
 import com.lisuperhong.openeye.ui.fragment.AttentionFragment
-import com.lisuperhong.openeye.ui.fragment.HomeFragment
+import com.lisuperhong.openeye.ui.fragment.home.HomeFragment
 import com.lisuperhong.openeye.ui.fragment.MyFragment
 import com.lisuperhong.openeye.ui.fragment.RankFragment
 import com.lisuperhong.openeye.utils.StatusBarUtil
@@ -58,9 +57,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-        //状态栏透明和间距处理
+        //状态栏透明，字体设为黑色
         StatusBarUtil.darkMode(this)
-        StatusBarUtil.setPaddingSmart(this, toolbar)
     }
 
     override fun initData(savedInstanceState: Bundle?) {
@@ -129,15 +127,6 @@ class MainActivity : BaseActivity() {
         rankFragment?.let { transaction.hide(it) }
         attentionFragment?.let { transaction.hide(it) }
         myFragment?.let { transaction.hide(it) }
-    }
-
-    fun hideToolbar() {
-        toolbar.visibility = View.GONE
-    }
-
-    fun showToolbar(title: String) {
-        toolbar.visibility = View.VISIBLE
-        titleTv.text = title
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
