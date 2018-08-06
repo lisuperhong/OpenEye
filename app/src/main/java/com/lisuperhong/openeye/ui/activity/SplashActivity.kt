@@ -2,7 +2,6 @@ package com.lisuperhong.openeye.ui.activity
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -11,6 +10,7 @@ import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
+import com.lisuperhong.openeye.utils.TypefaceUtil
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseActivity() {
@@ -23,8 +23,7 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun initView() {
-        val fontType: Typeface = Typeface.createFromAsset(assets, "fonts/Lobster-1.4.otf")
-        englishIntroTv.typeface = fontType
+        englishIntroTv.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.Lobster)
     }
 
     override fun initData(savedInstanceState: Bundle?) {

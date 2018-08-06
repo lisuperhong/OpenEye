@@ -11,27 +11,32 @@ data class Banner(
     var adTrack: Any?,
     var shade: Boolean,
     var label: Label?,
-    var labelList: List<Any>?,
+    var labelList: List<Item>,
     var header: Header?
 ) {
     data class Header(
         var id: Int,
-        var title: Any?,
-        var font: Any?,
-        var subTitle: Any?,
-        var subTitleFont: Any?,
+        var title: String?,
+        var font: String?,
+        var subTitle: String?,
+        var subTitleFont: String?,
         var textAlign: String,
         var cover: Any?,
         var label: Any?,
-        var actionUrl: Any?,
+        var actionUrl: String?,
         var labelList: Any?,
         var icon: Any?,
-        var description: Any?
+        var description: String?
     )
 
     data class Label(
         var text: String,
         var card: String,
         var detail: Any?
+    )
+
+    data class Item(
+        var text: String,
+        var actionUrl: String?
     )
 }

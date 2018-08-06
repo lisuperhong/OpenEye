@@ -16,27 +16,27 @@ class MultipleItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var context: Context? = null
-    private var datas: ArrayList<BaseBean.Item>? = null
+    private var arrayList: ArrayList<BaseBean.Item> = ArrayList<BaseBean.Item>()
 
     init {
         this.context = context
-        this.datas = datas
+        this.arrayList = datas
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return createMultiViewHolder(parent, viewType)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
+        bindMultiViewHolder(context!!, arrayList, holder, position)
     }
 
     override fun getItemCount(): Int {
-        return datas?.size ?: 0
+        return arrayList.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item: BaseBean.Item = datas!!.get(position)
+        val item: BaseBean.Item = arrayList[position]
         return when (item.type) {
             "squareCardCollection" -> Constant.ITEM_TYPE_SQUARECARD
 
@@ -58,14 +58,14 @@ class MultipleItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
         }
     }
 
-    private fun clearAll() = datas?.clear()
+    private fun clearAll() = arrayList.clear()
 
     /**
      * 初始化或刷新数据
      */
     fun setRefreshData(datas: ArrayList<BaseBean.Item>) {
         clearAll()
-        this.datas?.addAll(datas)
+        this.arrayList.addAll(datas)
         notifyItemRangeInserted(0, datas.size)
     }
 
@@ -73,7 +73,7 @@ class MultipleItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
      * 加载更多数据
      */
     fun setLoadMore(datas: ArrayList<BaseBean.Item>) {
-        this.datas?.addAll(datas)
+        this.arrayList.addAll(datas)
         notifyItemRangeInserted(itemCount, datas.size)
     }
 }

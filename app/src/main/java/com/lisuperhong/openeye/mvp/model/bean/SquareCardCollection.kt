@@ -10,7 +10,7 @@ data class SquareCardCollection(
 ) {
     data class Item(
         var type: String,
-        var data: Data,
+        var data: FollowCard,
         var tag: Any?,
         var id: Int,
         var adIndex: Int
@@ -24,9 +24,9 @@ data class SquareCardCollection(
             data class Header(
                 var id: Int,
                 var title: String,
-                var font: Any?,
-                var subTitle: Any?,
-                var subTitleFont: Any?,
+                var font: String?,
+                var subTitle: String?,
+                var subTitleFont: String?,
                 var textAlign: String,
                 var cover: Any?,
                 var label: Any?,
