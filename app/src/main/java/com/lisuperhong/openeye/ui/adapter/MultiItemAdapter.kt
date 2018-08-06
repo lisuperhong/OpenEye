@@ -12,7 +12,7 @@ import com.lisuperhong.openeye.utils.Constant
  * Github: https://github.com/lisuperhong
  * Desc:
  */
-class MultipleItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
+class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var context: Context? = null

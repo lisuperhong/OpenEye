@@ -36,7 +36,7 @@ fun bindSquareCardItemHolder(
 ) {
     val data = dataList[position]
     val viewHolder: SquareCardItemHolder = holder as SquareCardItemHolder
-    val squareCardCollection: SquareCardCollection = data.data as SquareCardCollection
+    val squareCardCollection = data.data as SquareCardCollection
     val header = squareCardCollection.header
     if (header.font != null && header.font == "bigBold") {
         viewHolder.squareTitle.typeface =
@@ -62,6 +62,8 @@ fun bindSquareCardItemHolder(
     val snapHelper = LinearSnapHelper()
     snapHelper.attachToRecyclerView(viewHolder.squareCardRecyclerView)
 
+    val adapter = FollowCardAdapter(context, followCardList)
+    viewHolder.squareCardRecyclerView.adapter = adapter
 }
 
 fun bindFollowCardItemHolder(

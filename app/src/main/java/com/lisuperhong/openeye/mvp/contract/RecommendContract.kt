@@ -27,7 +27,7 @@ interface RecommendContract {
         /**
          * 显示错误提示
          */
-        fun showError(code: Int, errorMsg: String)
+        fun showError(errorMsg: String)
     }
 
     interface Presenter : IBasePresenter<View> {

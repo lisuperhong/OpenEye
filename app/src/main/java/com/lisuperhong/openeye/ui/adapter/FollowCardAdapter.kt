@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.FollowCard
+import com.lisuperhong.openeye.utils.ImageLoad
+import com.lisuperhong.openeye.utils.TimeUtil
 import com.lisuperhong.openeye.utils.TypefaceUtil
 import kotlinx.android.synthetic.main.list_followcard_item.view.*
 
@@ -40,9 +42,21 @@ class FollowCardAdapter(context: Context, datas: ArrayList<FollowCard>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val followCard = dataList[position]
+        val header = followCard.header
         holder.followCardTitle.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
-        holder.followCardTitle.text = followCard.header.title
-        holder.followCardSubTitle.text = followCard.header.description
+        holder.followCardTitle.text = header.title
+        holder.followCardSubTitle.text = header.description
+        when (header.iconType) {
+            "round" -> ImageLoad.loadCircleImage(holder.followCardIconIv, header.icon)
+            "square" -> ImageLoad.loadImage(holder.followCardIconIv, header.icon, 5)
+            else -> ImageLoad.loadImage(holder.followCardIconIv, header.icon)
+        }
+
+        val content = followCard.content
+        val data = content.data
+        val cover = data.cover
+        ImageLoad.loadImage(holder.followCardCoverIv, cover.feed, 5)
+        holder.followCardTimeTv.text = TimeUtil.secToTime(data.duration)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -8,6 +8,8 @@ package com.lisuperhong.openeye.utils
  */
 object Constant {
 
+    const val HOST = "http://baobab.kaiyanapp.com/"
+
     // 列表类型
     const val ITEM_TYPE_SQUARECARD = 1
     const val ITEM_TYPE_TEXTCARD = 2

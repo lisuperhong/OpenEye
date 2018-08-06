@@ -12,7 +12,7 @@ data class BaseBean(
     var total: Int,
     var nextPageUrl: String,
     var adExist: Boolean,
-    var itemList: List<Item>
+    var itemList: ArrayList<Item>
 ) : Serializable {
     data class Item(
         var type: String,
