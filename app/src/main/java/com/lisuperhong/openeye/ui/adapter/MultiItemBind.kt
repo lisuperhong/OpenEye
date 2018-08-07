@@ -5,9 +5,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import com.lisuperhong.openeye.mvp.model.bean.FollowCard
 import com.lisuperhong.openeye.mvp.model.bean.SquareCardCollection
+import com.lisuperhong.openeye.mvp.model.bean.TextCard
 import com.lisuperhong.openeye.utils.TypefaceUtil
 
 /**
@@ -16,27 +16,12 @@ import com.lisuperhong.openeye.utils.TypefaceUtil
  * Desc:
  */
 
-fun bindMultiViewHolder(
-    context: Context,
-    dataList: ArrayList<BaseBean.Item>,
-    holder: RecyclerView.ViewHolder,
-    position: Int
-) {
-    when (holder) {
-        is SquareCardItemHolder -> bindSquareCardItemHolder(context, dataList, holder, position)
-    }
-
-}
-
 fun bindSquareCardItemHolder(
     context: Context,
-    dataList: ArrayList<BaseBean.Item>,
-    holder: RecyclerView.ViewHolder,
-    position: Int
+    squareCardCollection: SquareCardCollection,
+    holder: RecyclerView.ViewHolder
 ) {
-    val data = dataList[position]
     val viewHolder: SquareCardItemHolder = holder as SquareCardItemHolder
-    val squareCardCollection = data.data as SquareCardCollection
     val header = squareCardCollection.header
     if (header.font != null && header.font == "bigBold") {
         viewHolder.squareTitle.typeface =
@@ -45,7 +30,7 @@ fun bindSquareCardItemHolder(
     }
     if (header.subTitleFont != null && header.subTitleFont == "lobster") {
         viewHolder.squareSubTitle.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.Lobster)
-        viewHolder.squareSubTitle.text = header.subTitleFont
+        viewHolder.squareSubTitle.text = header.subTitle
     }
 
     viewHolder.squareTitle.setOnClickListener(View.OnClickListener {
@@ -56,9 +41,11 @@ fun bindSquareCardItemHolder(
     for (item in itemList) {
         followCardList.add(item.data)
     }
-    val linearLayout: RecyclerView.LayoutManager =
-        LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-    viewHolder.squareCardRecyclerView.layoutManager = linearLayout
+
+    val linearLayoutManager = LinearLayoutManager(context)
+    linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+    viewHolder.squareCardRecyclerView.layoutManager = linearLayoutManager
     val snapHelper = LinearSnapHelper()
     snapHelper.attachToRecyclerView(viewHolder.squareCardRecyclerView)
 
@@ -68,9 +55,16 @@ fun bindSquareCardItemHolder(
 
 fun bindFollowCardItemHolder(
     context: Context,
-    dataList: ArrayList<BaseBean.Item>,
-    holder: RecyclerView.ViewHolder,
-    position: Int
+    followCard: FollowCard,
+    holder: RecyclerView.ViewHolder
+) {
+
+}
+
+fun bindTextCardItemHolder(
+    context: Context,
+    textCard: TextCard,
+    holder: RecyclerView.ViewHolder
 ) {
 
 }

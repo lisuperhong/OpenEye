@@ -3,8 +3,15 @@ package com.lisuperhong.openeye.ui.adapter
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import com.google.gson.Gson
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
+import com.lisuperhong.openeye.mvp.model.bean.FollowCard
+import com.lisuperhong.openeye.mvp.model.bean.SquareCardCollection
+import com.lisuperhong.openeye.mvp.model.bean.TextCard
 import com.lisuperhong.openeye.utils.Constant
+import com.orhanobut.logger.Logger
+import org.json.JSONException
+import org.json.JSONObject
 
 /**
  * Author: lisuperhong
@@ -28,7 +35,34 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        bindMultiViewHolder(context!!, arrayList, holder, position)
+        val gson = Gson()
+        val data = arrayList[position]
+        val dataMap = data.data as Map<*, *>
+        var dataJson: JSONObject? = null
+        try {
+            dataJson = JSONObject(dataMap)
+        } catch (e: JSONException) {
+            Logger.d(e.printStackTrace())
+        }
+        when (holder) {
+            is SquareCardItemHolder -> {
+                val squareCardCollection = gson.fromJson(dataJson.toString(), SquareCardCollection::class.java)
+                bindSquareCardItemHolder(context!!, squareCardCollection, holder)
+            }
+            is TextCardItemHolder -> {
+                val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
+                bindTextCardItemHolder(context!!, textCard, holder)
+            }
+            is FollowCardItemHolder -> {
+                val followCard = gson.fromJson(dataJson.toString(), FollowCard::class.java)
+                bindFollowCardItemHolder(context!!, followCard, holder)
+            }
+
+            else -> {
+                val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
+                bindTextCardItemHolder(context!!, textCard, holder)
+            }
+        }
     }
 
     override fun getItemCount(): Int {

@@ -2,18 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/squareSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
         android:textSize="12sp"
-        android:textColor="@color/gray"
-        android:text="MONDAY,AUGUST 6"/>
+        android:textColor="@color/gray" />
 
     <TextView
         android:id="@+id/squareTitle"
@@ -22,9 +20,9 @@
         android:layout_marginTop="2dp"
         android:drawableEnd="@drawable/goto_icon"
         android:drawablePadding="4dp"
+        android:layout_marginStart="16dp"
         android:textColor="@color/black"
-        android:textSize="22sp"
-        android:text="今日开眼精选" />
+        android:textSize="28sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/squareCardRecyclerView"

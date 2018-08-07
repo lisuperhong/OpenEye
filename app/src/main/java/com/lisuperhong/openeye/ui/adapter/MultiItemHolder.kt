@@ -31,10 +31,16 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
             return FollowCardItemHolder(view)
         }
 
+        Constant.ITEM_TYPE_TEXTCARD -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_textcard_item, parent, false)
+            return TextCardItemHolder(view)
+        }
+
         else -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_squarecard_collection_item, parent, false)
-            return EmptyItemHolder(view)
+                .inflate(R.layout.list_textcard_item, parent, false)
+            return TextCardItemHolder(view)
         }
     }
 }
@@ -45,6 +51,10 @@ class SquareCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
     var squareCardRecyclerView: RecyclerView = view.squareCardRecyclerView
 }
 
+class TextCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+}
+
 class FollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
     var followCardCoverIv: ImageView = view.followCardCoverIv
     var followCardTimeTv: TextView = view.followCardTimeTv
@@ -52,5 +62,3 @@ class FollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
     var followCardTitle: TextView = view.followCardTitle
     var followCardSubTitle: TextView = view.followCardSubTitle
 }
-
-class EmptyItemHolder(view: View) : RecyclerView.ViewHolder(view)

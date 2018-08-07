@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="12dp">
+    android:paddingBottom="12dp"
+    android:paddingStart="16dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -12,7 +13,8 @@
         <ImageView
             android:id="@+id/followCardCoverIv"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="190dp"
+            android:layout_marginEnd="5dp"
             android:scaleType="fitXY" />
 
         <TextView
@@ -20,10 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/shape_video_time_bg"
-            android:text="3:14"
             android:textColor="@color/white"
             android:textSize="12sp"/>
     </FrameLayout>
@@ -51,16 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="静静动静"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/followCardSubTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textSize="12sp"
-                android:text="UI更"/>
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
