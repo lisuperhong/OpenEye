@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:paddingBottom="12dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/videoSmallCardIv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/videoSmallCardTimeTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/shape_video_time_bg"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="10dp">
+
+            <TextView
+                android:id="@+id/videoSmallCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="励志广告：再一次，突破自己"/>
+
+            <TextView
+                android:id="@+id/videoSmallCardSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:textSize="12sp"
+                android:text="#广告"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dividerView"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/divider_line" />
+</LinearLayout>

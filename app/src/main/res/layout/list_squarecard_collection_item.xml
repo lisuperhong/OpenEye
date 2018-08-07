@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginStart="16dp"
-        android:textSize="12sp"
+        android:textSize="18sp"
         android:textColor="@color/gray" />
 
     <TextView
@@ -28,11 +28,15 @@
         android:id="@+id/squareCardRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:clipToPadding="false"
+        android:paddingStart="16dp">
     </android.support.v7.widget.RecyclerView>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/divider_line" />
+        android:background="@color/divider_line"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
 </LinearLayout>

@@ -32,7 +32,7 @@ class FollowCardAdapter(context: Context, datas: ArrayList<FollowCard>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(context).inflate(R.layout.list_followcard_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.list_today_recommend_item, parent, false)
         return ViewHolder(view)
     }
 

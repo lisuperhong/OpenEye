@@ -4,10 +4,7 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.google.gson.Gson
-import com.lisuperhong.openeye.mvp.model.bean.BaseBean
-import com.lisuperhong.openeye.mvp.model.bean.FollowCard
-import com.lisuperhong.openeye.mvp.model.bean.SquareCardCollection
-import com.lisuperhong.openeye.mvp.model.bean.TextCard
+import com.lisuperhong.openeye.mvp.model.bean.*
 import com.lisuperhong.openeye.utils.Constant
 import com.orhanobut.logger.Logger
 import org.json.JSONException
@@ -56,6 +53,14 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
             is FollowCardItemHolder -> {
                 val followCard = gson.fromJson(dataJson.toString(), FollowCard::class.java)
                 bindFollowCardItemHolder(context!!, followCard, holder)
+            }
+            is VideoSmallCardItemHolder -> {
+                val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
+                bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder)
+            }
+            is PictureFollowCardItemHolder -> {
+                val pictureFollowCard = gson.fromJson(dataJson.toString(), PictureFollowCard::class.java)
+                bindPictureFollowCardItemHolder(context!!, pictureFollowCard, holder)
             }
 
             else -> {

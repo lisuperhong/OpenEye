@@ -4,16 +4,25 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingStart="16dp"
-    android:paddingEnd="16dp" >
+    android:paddingEnd="16dp">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/headerTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="30dp"
         android:drawableEnd="@drawable/goto_icon"
         android:drawablePadding="4dp"
         android:textColor="@color/black"
-        android:textSize="22sp"
-        android:text="社区精选"/>
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/footerTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|end"
+        android:layout_marginTop="20dp"
+        android:drawableEnd="@drawable/goto_icon"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
 </LinearLayout>

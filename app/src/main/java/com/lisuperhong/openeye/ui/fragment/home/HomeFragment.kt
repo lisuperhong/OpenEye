@@ -10,19 +10,20 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
 
-    private val titles = listOf("推荐", "发现", "日报", "分类")
+    private val titles = listOf("发现", "推荐", "日报", "分类")
     override val layoutId: Int
         get() = R.layout.fragment_home
 
     override fun initView() {
         StatusBarUtil.setPaddingSmart(getContext()!!, slidingTabLayout)
         val fragmentList = ArrayList<BaseFragment>()
-        fragmentList.add(RecommendFragment())
         fragmentList.add(DiscoveryFragment())
+        fragmentList.add(RecommendFragment())
         fragmentList.add(DailyFragment())
         fragmentList.add(CategoryFragment())
         viewPager.adapter = BaseFragmentAdapter(childFragmentManager, fragmentList, titles)
         slidingTabLayout.setViewPager(viewPager)
+        slidingTabLayout.currentTab = 1
 
         // 设置tab字体(不起作用?)
         val fontType =
