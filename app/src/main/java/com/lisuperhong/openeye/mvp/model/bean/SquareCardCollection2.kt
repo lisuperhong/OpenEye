@@ -1,7 +1,13 @@
 package com.lisuperhong.openeye.mvp.model.bean
 
+/**
+ * Author: lisuperhong
+ * Time: Create on 2018/8/12 11:54
+ * Github: https://github.com/lisuperhong
+ * Desc:
+ */
 
-data class SquareCardCollection(
+data class SquareCardCollection2(
     var dataType: String,
     var header: Header,
     var itemList: List<Item>,
@@ -10,7 +16,7 @@ data class SquareCardCollection(
 ) {
     data class Item(
         var type: String,
-        var data: FollowCard,
+        var data: Banner,
         var tag: Any?,
         var id: Int,
         var adIndex: Int

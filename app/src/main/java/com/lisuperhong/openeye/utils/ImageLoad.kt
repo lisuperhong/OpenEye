@@ -64,6 +64,42 @@ object ImageLoad {
         load(imageView, url, requestOptions)
     }
 
+    fun loadImage(imageView: ImageView, url: String, width: Int, height: Int) {
+        val lp = imageView.layoutParams
+        lp.width = width
+        lp.height = height
+        imageView.layoutParams = lp
+        val requestOptions = RequestOptions().centerCrop()
+            .placeholder(R.drawable.eye_loading_icon)
+            .error(R.drawable.eye_loading_icon)
+            .transforms(CenterCrop())
+            .override(width, height)
+            .format(DecodeFormat.PREFER_RGB_565)
+            .priority(Priority.NORMAL)
+            .dontAnimate()
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+        load(imageView, url, requestOptions)
+    }
+
+    fun loadImage(imageView: ImageView, url: String, width: Int, height: Int, round: Int) {
+        val lp = imageView.layoutParams
+        lp.width = width
+        lp.height = height
+        imageView.layoutParams = lp
+        val requestOptions = RequestOptions().centerCrop()
+            .placeholder(R.drawable.eye_loading_icon)
+            .error(R.drawable.eye_loading_icon)
+            .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(BaseApplication.context, round.toFloat())))
+            .override(width, height)
+            .format(DecodeFormat.PREFER_RGB_565)
+            .priority(Priority.NORMAL)
+            .dontAnimate()
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+        load(imageView, url, requestOptions)
+    }
+
     private fun load(imageView: ImageView, url: String, options: RequestOptions) {
         Glide.with(imageView)
             .load(url)

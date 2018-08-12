@@ -11,6 +11,7 @@ def statusBarVersion = "1.5.1"
 def loggerVersion = "2.2.0"
 def flycoTabVersion = "2.1.2@aar"
 def gsonVersion = "2.8.5"
+def smartRefreshVersion = "1.1.0-alpha-14"
 
 ext {
     android = [
@@ -74,6 +75,9 @@ ext {
 
             // gson
             gson                           : "com.google.code.gson:gson:${gsonVersion}",
+
+            // refresh
+            refreshLayout                  : "com.scwang.smartrefresh:SmartRefreshLayout:${smartRefreshVersion}",
 
             //others
             ormlite_android                : "com.j256.ormlite:ormlite-android:5.0",

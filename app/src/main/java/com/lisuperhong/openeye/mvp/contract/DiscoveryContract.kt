@@ -6,14 +6,13 @@ import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 
 /**
  * Author: lisuperhong
- * Time: Create on 2018/8/5 13:43
+ * Time: Create on 2018/8/11 17:36
  * Github: https://github.com/lisuperhong
- * Desc: RecommendFragment页面契约类
+ * Desc:
  */
-interface RecommendContract {
+interface DiscoveryContract {
 
     interface View : IBaseView {
-
         /**
          * 显示推荐数据
          */
@@ -25,11 +24,11 @@ interface RecommendContract {
         fun showError(errorMsg: String)
     }
 
-    interface Presenter : IBasePresenter<View> {
+    interface Presenter : IBasePresenter<DiscoveryContract.View> {
 
         /**
-         * 获取推荐接口数据
+         * 获取数据
          */
-        fun requestAllRec(page: Int)
+        fun discovery()
     }
 }

@@ -10,9 +10,10 @@
         android:id="@+id/headerTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
         android:drawableEnd="@drawable/goto_icon"
         android:drawablePadding="4dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:textSize="22sp" />
 
@@ -21,8 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|end"
-        android:layout_marginTop="20dp"
         android:drawableEnd="@drawable/goto_icon"
+        android:drawablePadding="4dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/black"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:text="查看全部热门排行"/>
 </LinearLayout>

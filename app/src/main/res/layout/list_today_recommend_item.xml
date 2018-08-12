@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="336dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="12dp">
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
 
         <ImageView
             android:id="@+id/followCardCoverIv"
@@ -15,6 +15,13 @@
             android:layout_height="190dp"
             android:layout_marginEnd="5dp"
             android:scaleType="fitXY" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/daily_label"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="14dp"/>
 
         <TextView
             android:id="@+id/followCardTimeTv"

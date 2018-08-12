@@ -8,10 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.utils.Constant
+import kotlinx.android.synthetic.main.list_banner_item.view.*
+import kotlinx.android.synthetic.main.list_briefcard_item.view.*
 import kotlinx.android.synthetic.main.list_followcard_item.view.*
+import kotlinx.android.synthetic.main.list_horizontalscrollcard_item.view.*
 import kotlinx.android.synthetic.main.list_picturecard_item.view.*
 import kotlinx.android.synthetic.main.list_squarecard_collection_item.view.*
 import kotlinx.android.synthetic.main.list_textcard_item.view.*
+import kotlinx.android.synthetic.main.list_videocollectionwithbrief_item.view.*
 import kotlinx.android.synthetic.main.list_videosmallcard_item.view.*
 
 /**
@@ -51,6 +55,36 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.list_picturecard_item, parent, false)
             return PictureFollowCardItemHolder(view)
+        }
+
+        Constant.ITEM_TYPE_AUTOPLAYFOLLOWCARD -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_picturecard_item, parent, false)
+            return AutoPlayFollowCardItemHolder(view)
+        }
+
+        Constant.ITEM_TYPE_BANNER -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_banner_item, parent, false)
+            return BannerItemHolder(view)
+        }
+
+        Constant.ITEM_TYPE_HORIZONTALSCROLLCARD -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_horizontalscrollcard_item, parent, false)
+            return HorizontalScrollCardItemHolder(view)
+        }
+
+        Constant.ITEM_TYPE_BRIEFCARD -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_briefcard_item, parent, false)
+            return BriefCardItemHolder(view)
+        }
+
+        Constant.ITEM_TYPE_VIDEOCOLLECTIONWITHBRIEF -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_videocollectionwithbrief_item, parent, false)
+            return VideoCollectionWithBriefItemHolder(view)
         }
 
         else -> {
@@ -96,3 +130,34 @@ class PictureFollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
     var collectionCountTv: TextView = view.collectionCountTv
     var replyCountTv: TextView = view.replyCountTv
 }
+
+class AutoPlayFollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var pictureCardIconTv: ImageView = view.pictureCardIconIv
+    var pictureCardOwner: TextView = view.pictureCardOwner
+    var descriptionTv: TextView = view.descriptionTv
+    var pictureCardCoverIv: ImageView = view.pictureCardCoverIv
+    var collectionCountTv: TextView = view.collectionCountTv
+    var replyCountTv: TextView = view.replyCountTv
+}
+
+class BannerItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var bannerIv: ImageView = view.bannerIv
+}
+
+class HorizontalScrollCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var bannerRecyclerView: RecyclerView = view.bannerRecyclerView
+}
+
+class BriefCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var briefcardIconIv: ImageView = view.briefcardIconIv
+    var briefcardTitleTv: TextView = view.briefcardTitleTv
+    var briefcardDescriptionTv: TextView = view.briefcardDescriptionTv
+}
+
+class VideoCollectionWithBriefItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var videoCollectionIconIv: ImageView = view.videoCollectionIconIv
+    var videoCollectionTitleTv: TextView = view.videoCollectionTitleTv
+    var videoCollectionDescriptionTv: TextView = view.videoCollectionDescriptionTv
+    var videoCollectionRecyclerView: RecyclerView = view.videoCollectionRecyclerView
+}
+

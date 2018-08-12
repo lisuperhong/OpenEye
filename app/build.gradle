@@ -55,6 +55,8 @@ dependencies {
     }
     // gson
     implementation librarys.gson
+    // 刷新控件
+    implementation librarys.refreshLayout
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

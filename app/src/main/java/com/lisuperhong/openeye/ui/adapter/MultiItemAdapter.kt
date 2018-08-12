@@ -20,7 +20,7 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var context: Context? = null
-    private var arrayList: ArrayList<BaseBean.Item> = ArrayList<BaseBean.Item>()
+    private var arrayList: ArrayList<BaseBean.Item>
 
     init {
         this.context = context
@@ -43,27 +43,67 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
         }
         when (holder) {
             is SquareCardItemHolder -> {
-                val squareCardCollection = gson.fromJson(dataJson.toString(), SquareCardCollection::class.java)
-                bindSquareCardItemHolder(context!!, squareCardCollection, holder)
+                Logger.d("SquareCardItemHolder called, position = $position")
+                val itemList = dataMap["itemList"] as List<Map<*, *>>
+                if (itemList[0]["type"] == "followCard") {
+                    val squareCardCollection = gson.fromJson(dataJson.toString(), SquareCardCollection::class.java)
+                    bindSquareCardItemHolder(context!!, squareCardCollection, holder)
+                } else {
+                    val squareCardCollection2 = gson.fromJson(dataJson.toString(), SquareCardCollection2::class.java)
+                    bindSquareCardItemHolder(context!!, squareCardCollection2, holder)
+                }
             }
             is TextCardItemHolder -> {
+                Logger.d("TextCardItemHolder called, position = $position")
                 val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
                 bindTextCardItemHolder(context!!, textCard, holder)
             }
             is FollowCardItemHolder -> {
+                Logger.d("FollowCardItemHolder called, position = $position")
                 val followCard = gson.fromJson(dataJson.toString(), FollowCard::class.java)
                 bindFollowCardItemHolder(context!!, followCard, holder)
             }
             is VideoSmallCardItemHolder -> {
+                Logger.d("VideoSmallCardItemHolder called, position = $position")
                 val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
-                bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder)
+                if (position + 1 < itemCount) {
+                    if (arrayList[position + 1].type == "videoSmallCard") {
+                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true)
+                    } else {
+                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, false)
+                    }
+                }
             }
             is PictureFollowCardItemHolder -> {
+                Logger.d("PictureFollowCardItemHolder called, position = $position")
                 val pictureFollowCard = gson.fromJson(dataJson.toString(), PictureFollowCard::class.java)
                 bindPictureFollowCardItemHolder(context!!, pictureFollowCard, holder)
             }
+            is AutoPlayFollowCardItemHolder -> {
+                Logger.d("AutoPlayFollowCardItemHolder called, position = $position")
+                val autoPlayFollowCard = gson.fromJson(dataJson.toString(), AutoPlayFollowCard::class.java)
+                bindAutoPlayFollowCardItemHolder(context!!, autoPlayFollowCard, holder)
+            }
+            is BannerItemHolder -> {
+                Logger.d("BannerItemHolder called, position = $position")
+                val banner = gson.fromJson(dataJson.toString(), Banner::class.java)
+                bindBannerItemHolder(context!!, banner, holder)
+            }
+            is HorizontalScrollCardItemHolder -> {
+                val horizontalScrollCard = gson.fromJson(dataJson.toString(), HorizontalScrollCard::class.java)
+                bindHorizontalScrollCardItemHolder(context!!, horizontalScrollCard, holder)
+            }
+            is BriefCardItemHolder -> {
+                val briefCard = gson.fromJson(dataJson.toString(), BriefCard::class.java)
+                bindBriefCardItemHolder(context!!, briefCard, holder)
+            }
+            is VideoCollectionWithBriefItemHolder -> {
+                val videoCollectionWithBrief = gson.fromJson(dataJson.toString(), VideoCollectionWithBrief::class.java)
+                bindVideoCollectionWithBriefItemHolder(context!!, videoCollectionWithBrief, holder)
+            }
 
             else -> {
+                Logger.d("default TextCardItemHolder called, position = $position")
                 val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
                 bindTextCardItemHolder(context!!, textCard, holder)
             }
@@ -93,7 +133,13 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
 
             "pictureFollowCard" -> Constant.ITEM_TYPE_PICTUREFOLLOWCARD
 
-            else -> Constant.ITEM_TYPE_VIDEOSMALLCARD
+            "horizontalScrollCard" -> Constant.ITEM_TYPE_HORIZONTALSCROLLCARD
+
+            "briefCard" -> Constant.ITEM_TYPE_BRIEFCARD
+
+            "videoCollectionWithBrief" -> Constant.ITEM_TYPE_VIDEOCOLLECTIONWITHBRIEF
+
+            else -> Constant.ITEM_TYPE_TEXTCARD
         }
     }
 
@@ -103,8 +149,9 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
      * 初始化或刷新数据
      */
     fun setRefreshData(datas: ArrayList<BaseBean.Item>) {
+        notifyItemRangeRemoved(0, itemCount)
         clearAll()
-        this.arrayList.addAll(datas)
+        arrayList.addAll(datas)
         notifyItemRangeInserted(0, datas.size)
     }
 
@@ -112,7 +159,7 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
      * 加载更多数据
      */
     fun setLoadMore(datas: ArrayList<BaseBean.Item>) {
-        this.arrayList.addAll(datas)
+        arrayList.addAll(datas)
         notifyItemRangeInserted(itemCount, datas.size)
     }
 }

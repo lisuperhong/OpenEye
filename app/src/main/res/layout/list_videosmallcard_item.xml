@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:orientation="vertical">
@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1.2">
 
             <ImageView
                 android:id="@+id/videoSmallCardIv"
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="6dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/shape_video_time_bg"
                 android:textColor="@color/white"
@@ -66,6 +66,5 @@
         android:id="@+id/dividerView"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="12dp"
         android:background="@color/divider_line" />
 </LinearLayout>
