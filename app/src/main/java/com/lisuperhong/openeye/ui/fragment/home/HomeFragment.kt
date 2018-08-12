@@ -22,6 +22,7 @@ class HomeFragment : BaseFragment() {
         fragmentList.add(DailyFragment())
         fragmentList.add(CategoryFragment())
         viewPager.adapter = BaseFragmentAdapter(childFragmentManager, fragmentList, titles)
+        viewPager.offscreenPageLimit = 3
         slidingTabLayout.setViewPager(viewPager)
         slidingTabLayout.currentTab = 1
 

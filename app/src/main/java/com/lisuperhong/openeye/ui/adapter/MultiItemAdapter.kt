@@ -61,7 +61,13 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
             is FollowCardItemHolder -> {
                 Logger.d("FollowCardItemHolder called, position = $position")
                 val followCard = gson.fromJson(dataJson.toString(), FollowCard::class.java)
-                bindFollowCardItemHolder(context!!, followCard, holder)
+                if (position + 1 < itemCount) {
+                    if (arrayList[position + 1].type == "followCard") {
+                        bindFollowCardItemHolder(context!!, followCard, holder, true)
+                    } else {
+                        bindFollowCardItemHolder(context!!, followCard, holder, false)
+                    }
+                }
             }
             is VideoSmallCardItemHolder -> {
                 Logger.d("VideoSmallCardItemHolder called, position = $position")

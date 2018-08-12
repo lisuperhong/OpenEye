@@ -17,11 +17,6 @@ interface DiscoveryContract {
          * 显示推荐数据
          */
         fun showContent(baseBean: BaseBean)
-
-        /**
-         * 显示错误提示
-         */
-        fun showError(errorMsg: String)
     }
 
     interface Presenter : IBasePresenter<DiscoveryContract.View> {

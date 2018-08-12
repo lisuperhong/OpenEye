@@ -89,12 +89,16 @@ fun bindTextCardItemHolder(
     val viewHolder: TextCardItemHolder = holder as TextCardItemHolder
     viewHolder.headerTv.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.footerTv.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+    if (textCard.actionUrl == null) {
+        viewHolder.headerArrow.visibility = View.GONE
+    }
+
     if (textCard.type == "footer2") {
-        viewHolder.headerTv.visibility = View.GONE
+        viewHolder.textCardHeaderLl.visibility = View.GONE
         viewHolder.footerTv.visibility = View.VISIBLE
         viewHolder.footerTv.text = textCard.text
     } else {
-        viewHolder.headerTv.visibility = View.VISIBLE
+        viewHolder.textCardHeaderLl.visibility = View.VISIBLE
         viewHolder.footerTv.visibility = View.GONE
         viewHolder.headerTv.text = textCard.text
     }
@@ -103,7 +107,8 @@ fun bindTextCardItemHolder(
 fun bindFollowCardItemHolder(
     context: Context,
     followCard: FollowCard,
-    holder: RecyclerView.ViewHolder
+    holder: RecyclerView.ViewHolder,
+    show: Boolean
 ) {
     val viewHolder: FollowCardItemHolder = holder as FollowCardItemHolder
     val header = followCard.header
@@ -121,6 +126,9 @@ fun bindFollowCardItemHolder(
     val cover = data.cover
     ImageLoad.loadImage(viewHolder.followCardCoverIv, cover.feed, 5)
     viewHolder.followCardTimeTv.text = TimeUtil.secToTime(data.duration)
+    if (show) {
+        viewHolder.followCardDividerView.visibility = View.VISIBLE
+    }
 }
 
 fun bindVideoSmallCardItemHolder(

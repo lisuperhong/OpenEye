@@ -6,25 +6,28 @@ import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 
 /**
  * Author: lisuperhong
- * Time: Create on 2018/8/5 13:43
+ * Time: Create on 2018/8/12 14:06
  * Github: https://github.com/lisuperhong
- * Desc: RecommendFragment页面契约类
+ * Desc:
  */
-interface RecommendContract {
+interface DailyContract {
 
     interface View : IBaseView {
-
         /**
          * 显示推荐数据
          */
         fun showContent(baseBean: BaseBean)
     }
 
-    interface Presenter : IBasePresenter<View> {
+    interface Presenter : IBasePresenter<DailyContract.View> {
+        /**
+         * 获取数据
+         */
+        fun feed(date: Long, num: Int)
 
         /**
-         * 获取推荐接口数据
+         * 加载更多数据
          */
-        fun requestAllRec(page: Int)
+        fun feedLoadMore(url: String)
     }
 }

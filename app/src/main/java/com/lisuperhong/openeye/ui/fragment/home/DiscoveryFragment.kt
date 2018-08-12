@@ -48,7 +48,7 @@ class DiscoveryFragment : BaseFragment(), DiscoveryContract.View {
     }
 
     override fun showContent(baseBean: BaseBean) {
-        refreshLayout.finishRefresh()
+        stopRefresh()
         if (baseBean.itemList.isEmpty())
             return
         if (isRefresh) {
@@ -59,6 +59,7 @@ class DiscoveryFragment : BaseFragment(), DiscoveryContract.View {
     }
 
     override fun showError(errorMsg: String) {
+        stopRefresh()
         Toast.makeText(activity, errorMsg, Toast.LENGTH_LONG).show()
     }
 
@@ -73,5 +74,10 @@ class DiscoveryFragment : BaseFragment(), DiscoveryContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
+    }
+
+    private fun stopRefresh() {
+        refreshLayout.finishRefresh()
+        refreshLayout.finishLoadMore()
     }
 }

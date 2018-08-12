@@ -4,6 +4,7 @@ import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 /**
  * Author: lisuperhong
@@ -20,4 +21,13 @@ interface ApiService {
     // 首页-发现
     @GET("api/v5/index/tab/discovery")
     fun discovery(): Observable<BaseBean>
+
+    // 首页-日报
+    @GET("api/v5/index/tab/feed")
+    fun feed(@Query("date") date: Long, @Query("num") num: Int = 2): Observable<BaseBean>
+
+    // 首页日报加载更多
+    // nextPageUrl: "http://baobab.kaiyanapp.com/api/v5/index/tab/feed?date=1533862800000&num=2"
+    @GET
+    fun feedLoadMore(@Url url: String): Observable<BaseBean>
 }

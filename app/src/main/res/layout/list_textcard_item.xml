@@ -6,16 +6,29 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
-    <TextView
-        android:id="@+id/headerTv"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/textCardHeaderLl"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:drawableEnd="@drawable/goto_icon"
-        android:drawablePadding="4dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/headerTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:text="标题"/>
+
+        <ImageView
+            android:id="@+id/headerArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/headerTv"
+            android:layout_centerVertical="true"
+            android:src="@drawable/goto_icon"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/footerTv"

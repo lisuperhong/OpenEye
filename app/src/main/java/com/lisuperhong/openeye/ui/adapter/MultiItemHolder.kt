@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.utils.Constant
@@ -102,7 +103,9 @@ class SquareCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 }
 
 class TextCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var textCardHeaderLl: RelativeLayout = view.textCardHeaderLl
     var headerTv: TextView = view.headerTv
+    var headerArrow: ImageView = view.headerArrow
     var footerTv: TextView = view.footerTv
 }
 
@@ -112,6 +115,7 @@ class FollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
     var followCardIconIv: ImageView = view.followCardIconIv
     var followCardTitle: TextView = view.followCardTitle
     var followCardSubTitle: TextView = view.followCardSubTitle
+    var followCardDividerView: View = view.followCardDividerView
 }
 
 class VideoSmallCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {

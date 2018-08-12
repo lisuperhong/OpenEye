@@ -58,8 +58,7 @@ class RecommendFragment : BaseFragment(), RecommendContract.View {
     }
 
     override fun showContent(baseBean: BaseBean) {
-        refreshLayout.finishRefresh()
-        refreshLayout.finishLoadMore()
+        stopRefresh()
         if (baseBean.itemList.isEmpty())
             return
         if (isRefresh) {
@@ -70,6 +69,7 @@ class RecommendFragment : BaseFragment(), RecommendContract.View {
     }
 
     override fun showError(errorMsg: String) {
+        stopRefresh()
         Toast.makeText(activity, errorMsg, Toast.LENGTH_LONG).show()
     }
 
@@ -84,5 +84,10 @@ class RecommendFragment : BaseFragment(), RecommendContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
+    }
+
+    private fun stopRefresh() {
+        refreshLayout.finishRefresh()
+        refreshLayout.finishLoadMore()
     }
 }

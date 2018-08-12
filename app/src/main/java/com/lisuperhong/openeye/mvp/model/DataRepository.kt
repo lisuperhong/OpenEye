@@ -49,4 +49,20 @@ class DataRepository private constructor() {
             .compose(IoMainScheduler())
             .subscribe(baseObserver)
     }
+
+    fun feed(date: Long, baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .feed(date)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun feedLoadMore(url: String, baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .feedLoadMore(url)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
 }

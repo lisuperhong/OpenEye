@@ -6,8 +6,8 @@ data class TextCard(
     var id: Int,
     var type: String,
     var text: String,
-    var subTitle: Any?,
-    var actionUrl: String,
+    var subTitle: String?,
+    var actionUrl: String?,
     var adTrack: Any?,
     var follow: Follow?
 ) {
