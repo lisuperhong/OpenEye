@@ -9,8 +9,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.utils.Constant
-import kotlinx.android.synthetic.main.list_banner_item.view.*
-import kotlinx.android.synthetic.main.list_briefcard_item.view.*
+import kotlinx.android.synthetic.main.item_banner.view.*
+import kotlinx.android.synthetic.main.item_briefcard.view.*
 import kotlinx.android.synthetic.main.list_followcard_item.view.*
 import kotlinx.android.synthetic.main.list_horizontalscrollcard_item.view.*
 import kotlinx.android.synthetic.main.list_picturecard_item.view.*
@@ -32,7 +32,6 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
                 .inflate(R.layout.list_squarecard_collection_item, parent, false)
             return SquareCardItemHolder(view)
         }
-
 
         Constant.ITEM_TYPE_TEXTCARD -> {
             val view = LayoutInflater.from(parent.context)
@@ -66,7 +65,7 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
 
         Constant.ITEM_TYPE_BANNER -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_banner_item, parent, false)
+                .inflate(R.layout.item_banner, parent, false)
             return BannerItemHolder(view)
         }
 
@@ -78,7 +77,7 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
 
         Constant.ITEM_TYPE_BRIEFCARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_briefcard_item, parent, false)
+                .inflate(R.layout.item_briefcard, parent, false)
             return BriefCardItemHolder(view)
         }
 
@@ -86,6 +85,12 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.list_videocollectionwithbrief_item, parent, false)
             return VideoCollectionWithBriefItemHolder(view)
+        }
+
+        Constant.ITEM_TYPE_VIDEODETAIL -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_video_detail_info, parent, false)
+            return VideoDetailInfoViewHoder(view)
         }
 
         else -> {
@@ -163,5 +168,9 @@ class VideoCollectionWithBriefItemHolder(view: View) : RecyclerView.ViewHolder(v
     var videoCollectionTitleTv: TextView = view.videoCollectionTitleTv
     var videoCollectionDescriptionTv: TextView = view.videoCollectionDescriptionTv
     var videoCollectionRecyclerView: RecyclerView = view.videoCollectionRecyclerView
+}
+
+class VideoDetailInfoViewHoder(view: View) : RecyclerView.ViewHolder(view) {
+
 }
 

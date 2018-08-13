@@ -58,6 +58,8 @@ dependencies {
     // 刷新控件
     implementation librarys.refreshLayout
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // 播放器
+    implementation librarys.gsyVideoPlayer
 }
 repositories {
     mavenCentral()

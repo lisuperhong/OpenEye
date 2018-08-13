@@ -21,4 +21,5 @@ object Constant {
     const val ITEM_TYPE_HORIZONTALSCROLLCARD = 8
     const val ITEM_TYPE_BRIEFCARD = 9
     const val ITEM_TYPE_VIDEOCOLLECTIONWITHBRIEF = 10
+    const val ITEM_TYPE_VIDEODETAIL = 11
 }
