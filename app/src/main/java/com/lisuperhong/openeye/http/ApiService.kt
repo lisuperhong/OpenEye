@@ -30,4 +30,8 @@ interface ApiService {
     // nextPageUrl: "http://baobab.kaiyanapp.com/api/v5/index/tab/feed?date=1533862800000&num=2"
     @GET
     fun feedLoadMore(@Url url: String): Observable<BaseBean>
+
+    // 视频详情相关
+    @GET("api/v4/video/related")
+    fun videoRelated(@Query("id") id: Long): Observable<BaseBean>
 }

@@ -8,7 +8,7 @@
     android:background="@drawable/recommend_bg_unlike">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/videoDetailTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -20,7 +20,7 @@
         tools:text="这家解忧杂货铺，用音乐治愈你！" />
 
     <TextView
-        android:id="@+id/tv_tag"
+        android:id="@+id/videoDetailCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,7 +32,7 @@
         tools:text="#广告/精选" />
 
     <TextView
-        android:id="@+id/expandable_text"
+        android:id="@+id/videoDetailDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -49,7 +49,7 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/tv_action_favorites"
+            android:id="@+id/favoritesActionTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,7 +60,7 @@
             tools:text="324" />
 
         <TextView
-            android:id="@+id/tv_action_share"
+            android:id="@+id/shareActionTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -71,7 +71,7 @@
             tools:text="324" />
 
         <TextView
-            android:id="@+id/tv_action_reply"
+            android:id="@+id/replyActionTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -82,7 +82,7 @@
             tools:text="324" />
 
         <TextView
-            android:id="@+id/tv_action_offline"
+            android:id="@+id/offlineActionTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -105,8 +105,79 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/firstTagIv"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
+
+            <TextView
+                android:id="@+id/firstTagTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:text="egeg"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp">
+
+            <ImageView
+                android:id="@+id/secondTagIv"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
+
+            <TextView
+                android:id="@+id/secondTagTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:text="egeg"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp">
+
+            <ImageView
+                android:id="@+id/thirdTagIv"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
+
+            <TextView
+                android:id="@+id/thirdTagTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:text="egeg"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
         <ImageView
-            android:id="@+id/followCardIconIv"
+            android:id="@+id/authorIconIv"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@mipmap/ic_launcher_round"/>
@@ -119,18 +190,24 @@
             android:layout_marginStart="10dp">
 
             <TextView
-                android:id="@+id/followCardTitle"
+                android:id="@+id/authorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/followCardSubTitle"
+                android:id="@+id/authorDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/white" />
 </LinearLayout>

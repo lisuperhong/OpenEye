@@ -16,8 +16,6 @@ import io.reactivex.disposables.Disposable
  */
 class DataRepository private constructor() {
 
-    private var instance: DataRepository? = null
-
     companion object {
         private var instance: DataRepository? = null
 
@@ -62,6 +60,14 @@ class DataRepository private constructor() {
         RetrofitManager.getInstance()
             .initService(ApiService::class.java, Constant.HOST)
             .feedLoadMore(url)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun videoRelated(id: Long, baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .videoRelated(id)
             .compose(IoMainScheduler())
             .subscribe(baseObserver)
     }

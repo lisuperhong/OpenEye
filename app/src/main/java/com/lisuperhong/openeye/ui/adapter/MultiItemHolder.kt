@@ -11,6 +11,7 @@ import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.utils.Constant
 import kotlinx.android.synthetic.main.item_banner.view.*
 import kotlinx.android.synthetic.main.item_briefcard.view.*
+import kotlinx.android.synthetic.main.item_video_detail_info.view.*
 import kotlinx.android.synthetic.main.list_followcard_item.view.*
 import kotlinx.android.synthetic.main.list_horizontalscrollcard_item.view.*
 import kotlinx.android.synthetic.main.list_picturecard_item.view.*
@@ -90,7 +91,7 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
         Constant.ITEM_TYPE_VIDEODETAIL -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_video_detail_info, parent, false)
-            return VideoDetailInfoViewHoder(view)
+            return VideoDetailInfoViewHolder(view)
         }
 
         else -> {
@@ -170,7 +171,22 @@ class VideoCollectionWithBriefItemHolder(view: View) : RecyclerView.ViewHolder(v
     var videoCollectionRecyclerView: RecyclerView = view.videoCollectionRecyclerView
 }
 
-class VideoDetailInfoViewHoder(view: View) : RecyclerView.ViewHolder(view) {
-
+class VideoDetailInfoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var videoDetailTitle: TextView = view.videoDetailTitle
+    var videoDetailCategory: TextView = view.videoDetailCategory
+    var videoDetailDescription: TextView = view.videoDetailDescription
+    var favoritesActionTv: TextView = view.favoritesActionTv
+    var shareActionTv: TextView = view.shareActionTv
+    var replyActionTv: TextView = view.replyActionTv
+    var offlineActionTv: TextView = view.offlineActionTv
+    var firstTagIv: ImageView = view.firstTagIv
+    var firstTagTv: TextView = view.firstTagTv
+    var secondTagIv: ImageView = view.secondTagIv
+    var secondTagTv: TextView = view.secondTagTv
+    var thirdTagIv: ImageView = view.thirdTagIv
+    var thirdTagTv: TextView = view.thirdTagTv
+    var authorIconIv: ImageView = view.authorIconIv
+    var authorName: TextView = view.authorName
+    var authorDescription: TextView = view.authorDescription
 }
 

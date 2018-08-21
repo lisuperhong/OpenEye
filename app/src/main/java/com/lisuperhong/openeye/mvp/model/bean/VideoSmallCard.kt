@@ -1,9 +1,11 @@
 package com.lisuperhong.openeye.mvp.model.bean
 
+import java.io.Serializable
+
 
 data class VideoSmallCard(
     var dataType: String,
-    var id: Int,
+    var id: Long,
     var title: String,
     var description: String,
     var library: String,
@@ -45,7 +47,7 @@ data class VideoSmallCard(
     var lastViewTime: Any?,
     var playlists: Any?,
     var src: Any?
-) {
+) : Serializable {
     data class WebUrl(
         var raw: String,
         var forWeibo: String

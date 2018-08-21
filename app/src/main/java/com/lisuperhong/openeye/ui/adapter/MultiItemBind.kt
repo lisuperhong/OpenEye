@@ -276,3 +276,31 @@ fun bindVideoCollectionWithBriefItemHolder(
     viewHolder.videoCollectionRecyclerView.adapter = adapter
 }
 
+fun bindVideoDetailInfoHolder(videoSmallCard: VideoSmallCard, holder: RecyclerView.ViewHolder) {
+    val viewHolder: VideoDetailInfoViewHolder = holder as VideoDetailInfoViewHolder
+
+    viewHolder.videoDetailTitle.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+    viewHolder.videoDetailTitle.text = videoSmallCard.title
+    viewHolder.videoDetailCategory.text = "#${videoSmallCard.category}"
+    viewHolder.videoDetailDescription.text = videoSmallCard.description
+
+    val consumption = videoSmallCard.consumption
+    viewHolder.favoritesActionTv.text = consumption.collectionCount.toString()
+    viewHolder.shareActionTv.text = consumption.shareCount.toString()
+    viewHolder.replyActionTv.text = consumption.replyCount.toString()
+
+    val tags = videoSmallCard.tags
+    viewHolder.firstTagTv.text = "#${tags[0].name}#"
+    ImageLoad.loadImage(viewHolder.firstTagIv, tags[0].headerImage, 5)
+    viewHolder.secondTagTv.text = "#${tags[1].name}#"
+    ImageLoad.loadImage(viewHolder.secondTagIv, tags[1].headerImage, 5)
+    viewHolder.thirdTagTv.text = "#${tags[2].name}#"
+    ImageLoad.loadImage(viewHolder.thirdTagIv, tags[2].headerImage, 5)
+
+    val author = videoSmallCard.author
+    viewHolder.authorName.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+    viewHolder.authorName.text = author.name
+    viewHolder.authorDescription.text = author.description
+    ImageLoad.loadCircleImage(viewHolder.authorIconIv, author.icon)
+}
+
