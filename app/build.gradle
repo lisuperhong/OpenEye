@@ -16,12 +16,31 @@ android {
         versionCode config.versionCode
         versionName config.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //APP的build.gradle设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    productFlavors {
+
+    }
+
+    dexOptions {
+        jumboMode true
     }
 }
 
@@ -64,5 +83,3 @@ dependencies {
 repositories {
     mavenCentral()
 }
-
-apply plugin: 'kotlin-android-extensions'

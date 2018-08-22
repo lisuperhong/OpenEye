@@ -17,7 +17,19 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(),
     VideoDetailContract.Presenter {
 
     override fun loadVideoInfo(videoSmallCard: VideoSmallCard) {
+        checkViewAttached()
+        val playInfos: List<VideoSmallCard.PlayInfo> = videoSmallCard.playInfo
+        if (playInfos.size > 1) {
+            for (playInfo in playInfos) {
+                if (playInfo.type == "high") {
+                    rootView?.setVideoUrl(playInfo.url)
+                }
+            }
+        } else {
+            rootView?.setVideoUrl(videoSmallCard.playUrl)
+        }
 
+        rootView?.setVideoData(videoSmallCard)
     }
 
     override fun requestRelatedVideo(id: Long) {

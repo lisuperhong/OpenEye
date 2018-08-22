@@ -1,11 +1,19 @@
 package com.lisuperhong.openeye.ui.adapter
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.*
+import com.lisuperhong.openeye.ui.activity.VideoDetailActivity
+import com.lisuperhong.openeye.utils.Constant
 import com.lisuperhong.openeye.utils.ImageLoad
 import com.lisuperhong.openeye.utils.TimeUtil
 import com.lisuperhong.openeye.utils.TypefaceUtil
@@ -129,6 +137,10 @@ fun bindFollowCardItemHolder(
     viewHolder.followCardTimeTv.text = TimeUtil.secToTime(data.duration)
     if (show) {
         viewHolder.followCardDividerView.visibility = View.VISIBLE
+    }
+
+    viewHolder.followCardCoverIv.setOnClickListener {
+        startVideoDetail(context as Activity, viewHolder.followCardCoverIv, content.data)
     }
 }
 
@@ -304,3 +316,18 @@ fun bindVideoDetailInfoHolder(videoSmallCard: VideoSmallCard, holder: RecyclerVi
     ImageLoad.loadCircleImage(viewHolder.authorIconIv, author.icon)
 }
 
+fun startVideoDetail(activity: Activity, view: View, videoSmallCard: VideoSmallCard) {
+    val intent = Intent(activity, VideoDetailActivity::class.java)
+    intent.putExtra(Constant.INTENT_VIDEO_DETAIL, videoSmallCard)
+    intent.putExtra(VideoDetailActivity.FROM_TRANSITION, true)
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        val pair = Pair<View, String>(view, VideoDetailActivity.IMG_TRANSITION)
+        val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity, pair
+        )
+        ActivityCompat.startActivity(activity, intent, activityOptions.toBundle())
+    } else {
+        activity.startActivity(intent)
+        activity.overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
+    }
+}

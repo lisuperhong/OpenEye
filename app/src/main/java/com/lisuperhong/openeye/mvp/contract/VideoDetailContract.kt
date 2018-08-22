@@ -15,10 +15,19 @@ interface VideoDetailContract {
 
     interface View : IBaseView {
 
-//        fun showVideoInfo(item: BaseBean.Item)
-//
-//        fun showBackground(url: String)
+        /**
+         * 设置视频播放源
+         */
+        fun setVideoUrl(url: String)
 
+        /**
+         * 设置视频信息
+         */
+        fun setVideoData(videoSmallCard: VideoSmallCard)
+
+        /**
+         * 设置相关视频信息
+         */
         fun showRelatedVideo(baseBean: BaseBean)
     }
 

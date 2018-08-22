@@ -42,13 +42,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     companion object {
 
         val FROM_TRANSITION = "TRANSITION"
-        val FROM_RELATED_VIDEO = "RELATED_VIDEO"
-
-        fun actionStart(context: Context, videoSmallCard: VideoSmallCard) {
-            val intent = Intent(context, VideoDetailActivity::class.java)
-            intent.putExtra(Constant.INTENT_VIDEO_DETAIL, videoSmallCard)
-            context.startActivity(intent)
-        }
+        val IMG_TRANSITION = "IMG_TRANSITION"
     }
 
     override fun layoutId(): Int {
@@ -71,12 +65,20 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         videoSmallCard = intent.getSerializableExtra(Constant.INTENT_VIDEO_DETAIL) as VideoSmallCard
         isTransition = intent.getBooleanExtra(FROM_TRANSITION, false)
 
-        // 跳转过渡动画
-        initTransition()
         // 播放器配置
         videoViewConfig()
+        // 跳转过渡动画
+        initTransition()
+    }
 
-        val item: BaseBean.Item = BaseBean.Item("videoSmallCard", null, 0, -1, videoSmallCard!!)
+    override fun setVideoUrl(url: String) {
+        videoPlayer.setUp(url, false, "")
+        //开始自动播放
+        videoPlayer.startPlayLogic()
+    }
+
+    override fun setVideoData(videoSmallCard: VideoSmallCard) {
+        val item: BaseBean.Item = BaseBean.Item("videoSmallCard", null, 0, -1, videoSmallCard)
         videoDetailAdapter?.addData(item)
         presenter.requestRelatedVideo(videoSmallCard.id)
     }
@@ -102,7 +104,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
     private fun initTransition() {
         if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             postponeEnterTransition()
-            ViewCompat.setTransitionName(videoPlayer, FROM_TRANSITION)
+            ViewCompat.setTransitionName(videoPlayer, IMG_TRANSITION)
             addTransitionListener()
             startPostponedEnterTransition()
         } else {

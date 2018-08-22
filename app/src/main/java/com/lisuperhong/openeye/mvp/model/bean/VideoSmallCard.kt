@@ -51,7 +51,7 @@ data class VideoSmallCard(
     data class WebUrl(
         var raw: String,
         var forWeibo: String
-    )
+    ) : Serializable
 
     data class Tag(
         var id: Int,
@@ -62,13 +62,13 @@ data class VideoSmallCard(
         var bgPicture: String,
         var headerImage: String,
         var tagRecType: String
-    )
+    ) : Serializable
 
     data class Provider(
         var name: String,
         var alias: String,
         var icon: String
-    )
+    ) : Serializable
 
     data class PlayInfo(
         var height: Int,
@@ -77,20 +77,20 @@ data class VideoSmallCard(
         var name: String,
         var type: String,
         var url: String
-    ) {
+    ) : Serializable {
 
         data class Url(
             var name: String,
             var url: String,
             var size: Int
-        )
+        ) : Serializable
     }
 
     data class Consumption(
         var collectionCount: Int,
         var shareCount: Int,
         var replyCount: Int
-    )
+    ) : Serializable
 
     data class Cover(
         var feed: String,
@@ -98,7 +98,7 @@ data class VideoSmallCard(
         var blurred: String,
         var sharing: Any?,
         var homepage: String
-    )
+    ) : Serializable
 
     data class Author(
         var id: Int,
@@ -113,17 +113,17 @@ data class VideoSmallCard(
         var shield: Shield,
         var approvedNotReadyVideoCount: Int,
         var ifPgc: Boolean
-    ) {
+    ) : Serializable {
         data class Shield(
             var itemType: String,
             var itemId: Int,
             var shielded: Boolean
-        )
+        ) : Serializable
 
         data class Follow(
             var itemType: String,
             var itemId: Int,
             var followed: Boolean
-        )
+        ) : Serializable
     }
 }
