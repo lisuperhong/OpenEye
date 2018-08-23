@@ -1,7 +1,5 @@
 package com.lisuperhong.openeye.ui.activity
 
-import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -53,7 +51,6 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         presenter.attachView(this)
 
         //状态栏透明和间距处理
-        StatusBarUtil.immersive(this)
         StatusBarUtil.setPaddingSmart(this, videoPlayer)
 
         videoDetailAdapter = VideoDetailAdapter(this, ArrayList<BaseBean.Item>())
@@ -146,7 +143,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         })
 
         //设置返回按键功能
-        videoPlayer.backButton.setOnClickListener({ onBackPressed() })
+        videoPlayer.backButton.setOnClickListener { _ -> onBackPressed() }
         //设置全屏按键功能
         videoPlayer.fullscreenButton.setOnClickListener {
             //直接横屏

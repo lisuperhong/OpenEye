@@ -38,30 +38,30 @@ class VideoDetailAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val gson = Gson()
         val data = arrayList[position]
-        val dataMap = data.data as Map<*, *>
-        var dataJson: JSONObject? = null
-        try {
-            dataJson = JSONObject(dataMap)
-        } catch (e: JSONException) {
-            Logger.d(e.printStackTrace())
-        }
-
-        when (holder) {
-            is VideoDetailInfoViewHolder -> {
-                val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
-                bindVideoDetailInfoHolder(videoSmallCard, holder)
+        if (position == 0) {
+            val videoSmallCard: VideoSmallCard = data.data as VideoSmallCard
+            bindVideoDetailInfoHolder(videoSmallCard, holder)
+        } else {
+            val gson = Gson()
+            val dataMap = data.data as Map<*, *>
+            var dataJson: JSONObject? = null
+            try {
+                dataJson = JSONObject(dataMap)
+            } catch (e: JSONException) {
+                Logger.d(e.printStackTrace())
             }
 
-            is TextCardItemHolder -> {
-                val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
-                bindTextCardItemHolder(context!!, textCard, holder)
-            }
+            when (holder) {
+                is TextCardItemHolder -> {
+                    val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
+                    bindTextCardItemHolder(context!!, textCard, holder)
+                }
 
-            is VideoSmallCardItemHolder -> {
-                val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
-                bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true)
+                is VideoSmallCardItemHolder -> {
+                    val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
+                    bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true)
+                }
             }
         }
     }

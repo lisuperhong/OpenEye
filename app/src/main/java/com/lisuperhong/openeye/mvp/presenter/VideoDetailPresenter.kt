@@ -23,6 +23,7 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(),
             for (playInfo in playInfos) {
                 if (playInfo.type == "high") {
                     rootView?.setVideoUrl(playInfo.url)
+                    break
                 }
             }
         } else {
@@ -33,7 +34,6 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(),
     }
 
     override fun requestRelatedVideo(id: Long) {
-        checkViewAttached()
         DataRepository.getInstance()
             .videoRelated(id, object : BaseObserver<BaseBean>() {
                 override fun onSuccess(data: BaseBean) {

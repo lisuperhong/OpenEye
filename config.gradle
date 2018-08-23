@@ -81,7 +81,7 @@ ext {
             refreshLayout                  : "com.scwang.smartrefresh:SmartRefreshLayout:${smartRefreshVersion}",
 
             // 播放器
-            gsyVideoPlayer                 : "com.shuyu:gsyVideoPlayer-java:${playerVersion}",
+            gsyVideoPlayer                 : "com.shuyu:GSYVideoPlayer:${playerVersion}",
 
             //others
             ormlite_android                : "com.j256.ormlite:ormlite-android:5.0",
