@@ -8,8 +8,9 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/videoSmallCardLl"
         android:layout_width="match_parent"
-        android:layout_height="112dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="12dp">
 
         <RelativeLayout

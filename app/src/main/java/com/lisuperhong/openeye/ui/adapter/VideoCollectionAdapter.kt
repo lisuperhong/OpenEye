@@ -1,11 +1,13 @@
 package com.lisuperhong.openeye.ui.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.VideoBeanForClient
@@ -50,9 +52,18 @@ class VideoCollectionAdapter(context: Context, dataList: ArrayList<VideoBeanForC
         holder.videoCollectionSubTitleTv.text = "#${data.category}"
         ImageLoad.loadImage(holder.videoCollectionCoverIv, data.cover.feed, 5)
         holder.videoCollectionTimeTv.text = TimeUtil.secToTime(data.duration)
+
+        holder.videoCollectionLl.setOnClickListener {
+            startVideoDetail(
+                context as Activity,
+                holder.videoCollectionCoverIv,
+                videoBeanForClient.data
+            )
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var videoCollectionLl: LinearLayout = view.videoCollectionLl
         var videoCollectionCoverIv: ImageView = view.videoCollectionCoverIv
         var videoCollectionTimeTv: TextView = view.videoCollectionTimeTv
         var videoCollectionTitleTv: TextView = view.videoCollectionTitleTv

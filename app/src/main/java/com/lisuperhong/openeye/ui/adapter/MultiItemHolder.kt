@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.lisuperhong.openeye.R
@@ -125,6 +126,7 @@ class FollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 }
 
 class VideoSmallCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var videoSmallCardLl: LinearLayout = view.videoSmallCardLl
     var videoSmallCardIv: ImageView = view.videoSmallCardIv
     var videoSmallCardTimeTv: TextView = view.videoSmallCardTimeTv
     var videoSmallCardTitle: TextView = view.videoSmallCardTitle

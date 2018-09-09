@@ -1,5 +1,6 @@
 package com.lisuperhong.openeye.ui.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -57,6 +58,11 @@ class FollowCardAdapter(context: Context, datas: ArrayList<FollowCard>) :
         val cover = data.cover
         ImageLoad.loadImage(holder.followCardCoverIv, cover.feed, 5)
         holder.followCardTimeTv.text = TimeUtil.secToTime(data.duration)
+
+        holder.followCardCoverIv.setOnClickListener {
+            val videoSmallCard = followCard.content.data
+            startVideoDetail(context as Activity, holder.followCardCoverIv, videoSmallCard)
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

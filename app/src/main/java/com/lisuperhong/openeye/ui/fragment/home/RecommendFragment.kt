@@ -2,7 +2,10 @@ package com.lisuperhong.openeye.ui.fragment.home
 
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.lisuperhong.openeye.BaseApplication
 
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
@@ -49,6 +52,25 @@ class RecommendFragment : BaseFragment(), RecommendContract.View {
         multiItemAdapter = MultiItemAdapter(getContext()!!, ArrayList<BaseBean.Item>())
         recommendRecycleView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recommendRecycleView.adapter = multiItemAdapter
+        recommendRecycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                //0 表示停止滑动的状态 SCROLL_STATE_IDLE
+                //1表示正在滚动，用户手指在屏幕上 SCROLL_STATE_TOUCH_SCROLL
+                //2表示正在滑动。用户手指已经离开屏幕 SCROLL_STATE_FLING
+                when (newState) {
+                    0 -> {
+                        Glide.with(BaseApplication.context).resumeRequests()
+                    }
+                    1 -> {
+                        Glide.with(BaseApplication.context).resumeRequests()
+                    }
+                    2 -> {
+                        Glide.with(BaseApplication.context).pauseRequests()
+                    }
+                }
+            }
+        })
         isRefresh = false
         showLoading()
     }

@@ -161,6 +161,10 @@ fun bindVideoSmallCardItemHolder(
     if (hide) {
         viewHolder.dividerView.visibility = View.GONE
     }
+
+    viewHolder.videoSmallCardLl.setOnClickListener {
+        startVideoDetail(context as Activity, viewHolder.videoSmallCardIv, videoSmallCard)
+    }
 }
 
 fun bindPictureFollowCardItemHolder(

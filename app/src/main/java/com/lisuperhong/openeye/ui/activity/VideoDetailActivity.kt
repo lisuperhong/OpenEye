@@ -51,6 +51,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         presenter.attachView(this)
 
         //状态栏透明和间距处理
+        StatusBarUtil.immersive(this)
         StatusBarUtil.setPaddingSmart(this, videoPlayer)
 
         videoDetailAdapter = VideoDetailAdapter(this, ArrayList<BaseBean.Item>())

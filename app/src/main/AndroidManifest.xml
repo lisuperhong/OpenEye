@@ -23,19 +23,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
+
         <activity
             android:name=".ui.activity.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/FullScreenView">
+            android:theme="@style/FullScreenView"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.VideoDetailActivity"></activity>
+        <activity android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.VideoDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
     </application>
 
 </manifest>
