@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.Banner
-import com.lisuperhong.openeye.mvp.model.bean.HorizontalScrollCard
 import com.lisuperhong.openeye.utils.ImageLoad
-import kotlinx.android.synthetic.main.list_horizontal_banner_item.view.*
+import kotlinx.android.synthetic.main.item_horizontal_banner.view.*
 
 /**
  * Author: lisuperhong
@@ -30,7 +29,7 @@ RecyclerView.Adapter<HorizontalBannerAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var view = LayoutInflater.from(context).inflate(R.layout.list_horizontal_banner_item, parent, false)
+        var view = LayoutInflater.from(context).inflate(R.layout.item_horizontal_banner, parent, false)
         return ViewHolder(view)
     }
 

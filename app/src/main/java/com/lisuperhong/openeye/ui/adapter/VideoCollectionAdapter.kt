@@ -14,7 +14,7 @@ import com.lisuperhong.openeye.mvp.model.bean.VideoBeanForClient
 import com.lisuperhong.openeye.utils.ImageLoad
 import com.lisuperhong.openeye.utils.TimeUtil
 import com.lisuperhong.openeye.utils.TypefaceUtil
-import kotlinx.android.synthetic.main.list_videocollection_item.view.*
+import kotlinx.android.synthetic.main.item_videocollection.view.*
 
 /**
  * Author: lisuperhong
@@ -35,7 +35,7 @@ class VideoCollectionAdapter(context: Context, dataList: ArrayList<VideoBeanForC
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(context).inflate(R.layout.list_videocollection_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_videocollection, parent, false)
         return ViewHolder(view)
     }
 

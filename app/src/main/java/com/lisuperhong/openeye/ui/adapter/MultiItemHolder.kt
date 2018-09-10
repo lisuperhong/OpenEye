@@ -13,13 +13,13 @@ import com.lisuperhong.openeye.utils.Constant
 import kotlinx.android.synthetic.main.item_banner.view.*
 import kotlinx.android.synthetic.main.item_briefcard.view.*
 import kotlinx.android.synthetic.main.item_video_detail_info.view.*
-import kotlinx.android.synthetic.main.list_followcard_item.view.*
-import kotlinx.android.synthetic.main.list_horizontalscrollcard_item.view.*
-import kotlinx.android.synthetic.main.list_picturecard_item.view.*
-import kotlinx.android.synthetic.main.list_squarecard_collection_item.view.*
-import kotlinx.android.synthetic.main.list_textcard_item.view.*
-import kotlinx.android.synthetic.main.list_videocollectionwithbrief_item.view.*
-import kotlinx.android.synthetic.main.list_videosmallcard_item.view.*
+import kotlinx.android.synthetic.main.item_followcard.view.*
+import kotlinx.android.synthetic.main.item_horizontalscrollcard.view.*
+import kotlinx.android.synthetic.main.item_picturecard.view.*
+import kotlinx.android.synthetic.main.item_squarecard_collection.view.*
+import kotlinx.android.synthetic.main.item_textcard.view.*
+import kotlinx.android.synthetic.main.item_videocollectionwithbrief.view.*
+import kotlinx.android.synthetic.main.item_videosmallcard.view.*
 
 /**
  * Author: lizhaohong
@@ -31,37 +31,37 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
     when (viewType) {
         Constant.ITEM_TYPE_SQUARECARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_squarecard_collection_item, parent, false)
+                .inflate(R.layout.item_squarecard_collection, parent, false)
             return SquareCardItemHolder(view)
         }
 
         Constant.ITEM_TYPE_TEXTCARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_textcard_item, parent, false)
+                .inflate(R.layout.item_textcard, parent, false)
             return TextCardItemHolder(view)
         }
 
         Constant.ITEM_TYPE_FLLOWCARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_followcard_item, parent, false)
+                .inflate(R.layout.item_followcard, parent, false)
             return FollowCardItemHolder(view)
         }
 
         Constant.ITEM_TYPE_VIDEOSMALLCARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_videosmallcard_item, parent, false)
+                .inflate(R.layout.item_videosmallcard, parent, false)
             return VideoSmallCardItemHolder(view)
         }
 
         Constant.ITEM_TYPE_PICTUREFOLLOWCARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_picturecard_item, parent, false)
+                .inflate(R.layout.item_picturecard, parent, false)
             return PictureFollowCardItemHolder(view)
         }
 
         Constant.ITEM_TYPE_AUTOPLAYFOLLOWCARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_picturecard_item, parent, false)
+                .inflate(R.layout.item_picturecard, parent, false)
             return AutoPlayFollowCardItemHolder(view)
         }
 
@@ -73,7 +73,7 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
 
         Constant.ITEM_TYPE_HORIZONTALSCROLLCARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_horizontalscrollcard_item, parent, false)
+                .inflate(R.layout.item_horizontalscrollcard, parent, false)
             return HorizontalScrollCardItemHolder(view)
         }
 
@@ -85,7 +85,7 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
 
         Constant.ITEM_TYPE_VIDEOCOLLECTIONWITHBRIEF -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_videocollectionwithbrief_item, parent, false)
+                .inflate(R.layout.item_videocollectionwithbrief, parent, false)
             return VideoCollectionWithBriefItemHolder(view)
         }
 
@@ -97,7 +97,7 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
 
         else -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_textcard_item, parent, false)
+                .inflate(R.layout.item_textcard, parent, false)
             return TextCardItemHolder(view)
         }
     }

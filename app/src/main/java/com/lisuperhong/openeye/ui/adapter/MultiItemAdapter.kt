@@ -58,7 +58,7 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
             is TextCardItemHolder -> {
                 Logger.d("TextCardItemHolder called, position = $position")
                 val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
-                bindTextCardItemHolder(context!!, textCard, holder)
+                bindTextCardItemHolder(context!!, textCard, holder, false)
             }
             is FollowCardItemHolder -> {
                 Logger.d("FollowCardItemHolder called, position = $position")
@@ -76,9 +76,15 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
                 val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
                 if (position + 1 < itemCount) {
                     if (arrayList[position + 1].type == "videoSmallCard") {
-                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true)
+                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true, false)
                     } else {
-                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, false)
+                        bindVideoSmallCardItemHolder(
+                            context!!,
+                            videoSmallCard,
+                            holder,
+                            false,
+                            false
+                        )
                     }
                 }
             }
@@ -117,7 +123,7 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
             else -> {
                 Logger.d("default TextCardItemHolder called, position = $position")
                 val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
-                bindTextCardItemHolder(context!!, textCard, holder)
+                bindTextCardItemHolder(context!!, textCard, holder, false)
             }
         }
     }

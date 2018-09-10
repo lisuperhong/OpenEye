@@ -55,12 +55,13 @@ class VideoDetailAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
             when (holder) {
                 is TextCardItemHolder -> {
                     val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
-                    bindTextCardItemHolder(context!!, textCard, holder)
+                    bindTextCardItemHolder(context!!, textCard, holder, true)
                 }
 
                 is VideoSmallCardItemHolder -> {
-                    val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
-                    bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true)
+                    val videoSmallCard =
+                        gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
+                    bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true, true)
                 }
             }
         }

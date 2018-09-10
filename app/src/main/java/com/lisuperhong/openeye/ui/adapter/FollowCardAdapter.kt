@@ -13,7 +13,7 @@ import com.lisuperhong.openeye.mvp.model.bean.FollowCard
 import com.lisuperhong.openeye.utils.ImageLoad
 import com.lisuperhong.openeye.utils.TimeUtil
 import com.lisuperhong.openeye.utils.TypefaceUtil
-import kotlinx.android.synthetic.main.list_followcard_item.view.*
+import kotlinx.android.synthetic.main.item_followcard.view.*
 
 /**
  * Author: lizhaohong
@@ -33,7 +33,7 @@ class FollowCardAdapter(context: Context, datas: ArrayList<FollowCard>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(context).inflate(R.layout.list_today_recommend_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_today_recommend, parent, false)
         return ViewHolder(view)
     }
 

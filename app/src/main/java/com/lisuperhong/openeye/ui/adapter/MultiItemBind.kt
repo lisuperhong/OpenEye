@@ -3,6 +3,7 @@ package com.lisuperhong.openeye.ui.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
@@ -92,12 +93,17 @@ fun bindSquareCardItemHolder(
 fun bindTextCardItemHolder(
     context: Context,
     textCard: TextCard,
-    holder: RecyclerView.ViewHolder
+    holder: RecyclerView.ViewHolder,
+    isDetail: Boolean
 ) {
     val viewHolder: TextCardItemHolder = holder as TextCardItemHolder
     viewHolder.headerTv.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.footerTv.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
-    if (textCard.actionUrl == null) {
+    if (isDetail) {
+        viewHolder.headerTv.textSize = 14f
+        viewHolder.headerTv.setTextColor(context.resources.getColor(R.color.white))
+    }
+    if (textCard.actionUrl == null || isDetail) {
         viewHolder.headerArrow.visibility = View.GONE
     }
 
@@ -148,11 +154,16 @@ fun bindVideoSmallCardItemHolder(
     context: Context,
     videoSmallCard: VideoSmallCard,
     holder: RecyclerView.ViewHolder,
-    hide: Boolean
+    hide: Boolean,
+    isDetail: Boolean
 ) {
     val viewHolder: VideoSmallCardItemHolder = holder as VideoSmallCardItemHolder
     viewHolder.videoSmallCardTitle.typeface =
             TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+    if (isDetail) {
+        viewHolder.videoSmallCardTitle.setTextColor(context.resources.getColor(R.color.white))
+        viewHolder.videoSmallCardSubTitle.setTextColor(context.resources.getColor(R.color.white))
+    }
     viewHolder.videoSmallCardTitle.text = videoSmallCard.title
     viewHolder.videoSmallCardSubTitle.text = "#" + videoSmallCard.category
     val cover = videoSmallCard.cover
@@ -295,7 +306,8 @@ fun bindVideoCollectionWithBriefItemHolder(
 fun bindVideoDetailInfoHolder(videoSmallCard: VideoSmallCard, holder: RecyclerView.ViewHolder) {
     val viewHolder: VideoDetailInfoViewHolder = holder as VideoDetailInfoViewHolder
 
-    viewHolder.videoDetailTitle.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+    viewHolder.videoDetailTitle.typeface =
+            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.videoDetailTitle.text = videoSmallCard.title
     viewHolder.videoDetailCategory.text = "#${videoSmallCard.category}"
     viewHolder.videoDetailDescription.text = videoSmallCard.description
