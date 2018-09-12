@@ -2,12 +2,17 @@ package com.lisuperhong.openeye.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
+import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import com.lisuperhong.openeye.mvp.model.bean.TextCard
 import com.lisuperhong.openeye.mvp.model.bean.VideoSmallCard
 import com.lisuperhong.openeye.utils.Constant
+import com.lisuperhong.openeye.utils.ImageLoad
+import com.lisuperhong.openeye.utils.TimeUtil
+import com.lisuperhong.openeye.utils.TypefaceUtil
 import com.orhanobut.logger.Logger
 import org.json.JSONException
 import org.json.JSONObject
@@ -23,6 +28,7 @@ class VideoDetailAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
 
     private var context: Context? = null
     private var arrayList: ArrayList<BaseBean.Item>
+    private var listener: VideoItemClickListener? = null
 
     init {
         this.context = context
@@ -61,7 +67,22 @@ class VideoDetailAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
                 is VideoSmallCardItemHolder -> {
                     val videoSmallCard =
                         gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
-                    bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true, true)
+                    val viewHolder: VideoSmallCardItemHolder = holder
+                    viewHolder.videoSmallCardTitle.typeface =
+                            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+                    viewHolder.videoSmallCardTitle.setTextColor(context!!.resources.getColor(R.color.white))
+                    viewHolder.videoSmallCardSubTitle.setTextColor(context!!.resources.getColor(R.color.white))
+                    viewHolder.videoSmallCardTitle.text = videoSmallCard.title
+                    viewHolder.videoSmallCardSubTitle.text = "#" + videoSmallCard.category
+                    val cover = videoSmallCard.cover
+                    ImageLoad.loadImage(viewHolder.videoSmallCardIv, cover.feed, 5)
+                    viewHolder.videoSmallCardTimeTv.text =
+                            TimeUtil.secToTime(videoSmallCard.duration)
+                    viewHolder.dividerView.visibility = View.GONE
+
+                    viewHolder.videoSmallCardLl.setOnClickListener {
+                        listener!!.itemClick(videoSmallCard)
+                    }
                 }
             }
         }
@@ -90,5 +111,13 @@ class VideoDetailAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     fun addData(items: ArrayList<BaseBean.Item>) {
         arrayList.addAll(items)
         notifyItemRangeInserted(1, items.size)
+    }
+
+    fun setVideoItemClickListener(listener: VideoItemClickListener) {
+        this.listener = listener
+    }
+
+    interface VideoItemClickListener {
+        fun itemClick(relatedVideoSmallCard: VideoSmallCard)
     }
 }

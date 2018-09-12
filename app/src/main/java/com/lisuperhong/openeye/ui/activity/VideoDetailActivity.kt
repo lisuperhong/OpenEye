@@ -23,7 +23,8 @@ import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.activity_video_detail.*
 
-class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
+class VideoDetailActivity : BaseActivity(), VideoDetailContract.View,
+    VideoDetailAdapter.VideoItemClickListener {
 
     private lateinit var videoSmallCard: VideoSmallCard
     private val presenter by lazy { VideoDetailPresenter() }
@@ -55,6 +56,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 //        StatusBarUtil.setPaddingSmart(this, videoPlayer)
 
         videoDetailAdapter = VideoDetailAdapter(this, ArrayList<BaseBean.Item>())
+        videoDetailAdapter?.setVideoItemClickListener(this)
         videoDetailRecycleView.layoutManager = LinearLayoutManager(this)
         videoDetailRecycleView.adapter = videoDetailAdapter
     }
@@ -97,6 +99,10 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
 
     override fun showError(errorMsg: String) {
         Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
+    }
+
+    override fun itemClick(relatedVideoSmallCard: VideoSmallCard) {
+        presenter.loadVideoInfo(relatedVideoSmallCard)
     }
 
     private fun initTransition() {

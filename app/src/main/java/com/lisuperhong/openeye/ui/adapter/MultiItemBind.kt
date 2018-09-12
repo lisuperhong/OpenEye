@@ -154,16 +154,11 @@ fun bindVideoSmallCardItemHolder(
     context: Context,
     videoSmallCard: VideoSmallCard,
     holder: RecyclerView.ViewHolder,
-    hide: Boolean,
-    isDetail: Boolean
+    hide: Boolean
 ) {
     val viewHolder: VideoSmallCardItemHolder = holder as VideoSmallCardItemHolder
     viewHolder.videoSmallCardTitle.typeface =
             TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
-    if (isDetail) {
-        viewHolder.videoSmallCardTitle.setTextColor(context.resources.getColor(R.color.white))
-        viewHolder.videoSmallCardSubTitle.setTextColor(context.resources.getColor(R.color.white))
-    }
     viewHolder.videoSmallCardTitle.text = videoSmallCard.title
     viewHolder.videoSmallCardSubTitle.text = "#" + videoSmallCard.category
     val cover = videoSmallCard.cover

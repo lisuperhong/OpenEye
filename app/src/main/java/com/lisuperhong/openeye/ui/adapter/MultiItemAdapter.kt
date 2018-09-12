@@ -76,15 +76,9 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
                 val videoSmallCard = gson.fromJson(dataJson.toString(), VideoSmallCard::class.java)
                 if (position + 1 < itemCount) {
                     if (arrayList[position + 1].type == "videoSmallCard") {
-                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true, false)
+                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, true)
                     } else {
-                        bindVideoSmallCardItemHolder(
-                            context!!,
-                            videoSmallCard,
-                            holder,
-                            false,
-                            false
-                        )
+                        bindVideoSmallCardItemHolder(context!!, videoSmallCard, holder, false)
                     }
                 }
             }
