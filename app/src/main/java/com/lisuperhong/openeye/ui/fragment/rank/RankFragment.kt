@@ -1,4 +1,4 @@
-package com.lisuperhong.openeye.ui.fragment
+package com.lisuperhong.openeye.ui.fragment.rank
 
 
 import com.lisuperhong.openeye.R

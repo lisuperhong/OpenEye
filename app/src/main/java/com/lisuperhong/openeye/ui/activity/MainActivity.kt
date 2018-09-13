@@ -12,7 +12,7 @@ import com.lisuperhong.openeye.mvp.model.bean.TabEntity
 import com.lisuperhong.openeye.ui.fragment.AttentionFragment
 import com.lisuperhong.openeye.ui.fragment.home.HomeFragment
 import com.lisuperhong.openeye.ui.fragment.MyFragment
-import com.lisuperhong.openeye.ui.fragment.RankFragment
+import com.lisuperhong.openeye.ui.fragment.rank.RankFragment
 import com.lisuperhong.openeye.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
 

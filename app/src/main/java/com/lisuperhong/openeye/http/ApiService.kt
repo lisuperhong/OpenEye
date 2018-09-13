@@ -1,6 +1,7 @@
 package com.lisuperhong.openeye.http
 
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
+import com.lisuperhong.openeye.mvp.model.bean.TabInfoBean
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -34,4 +35,7 @@ interface ApiService {
     // 视频详情相关
     @GET("api/v4/video/related")
     fun videoRelated(@Query("id") id: Long): Observable<BaseBean>
+
+    @GET("api/v4/rankList")
+    fun getRankList(): Observable<TabInfoBean>
 }
