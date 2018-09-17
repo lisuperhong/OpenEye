@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.lisuperhong.openeye.BaseApplication
 import com.lisuperhong.openeye.R
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 
 /**
  * Author: lizhaohong
@@ -28,7 +29,6 @@ object ImageLoad {
             .format(DecodeFormat.PREFER_RGB_565)
             .priority(Priority.NORMAL)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .dontAnimate()
 
         load(imageView, url, requestOptions)
     }
@@ -37,7 +37,10 @@ object ImageLoad {
         val requestOptions = RequestOptions().centerCrop()
             .placeholder(R.drawable.eye_loading_icon)
             .error(R.drawable.eye_loading_icon)
-            .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(BaseApplication.context, round.toFloat())))
+            .transforms(
+                CenterCrop(),
+                RoundedCorners(DensityUtil.dip2px(BaseApplication.context, round.toFloat()))
+            )
             .format(DecodeFormat.PREFER_RGB_565)
             .priority(Priority.NORMAL)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -90,7 +93,10 @@ object ImageLoad {
         val requestOptions = RequestOptions().centerCrop()
             .placeholder(R.drawable.eye_loading_icon)
             .error(R.drawable.eye_loading_icon)
-            .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(BaseApplication.context, round.toFloat())))
+            .transforms(
+                CenterCrop(),
+                RoundedCorners(DensityUtil.dip2px(BaseApplication.context, round.toFloat()))
+            )
             .override(width, height)
             .format(DecodeFormat.PREFER_RGB_565)
             .priority(Priority.NORMAL)
@@ -104,6 +110,7 @@ object ImageLoad {
         Glide.with(imageView)
             .load(url)
             .apply(options)
+//            .transition(withCrossFade())
             .into(object : DrawableImageViewTarget(imageView) {})
     }
 }

@@ -42,7 +42,8 @@ class DailyFragment : BaseFragment(), DailyContract.View {
         }
 
         multiItemAdapter = MultiItemAdapter(getContext()!!, ArrayList<BaseBean.Item>())
-        dailyRecycleView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        dailyRecycleView.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         dailyRecycleView.adapter = multiItemAdapter
         isRefresh = false
         showLoading()

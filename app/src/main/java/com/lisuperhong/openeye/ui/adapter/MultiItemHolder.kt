@@ -10,6 +10,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.utils.Constant
+import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+import kotlinx.android.synthetic.main.item_autoplay_followcard.view.*
 import kotlinx.android.synthetic.main.item_banner.view.*
 import kotlinx.android.synthetic.main.item_briefcard.view.*
 import kotlinx.android.synthetic.main.item_video_detail_info.view.*
@@ -29,39 +31,39 @@ import kotlinx.android.synthetic.main.item_videosmallcard.view.*
 
 fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     when (viewType) {
-        Constant.ITEM_TYPE_SQUARECARD -> {
+        Constant.ITEM_TYPE_SQUARECARD_COLLECTION -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_squarecard_collection, parent, false)
             return SquareCardItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_TEXTCARD -> {
+        Constant.ITEM_TYPE_TEXT_CARD -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_textcard, parent, false)
             return TextCardItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_FLLOWCARD -> {
+        Constant.ITEM_TYPE_FOLLOW_CARD -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_followcard, parent, false)
             return FollowCardItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_VIDEOSMALLCARD -> {
+        Constant.ITEM_TYPE_VIDEO_SMALL_CARD -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_videosmallcard, parent, false)
             return VideoSmallCardItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_PICTUREFOLLOWCARD -> {
+        Constant.ITEM_TYPE_PICTURE_FOLLOW_CARD -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_picturecard, parent, false)
             return PictureFollowCardItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_AUTOPLAYFOLLOWCARD -> {
+        Constant.ITEM_TYPE_AUTO_PLAY_FOLLOW_CARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_picturecard, parent, false)
+                .inflate(R.layout.item_autoplay_followcard, parent, false)
             return AutoPlayFollowCardItemHolder(view)
         }
 
@@ -71,25 +73,25 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
             return BannerItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_HORIZONTALSCROLLCARD -> {
+        Constant.ITEM_TYPE_HORIZONTAL_SCROLL_CARD -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_horizontalscrollcard, parent, false)
             return HorizontalScrollCardItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_BRIEFCARD -> {
+        Constant.ITEM_TYPE_BRIEF_CARD -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_briefcard, parent, false)
             return BriefCardItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_VIDEOCOLLECTIONWITHBRIEF -> {
+        Constant.ITEM_TYPE_VIDEO_COLLECTION_WITH_BRIEF -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_videocollectionwithbrief, parent, false)
             return VideoCollectionWithBriefItemHolder(view)
         }
 
-        Constant.ITEM_TYPE_VIDEODETAIL -> {
+        Constant.ITEM_TYPE_VIDEO_DETAIL -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_video_detail_info, parent, false)
             return VideoDetailInfoViewHolder(view)
@@ -144,12 +146,14 @@ class PictureFollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 }
 
 class AutoPlayFollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
-    var pictureCardIconTv: ImageView = view.pictureCardIconIv
-    var pictureCardOwner: TextView = view.pictureCardOwner
-    var descriptionTv: TextView = view.descriptionTv
-    var pictureCardCoverIv: ImageView = view.pictureCardCoverIv
-    var collectionCountTv: TextView = view.collectionCountTv
-    var replyCountTv: TextView = view.replyCountTv
+    var autoPlayCardLl: LinearLayout = view.autoPlayCardLl
+    var autoPlayCardIconIv: ImageView = view.autoPlayCardIconIv
+    var autoPlayCardOwnerTv: TextView = view.autoPlayCardOwnerTv
+    var titlePgcTv: TextView = view.titlePgcTv
+    var descriptionTv: TextView = view.playDescriptionTv
+    var autoPlayer: StandardGSYVideoPlayer = view.autoPlayer
+    var collectionCountTv: TextView = view.playCollectionCountTv
+    var replyCountTv: TextView = view.playReplyCountTv
 }
 
 class BannerItemHolder(view: View) : RecyclerView.ViewHolder(view) {

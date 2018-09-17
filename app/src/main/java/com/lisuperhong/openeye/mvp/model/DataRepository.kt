@@ -3,6 +3,7 @@ package com.lisuperhong.openeye.mvp.model
 import com.lisuperhong.openeye.http.ApiService
 import com.lisuperhong.openeye.http.RetrofitManager
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
+import com.lisuperhong.openeye.mvp.model.bean.TabInfoBean
 import com.lisuperhong.openeye.rx.scheduler.BaseObserver
 import com.lisuperhong.openeye.rx.scheduler.IoMainScheduler
 import com.lisuperhong.openeye.utils.Constant
@@ -68,6 +69,30 @@ class DataRepository private constructor() {
         RetrofitManager.getInstance()
             .initService(ApiService::class.java, Constant.HOST)
             .videoRelated(id)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getRankList(baseObserver: BaseObserver<TabInfoBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getRankList()
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getCommunityFollow(baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getCommunityFollow()
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getcategories(baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getCategories()
             .compose(IoMainScheduler())
             .subscribe(baseObserver)
     }

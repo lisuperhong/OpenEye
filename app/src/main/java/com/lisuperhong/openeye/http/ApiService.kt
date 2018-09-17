@@ -38,4 +38,10 @@ interface ApiService {
 
     @GET("api/v4/rankList")
     fun getRankList(): Observable<TabInfoBean>
+
+    @GET("api/v4/categories/all")
+    fun getCategories(): Observable<BaseBean>
+
+    @GET("api/v6/community/tab/follow")
+    fun getCommunityFollow(): Observable<BaseBean>
 }

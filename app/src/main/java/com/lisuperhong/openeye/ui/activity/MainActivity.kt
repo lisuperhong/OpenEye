@@ -9,11 +9,10 @@ import com.flyco.tablayout.listener.OnTabSelectListener
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
 import com.lisuperhong.openeye.mvp.model.bean.TabEntity
-import com.lisuperhong.openeye.ui.fragment.AttentionFragment
+import com.lisuperhong.openeye.ui.fragment.follow.FollowFragment
 import com.lisuperhong.openeye.ui.fragment.home.HomeFragment
 import com.lisuperhong.openeye.ui.fragment.MyFragment
 import com.lisuperhong.openeye.ui.fragment.rank.RankFragment
-import com.lisuperhong.openeye.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -39,7 +38,7 @@ class MainActivity : BaseActivity() {
     private var curIndex = 0
     private var homeFragment: HomeFragment? = null
     private var rankFragment: RankFragment? = null
-    private var attentionFragment: AttentionFragment? = null
+    private var attentionFragment: FollowFragment? = null
     private var myFragment: MyFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,8 +56,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-        //状态栏透明，字体设为黑色
-        StatusBarUtil.darkMode(this)
+//        //状态栏透明，字体设为黑色
+//        StatusBarUtil.darkMode(this)
     }
 
     override fun initData(savedInstanceState: Bundle?) {
@@ -100,7 +99,7 @@ class MainActivity : BaseActivity() {
 
             2 -> attentionFragment?.let {
                 transaction.show(it)
-            } ?: AttentionFragment().let {
+            } ?: FollowFragment().let {
                 attentionFragment = it
                 transaction.add(R.id.fragment_container, attentionFragment, "attention")
             }

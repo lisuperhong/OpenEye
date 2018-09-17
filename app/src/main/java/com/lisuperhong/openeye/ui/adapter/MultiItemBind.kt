@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.ImageView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.*
 import com.lisuperhong.openeye.ui.activity.VideoDetailActivity
@@ -18,6 +19,11 @@ import com.lisuperhong.openeye.utils.Constant
 import com.lisuperhong.openeye.utils.ImageLoad
 import com.lisuperhong.openeye.utils.TimeUtil
 import com.lisuperhong.openeye.utils.TypefaceUtil
+import com.shuyu.gsyvideoplayer.GSYVideoManager
+import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
+import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
+import com.shuyu.gsyvideoplayer.listener.VideoAllCallBack
+import java.text.FieldPosition
 
 /**
  * Author: lizhaohong
@@ -202,27 +208,81 @@ fun bindPictureFollowCardItemHolder(
 fun bindAutoPlayFollowCardItemHolder(
     context: Context,
     autoPlayFollowCard: AutoPlayFollowCard,
-    holder: RecyclerView.ViewHolder
+    holder: RecyclerView.ViewHolder,
+    position: Int
 ) {
     val viewHolder: AutoPlayFollowCardItemHolder = holder as AutoPlayFollowCardItemHolder
     val header = autoPlayFollowCard.header
-    viewHolder.pictureCardOwner.typeface =
+    viewHolder.autoPlayCardOwnerTv.typeface =
             TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
-    viewHolder.pictureCardOwner.text = header.issuerName
+    viewHolder.autoPlayCardOwnerTv.text = header.issuerName
     when (header.iconType) {
-        "round" -> ImageLoad.loadCircleImage(viewHolder.pictureCardIconTv, header.icon)
-        "square" -> ImageLoad.loadImage(viewHolder.pictureCardIconTv, header.icon, 5)
-        else -> ImageLoad.loadImage(viewHolder.pictureCardIconTv, header.icon)
+        "round" -> ImageLoad.loadCircleImage(viewHolder.autoPlayCardIconIv, header.icon)
+        "square" -> ImageLoad.loadImage(viewHolder.autoPlayCardIconIv, header.icon, 5)
+        else -> ImageLoad.loadImage(viewHolder.autoPlayCardIconIv, header.icon)
     }
 
     val content = autoPlayFollowCard.content
     val data = content.data
+    viewHolder.titlePgcTv.text = data.title
     viewHolder.descriptionTv.text = data.description
     val cover = data.cover
-    ImageLoad.loadImage(viewHolder.pictureCardCoverIv, cover.feed, 5)
     val consumption = data.consumption
     viewHolder.collectionCountTv.text = consumption.collectionCount.toString()
     viewHolder.replyCountTv.text = consumption.replyCount.toString()
+
+    //增加封面
+    val imageView = ImageView(context)
+    imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+    ImageLoad.loadImage(imageView, cover.feed)
+
+    val optionBuilder = GSYVideoOptionBuilder()
+    optionBuilder.setIsTouchWiget(false)
+        .setThumbImageView(imageView)
+        .setUrl(data.playUrl)
+        .setSetUpLazy(true)//lazy可以防止滑动卡顿
+        .setVideoTitle(data.title)
+        .setCacheWithPlay(true)
+        .setRotateViewAuto(true)
+        .setLockLand(true)
+        .setPlayTag(Constant.AUTO_PLAY_TAG)
+        .setShowFullAnimation(true)
+        .setNeedLockFull(true)
+        .setPlayPosition(position)
+        .setReleaseWhenLossAudio(false)
+        .setVideoAllCallBack(object : GSYSampleCallBack() {
+
+            override fun onPrepared(url: String, vararg objects: Any) {
+                super.onPrepared(url, objects)
+                if (!viewHolder.autoPlayer.isIfCurrentIsFullscreen) {
+                    //静音
+                    GSYVideoManager.instance().isNeedMute = true
+                }
+            }
+
+            override fun onQuitFullscreen(url: String, vararg objects: Any) {
+                super.onQuitFullscreen(url, objects)
+                //全屏不静音
+                GSYVideoManager.instance().isNeedMute = true
+            }
+
+            override fun onEnterFullscreen(url: String?, vararg objects: Any) {
+                super.onEnterFullscreen(url, *objects)
+                GSYVideoManager.instance().isNeedMute = false
+                viewHolder.autoPlayer.getCurrentPlayer().getTitleTextView().setText(objects[0] as String)
+            }
+        }).build(viewHolder.autoPlayer)
+
+    //增加title
+    viewHolder.autoPlayer.titleTextView.visibility = View.GONE
+    //设置返回键
+    viewHolder.autoPlayer.backButton.visibility = View.GONE
+    //设置全屏按键功能
+    viewHolder.autoPlayer.fullscreenButton.visibility = View.GONE
+
+    viewHolder.autoPlayCardLl.setOnClickListener {
+        startVideoDetail(context as Activity, viewHolder.autoPlayer, data)
+    }
 }
 
 fun bindBannerItemHolder(

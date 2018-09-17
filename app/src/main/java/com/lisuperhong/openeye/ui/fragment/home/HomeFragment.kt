@@ -5,7 +5,7 @@ import com.lisuperhong.openeye.BaseApplication
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
 import com.lisuperhong.openeye.base.BaseFragmentAdapter
-import com.lisuperhong.openeye.utils.StatusBarUtil
+import com.lisuperhong.openeye.ui.fragment.follow.CategoryFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
@@ -15,7 +15,7 @@ class HomeFragment : BaseFragment() {
         get() = R.layout.fragment_home
 
     override fun initView() {
-        StatusBarUtil.setPaddingSmart(getContext()!!, slidingTabLayout)
+//        StatusBarUtil.setPaddingSmart(getContext()!!, slidingTabLayout)
         val fragmentList = ArrayList<BaseFragment>()
         fragmentList.add(DiscoveryFragment())
         fragmentList.add(RecommendFragment())

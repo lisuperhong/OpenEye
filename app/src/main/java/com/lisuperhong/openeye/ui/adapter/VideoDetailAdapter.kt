@@ -91,11 +91,11 @@ class VideoDetailAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     override fun getItemViewType(position: Int): Int {
         val item: BaseBean.Item = arrayList[position]
         return when {
-            position == 0 -> Constant.ITEM_TYPE_VIDEODETAIL
+            position == 0 -> Constant.ITEM_TYPE_VIDEO_DETAIL
 
-            item.type == "textCard" -> Constant.ITEM_TYPE_TEXTCARD
+            item.type == "textCard" -> Constant.ITEM_TYPE_TEXT_CARD
 
-            item.type == "videoSmallCard" -> Constant.ITEM_TYPE_VIDEOSMALLCARD
+            item.type == "videoSmallCard" -> Constant.ITEM_TYPE_VIDEO_SMALL_CARD
 
             else -> throw IllegalAccessException("实体类解析出错，出现其他类型")
         }

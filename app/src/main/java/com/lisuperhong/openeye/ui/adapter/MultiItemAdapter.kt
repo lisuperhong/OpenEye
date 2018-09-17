@@ -92,7 +92,7 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
                 Logger.d("AutoPlayFollowCardItemHolder called, position = $position")
                 val autoPlayFollowCard =
                     gson.fromJson(dataJson.toString(), AutoPlayFollowCard::class.java)
-                bindAutoPlayFollowCardItemHolder(context!!, autoPlayFollowCard, holder)
+                bindAutoPlayFollowCardItemHolder(context!!, autoPlayFollowCard, holder, position)
             }
             is BannerItemHolder -> {
                 Logger.d("BannerItemHolder called, position = $position")
@@ -129,29 +129,29 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
     override fun getItemViewType(position: Int): Int {
         val item: BaseBean.Item = arrayList[position]
         return when (item.type) {
-            "squareCardCollection" -> Constant.ITEM_TYPE_SQUARECARD
+            "squareCardCollection" -> Constant.ITEM_TYPE_SQUARECARD_COLLECTION
 
-            "textCard" -> Constant.ITEM_TYPE_TEXTCARD
+            "textCard" -> Constant.ITEM_TYPE_TEXT_CARD
 
-            "followCard" -> Constant.ITEM_TYPE_FLLOWCARD
+            "followCard" -> Constant.ITEM_TYPE_FOLLOW_CARD
 
-            "videoSmallCard" -> Constant.ITEM_TYPE_VIDEOSMALLCARD
+            "videoSmallCard" -> Constant.ITEM_TYPE_VIDEO_SMALL_CARD
 
-            "autoPlayFollowCard" -> Constant.ITEM_TYPE_AUTOPLAYFOLLOWCARD
+            "autoPlayFollowCard" -> Constant.ITEM_TYPE_AUTO_PLAY_FOLLOW_CARD
 
             "banner" -> Constant.ITEM_TYPE_BANNER
 
             "banner2" -> Constant.ITEM_TYPE_BANNER
 
-            "pictureFollowCard" -> Constant.ITEM_TYPE_PICTUREFOLLOWCARD
+            "pictureFollowCard" -> Constant.ITEM_TYPE_PICTURE_FOLLOW_CARD
 
-            "horizontalScrollCard" -> Constant.ITEM_TYPE_HORIZONTALSCROLLCARD
+            "horizontalScrollCard" -> Constant.ITEM_TYPE_HORIZONTAL_SCROLL_CARD
 
-            "briefCard" -> Constant.ITEM_TYPE_BRIEFCARD
+            "briefCard" -> Constant.ITEM_TYPE_BRIEF_CARD
 
-            "videoCollectionWithBrief" -> Constant.ITEM_TYPE_VIDEOCOLLECTIONWITHBRIEF
+            "videoCollectionWithBrief" -> Constant.ITEM_TYPE_VIDEO_COLLECTION_WITH_BRIEF
 
-            else -> Constant.ITEM_TYPE_TEXTCARD
+            else -> Constant.ITEM_TYPE_TEXT_CARD
         }
     }
 
