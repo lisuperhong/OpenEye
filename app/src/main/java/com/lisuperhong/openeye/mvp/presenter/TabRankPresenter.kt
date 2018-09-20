@@ -17,7 +17,7 @@ class TabRankPresenter : BasePresenter<TabRankContract.View>(), TabRankContract.
     override fun requestRankList(apiUrl: String) {
         checkViewAttached()
         DataRepository.getInstance()
-            .feedLoadMore(apiUrl, object : BaseObserver<BaseBean>() {
+            .loadMoreData(apiUrl, object : BaseObserver<BaseBean>() {
                 override fun onSuccess(data: BaseBean) {
                     rootView?.hideLoading()
                     rootView?.showContent(data)

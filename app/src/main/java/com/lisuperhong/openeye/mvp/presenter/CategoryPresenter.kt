@@ -17,7 +17,7 @@ class CategoryPresenter : BasePresenter<CategoryContract.View>(), CategoryContra
     override fun getAllCategory() {
         checkViewAttached()
         DataRepository.getInstance()
-            .getcategories(object : BaseObserver<BaseBean>() {
+            .getCategories(object : BaseObserver<BaseBean>() {
                 override fun onSuccess(data: BaseBean) {
                     rootView?.hideLoading()
                     rootView?.showContent(data)

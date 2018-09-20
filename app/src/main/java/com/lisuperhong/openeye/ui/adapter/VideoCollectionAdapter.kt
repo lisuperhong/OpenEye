@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.VideoBeanForClient
 import com.lisuperhong.openeye.utils.ImageLoad
+import com.lisuperhong.openeye.utils.JumpActivityUtil
 import com.lisuperhong.openeye.utils.TimeUtil
 import com.lisuperhong.openeye.utils.TypefaceUtil
 import kotlinx.android.synthetic.main.item_videocollection.view.*
@@ -54,7 +55,7 @@ class VideoCollectionAdapter(context: Context, dataList: ArrayList<VideoBeanForC
         holder.videoCollectionTimeTv.text = TimeUtil.secToTime(data.duration)
 
         holder.videoCollectionLl.setOnClickListener {
-            startVideoDetail(
+            JumpActivityUtil.startVideoDetail(
                 context as Activity,
                 holder.videoCollectionCoverIv,
                 videoBeanForClient.data

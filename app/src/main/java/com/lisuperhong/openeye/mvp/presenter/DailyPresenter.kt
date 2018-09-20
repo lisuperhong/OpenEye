@@ -33,7 +33,7 @@ class DailyPresenter : BasePresenter<DailyContract.View>(), DailyContract.Presen
     override fun feedLoadMore(url: String) {
         checkViewAttached()
         DataRepository.getInstance()
-            .feedLoadMore(url, object : BaseObserver<BaseBean>() {
+            .loadMoreData(url, object : BaseObserver<BaseBean>() {
                 override fun onSuccess(data: BaseBean) {
                     rootView?.hideLoading()
                     rootView?.showContent(data)

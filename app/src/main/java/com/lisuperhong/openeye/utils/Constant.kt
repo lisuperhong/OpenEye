@@ -29,4 +29,6 @@ object Constant {
     const val INTENT_VIDEO_DETAIL = "INTENT_VIDEO_DETAIL"
 
     const val AUTO_PLAY_TAG = "auto_play"
+
+    const val INTENT_CATEGORY_ID = "INTENT_CATEGORY_ID"
 }

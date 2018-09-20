@@ -3,11 +3,11 @@ package com.lisuperhong.openeye.mvp.model
 import com.lisuperhong.openeye.http.ApiService
 import com.lisuperhong.openeye.http.RetrofitManager
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
+import com.lisuperhong.openeye.mvp.model.bean.CategoryTabInfo
 import com.lisuperhong.openeye.mvp.model.bean.TabInfoBean
 import com.lisuperhong.openeye.rx.scheduler.BaseObserver
 import com.lisuperhong.openeye.rx.scheduler.IoMainScheduler
 import com.lisuperhong.openeye.utils.Constant
-import io.reactivex.disposables.Disposable
 
 /**
  * Author: lisuperhong
@@ -57,10 +57,10 @@ class DataRepository private constructor() {
             .subscribe(baseObserver)
     }
 
-    fun feedLoadMore(url: String, baseObserver: BaseObserver<BaseBean>) {
+    fun loadMoreData(url: String, baseObserver: BaseObserver<BaseBean>) {
         RetrofitManager.getInstance()
             .initService(ApiService::class.java, Constant.HOST)
-            .feedLoadMore(url)
+            .loadMoreData(url)
             .compose(IoMainScheduler())
             .subscribe(baseObserver)
     }
@@ -89,10 +89,26 @@ class DataRepository private constructor() {
             .subscribe(baseObserver)
     }
 
-    fun getcategories(baseObserver: BaseObserver<BaseBean>) {
+    fun getCategories(baseObserver: BaseObserver<BaseBean>) {
         RetrofitManager.getInstance()
             .initService(ApiService::class.java, Constant.HOST)
             .getCategories()
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getCategoryInfo(id: Long, baseObserver: BaseObserver<CategoryTabInfo>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getCategoryTabInfo(id)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getCategoryVideoList(id: Long, baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getCategoryVideoList(id)
             .compose(IoMainScheduler())
             .subscribe(baseObserver)
     }

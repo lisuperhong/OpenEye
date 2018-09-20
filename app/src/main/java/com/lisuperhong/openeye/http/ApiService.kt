@@ -1,6 +1,7 @@
 package com.lisuperhong.openeye.http
 
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
+import com.lisuperhong.openeye.mvp.model.bean.CategoryTabInfo
 import com.lisuperhong.openeye.mvp.model.bean.TabInfoBean
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -27,21 +28,32 @@ interface ApiService {
     @GET("api/v5/index/tab/feed")
     fun feed(@Query("date") date: Long, @Query("num") num: Int = 2): Observable<BaseBean>
 
-    // 首页日报加载更多
+    // 加载更多
     // nextPageUrl: "http://baobab.kaiyanapp.com/api/v5/index/tab/feed?date=1533862800000&num=2"
     @GET
-    fun feedLoadMore(@Url url: String): Observable<BaseBean>
+    fun loadMoreData(@Url url: String): Observable<BaseBean>
 
     // 视频详情相关
     @GET("api/v4/video/related")
     fun videoRelated(@Query("id") id: Long): Observable<BaseBean>
 
+    // 排行榜tab
     @GET("api/v4/rankList")
     fun getRankList(): Observable<TabInfoBean>
 
+    // 获取全部分类
     @GET("api/v4/categories/all")
     fun getCategories(): Observable<BaseBean>
 
+    // 获取分类tab信息
+    @GET("api/v4/categories/detail/tab")
+    fun getCategoryTabInfo(@Query("id") id: Long): Observable<CategoryTabInfo>
+
+    // 根据分类id获取全部视频列表
+    @GET("api/v4/categories/videoList")
+    fun getCategoryVideoList(@Query("id") id: Long): Observable<BaseBean>
+
+    // 获取作品
     @GET("api/v6/community/tab/follow")
     fun getCommunityFollow(): Observable<BaseBean>
 }

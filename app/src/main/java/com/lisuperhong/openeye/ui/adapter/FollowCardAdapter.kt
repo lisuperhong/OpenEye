@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.FollowCard
 import com.lisuperhong.openeye.utils.ImageLoad
+import com.lisuperhong.openeye.utils.JumpActivityUtil
 import com.lisuperhong.openeye.utils.TimeUtil
 import com.lisuperhong.openeye.utils.TypefaceUtil
 import kotlinx.android.synthetic.main.item_followcard.view.*
@@ -61,7 +62,7 @@ class FollowCardAdapter(context: Context, datas: ArrayList<FollowCard>) :
 
         holder.followCardCoverIv.setOnClickListener {
             val videoSmallCard = followCard.content.data
-            startVideoDetail(context as Activity, holder.followCardCoverIv, videoSmallCard)
+            JumpActivityUtil.startVideoDetail(context as Activity, holder.followCardCoverIv, videoSmallCard)
         }
     }
 

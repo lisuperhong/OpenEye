@@ -15,10 +15,7 @@ import android.widget.ImageView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.*
 import com.lisuperhong.openeye.ui.activity.VideoDetailActivity
-import com.lisuperhong.openeye.utils.Constant
-import com.lisuperhong.openeye.utils.ImageLoad
-import com.lisuperhong.openeye.utils.TimeUtil
-import com.lisuperhong.openeye.utils.TypefaceUtil
+import com.lisuperhong.openeye.utils.*
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
@@ -152,7 +149,7 @@ fun bindFollowCardItemHolder(
     }
 
     viewHolder.followCardCoverIv.setOnClickListener {
-        startVideoDetail(context as Activity, viewHolder.followCardCoverIv, content.data)
+        JumpActivityUtil.startVideoDetail(context as Activity, viewHolder.followCardCoverIv, content.data)
     }
 }
 
@@ -175,7 +172,7 @@ fun bindVideoSmallCardItemHolder(
     }
 
     viewHolder.videoSmallCardLl.setOnClickListener {
-        startVideoDetail(context as Activity, viewHolder.videoSmallCardIv, videoSmallCard)
+        JumpActivityUtil.startVideoDetail(context as Activity, viewHolder.videoSmallCardIv, videoSmallCard)
     }
 }
 
@@ -214,6 +211,8 @@ fun bindAutoPlayFollowCardItemHolder(
     val viewHolder: AutoPlayFollowCardItemHolder = holder as AutoPlayFollowCardItemHolder
     val header = autoPlayFollowCard.header
     viewHolder.autoPlayCardOwnerTv.typeface =
+            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+    viewHolder.titlePgcTv.typeface =
             TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.autoPlayCardOwnerTv.text = header.issuerName
     when (header.iconType) {
@@ -281,7 +280,7 @@ fun bindAutoPlayFollowCardItemHolder(
     viewHolder.autoPlayer.fullscreenButton.visibility = View.GONE
 
     viewHolder.autoPlayCardLl.setOnClickListener {
-        startVideoDetail(context as Activity, viewHolder.autoPlayer, data)
+        JumpActivityUtil.startVideoDetail(context as Activity, viewHolder.autoPlayer, data)
     }
 }
 
@@ -385,20 +384,4 @@ fun bindVideoDetailInfoHolder(videoSmallCard: VideoSmallCard, holder: RecyclerVi
     viewHolder.authorName.text = author.name
     viewHolder.authorDescription.text = author.description
     ImageLoad.loadCircleImage(viewHolder.authorIconIv, author.icon)
-}
-
-fun startVideoDetail(activity: Activity, view: View, videoSmallCard: VideoSmallCard) {
-    val intent = Intent(activity, VideoDetailActivity::class.java)
-    intent.putExtra(Constant.INTENT_VIDEO_DETAIL, videoSmallCard)
-    intent.putExtra(VideoDetailActivity.FROM_TRANSITION, true)
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-        val pair = Pair<View, String>(view, VideoDetailActivity.IMG_TRANSITION)
-        val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-            activity, pair
-        )
-        ActivityCompat.startActivity(activity, intent, activityOptions.toBundle())
-    } else {
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
-    }
 }

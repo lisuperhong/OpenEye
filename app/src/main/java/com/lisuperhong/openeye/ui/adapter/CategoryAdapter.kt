@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.google.gson.Gson
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import com.lisuperhong.openeye.mvp.model.bean.SquareCard
 import com.lisuperhong.openeye.utils.DensityUtil
 import com.lisuperhong.openeye.utils.ImageLoad
+import com.lisuperhong.openeye.utils.JumpActivityUtil
+import com.lisuperhong.openeye.utils.TypefaceUtil
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.item_squarecard.view.*
+import org.json.JSONException
+import org.json.JSONObject
 
 /**
  * Author: lisuperhong
@@ -44,11 +50,22 @@ class CategoryAdapter(context: Context, dataList: ArrayList<BaseBean.Item>) :
 
     override fun onBindViewHolder(holder: CategoryAdapter.ItemHolder, position: Int) {
         val item = dataList[position]
-        val squareCard: SquareCard = item.data as SquareCard
+        val gson = Gson()
+        val dataMap = item.data as Map<*, *>
+        var dataJson: JSONObject? = null
+        try {
+            dataJson = JSONObject(dataMap)
+        } catch (e: JSONException) {
+            Logger.d(e.printStackTrace())
+        }
+        val squareCard = gson.fromJson(dataJson.toString(), SquareCard::class.java)
+        holder.squareCardTv.typeface =
+                TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
         holder.squareCardTv.text = squareCard.title
 
         if (item.type == "squareCard") {
-            val width = (DensityUtil.getScreenWidth(context!!) - DensityUtil.dip2px(context!!, 8f)) / 2
+            val width =
+                (DensityUtil.getScreenWidth(context!!) - DensityUtil.dip2px(context!!, 8f)) / 2
             ImageLoad.loadImage(holder.squareCardIv, squareCard.image, width, width)
         } else if (item.type == "rectangleCard") {
             val width = DensityUtil.getScreenWidth(context!!) - DensityUtil.dip2px(context!!, 4f)
@@ -56,7 +73,7 @@ class CategoryAdapter(context: Context, dataList: ArrayList<BaseBean.Item>) :
         }
 
         holder.squareCardRl.setOnClickListener {
-
+            JumpActivityUtil.parseActionUrl(context!!, squareCard.actionUrl)
         }
     }
 
@@ -68,21 +85,9 @@ class CategoryAdapter(context: Context, dataList: ArrayList<BaseBean.Item>) :
     fun setRefreshData(datas: ArrayList<BaseBean.Item>) {
         notifyItemRangeRemoved(0, itemCount)
         clearAll()
-        datas.addAll(datas)
+        dataList.addAll(datas)
         notifyItemRangeInserted(0, datas.size)
     }
-
-//    override fun getItemViewType(position: Int): Int {
-//        val item: BaseBean.Item = dataList[position]
-//        return when (item.type) {
-//            "squareCard" -> Constant.ITEM_TYPE_SQUARE_CARD
-//
-//            "rectangleCard" -> Constant.ITEM_TYPE_RECTANGLE_CARD
-//
-//            else -> Constant.ITEM_TYPE_SQUARE_CARD
-//        }
-//
-//    }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         var squareCardRl: RelativeLayout = view.squareCardRl
