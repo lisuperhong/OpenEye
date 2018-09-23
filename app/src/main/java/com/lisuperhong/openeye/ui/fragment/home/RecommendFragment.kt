@@ -35,8 +35,8 @@ class RecommendFragment : BaseFragment(), RecommendContract.View {
 
     override fun initView() {
         presenter.attachView(this)
-        refreshLayout.autoLoadMore()
         refreshLayout.setRefreshHeader(ClassicsHeader(activity))
+        refreshLayout.setEnableAutoLoadMore(true)
         refreshLayout.setOnRefreshListener {
             page = 0
             isRefresh = true

@@ -11,6 +11,8 @@ import android.view.View
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.VideoSmallCard
 import com.lisuperhong.openeye.ui.activity.CategoryDetailActivity
+import com.lisuperhong.openeye.ui.activity.SpecialTopicsActivity
+import com.lisuperhong.openeye.ui.activity.TagDetailActivity
 import com.lisuperhong.openeye.ui.activity.VideoDetailActivity
 
 /**
@@ -40,13 +42,43 @@ object JumpActivityUtil {
     fun parseActionUrl(context: Context, actionUrl: String) {
         val uri: Uri = Uri.parse(actionUrl)
         val host = uri.host
+        val path = uri.pathSegments[0]
         when (host) {
-            "category" -> {
-                val path = uri.pathSegments[0]
+
+            "categories" -> { // 全部分类
+
+            }
+
+            "category" -> { // 分类详情
                 val intent = Intent(context, CategoryDetailActivity::class.java)
                 intent.putExtra(Constant.INTENT_CATEGORY_ID, path.toLong())
                 context.startActivity(intent)
             }
+
+
+            "tag" -> { // 标签详情
+                val intent = Intent(context, TagDetailActivity::class.java)
+                intent.putExtra(Constant.INTENT_TAG_ID, path.toLong())
+                context.startActivity(intent)
+            }
+
+            "campaign" -> { // 近期专题
+                val intent = Intent(context, SpecialTopicsActivity::class.java)
+                context.startActivity(intent)
+            }
+
+            "ranklist" -> { // 排行榜
+
+            }
+
+            "common" -> {
+
+            }
+            
+            "webview" -> {
+
+            }
+
         }
 
     }

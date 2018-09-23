@@ -106,18 +106,43 @@ fun bindTextCardItemHolder(
         viewHolder.headerTv.textSize = 14f
         viewHolder.headerTv.setTextColor(context.resources.getColor(R.color.white))
     }
-    if (textCard.actionUrl == null || isDetail) {
-        viewHolder.headerArrow.visibility = View.GONE
+
+    when (textCard.type) {
+        "header4" -> {
+            viewHolder.textCardHeaderLl.visibility = View.VISIBLE
+            viewHolder.footerTv.visibility = View.GONE
+            viewHolder.headerTv.text = textCard.text
+        }
+
+        "header5" -> {
+            viewHolder.textCardHeaderLl.visibility = View.VISIBLE
+            viewHolder.footerTv.visibility = View.GONE
+            viewHolder.headerTv.text = textCard.text
+        }
+
+        "footer2" -> {
+            viewHolder.textCardHeaderLl.visibility = View.GONE
+            viewHolder.footerTv.visibility = View.VISIBLE
+            viewHolder.footerTv.text = textCard.text
+        }
+
+        "footer3" -> {
+            viewHolder.textCardHeaderLl.visibility = View.GONE
+            viewHolder.footerTv.visibility = View.VISIBLE
+            viewHolder.footerTv.text = textCard.text
+        }
     }
 
-    if (textCard.type == "footer2") {
-        viewHolder.textCardHeaderLl.visibility = View.GONE
-        viewHolder.footerTv.visibility = View.VISIBLE
-        viewHolder.footerTv.text = textCard.text
+    if (textCard.actionUrl == null || isDetail) {
+        viewHolder.headerArrow.visibility = View.GONE
     } else {
-        viewHolder.textCardHeaderLl.visibility = View.VISIBLE
-        viewHolder.footerTv.visibility = View.GONE
-        viewHolder.headerTv.text = textCard.text
+        viewHolder.textCardHeaderLl.setOnClickListener {
+            JumpActivityUtil.parseActionUrl(context, textCard.actionUrl!!)
+        }
+
+        viewHolder.footerTv.setOnClickListener {
+            JumpActivityUtil.parseActionUrl(context, textCard.actionUrl!!)
+        }
     }
 }
 
@@ -149,7 +174,11 @@ fun bindFollowCardItemHolder(
     }
 
     viewHolder.followCardCoverIv.setOnClickListener {
-        JumpActivityUtil.startVideoDetail(context as Activity, viewHolder.followCardCoverIv, content.data)
+        JumpActivityUtil.startVideoDetail(
+            context as Activity,
+            viewHolder.followCardCoverIv,
+            content.data
+        )
     }
 }
 
@@ -172,7 +201,11 @@ fun bindVideoSmallCardItemHolder(
     }
 
     viewHolder.videoSmallCardLl.setOnClickListener {
-        JumpActivityUtil.startVideoDetail(context as Activity, viewHolder.videoSmallCardIv, videoSmallCard)
+        JumpActivityUtil.startVideoDetail(
+            context as Activity,
+            viewHolder.videoSmallCardIv,
+            videoSmallCard
+        )
     }
 }
 
@@ -205,8 +238,7 @@ fun bindPictureFollowCardItemHolder(
 fun bindAutoPlayFollowCardItemHolder(
     context: Context,
     autoPlayFollowCard: AutoPlayFollowCard,
-    holder: RecyclerView.ViewHolder,
-    position: Int
+    holder: RecyclerView.ViewHolder
 ) {
     val viewHolder: AutoPlayFollowCardItemHolder = holder as AutoPlayFollowCardItemHolder
     val header = autoPlayFollowCard.header
@@ -229,58 +261,10 @@ fun bindAutoPlayFollowCardItemHolder(
     val consumption = data.consumption
     viewHolder.collectionCountTv.text = consumption.collectionCount.toString()
     viewHolder.replyCountTv.text = consumption.replyCount.toString()
-
-    //增加封面
-    val imageView = ImageView(context)
-    imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-    ImageLoad.loadImage(imageView, cover.feed)
-
-    val optionBuilder = GSYVideoOptionBuilder()
-    optionBuilder.setIsTouchWiget(false)
-        .setThumbImageView(imageView)
-        .setUrl(data.playUrl)
-        .setSetUpLazy(true)//lazy可以防止滑动卡顿
-        .setVideoTitle(data.title)
-        .setCacheWithPlay(true)
-        .setRotateViewAuto(true)
-        .setLockLand(true)
-        .setPlayTag(Constant.AUTO_PLAY_TAG)
-        .setShowFullAnimation(true)
-        .setNeedLockFull(true)
-        .setPlayPosition(position)
-        .setReleaseWhenLossAudio(false)
-        .setVideoAllCallBack(object : GSYSampleCallBack() {
-
-            override fun onPrepared(url: String, vararg objects: Any) {
-                super.onPrepared(url, objects)
-                if (!viewHolder.autoPlayer.isIfCurrentIsFullscreen) {
-                    //静音
-                    GSYVideoManager.instance().isNeedMute = true
-                }
-            }
-
-            override fun onQuitFullscreen(url: String, vararg objects: Any) {
-                super.onQuitFullscreen(url, objects)
-                //全屏不静音
-                GSYVideoManager.instance().isNeedMute = true
-            }
-
-            override fun onEnterFullscreen(url: String?, vararg objects: Any) {
-                super.onEnterFullscreen(url, *objects)
-                GSYVideoManager.instance().isNeedMute = false
-                viewHolder.autoPlayer.getCurrentPlayer().getTitleTextView().setText(objects[0] as String)
-            }
-        }).build(viewHolder.autoPlayer)
-
-    //增加title
-    viewHolder.autoPlayer.titleTextView.visibility = View.GONE
-    //设置返回键
-    viewHolder.autoPlayer.backButton.visibility = View.GONE
-    //设置全屏按键功能
-    viewHolder.autoPlayer.fullscreenButton.visibility = View.GONE
+    ImageLoad.loadImage(viewHolder.autoPlayCardCoverIv, cover.feed, 5)
 
     viewHolder.autoPlayCardLl.setOnClickListener {
-        JumpActivityUtil.startVideoDetail(context as Activity, viewHolder.autoPlayer, data)
+        JumpActivityUtil.startVideoDetail(context as Activity, viewHolder.autoPlayCardCoverIv, data)
     }
 }
 

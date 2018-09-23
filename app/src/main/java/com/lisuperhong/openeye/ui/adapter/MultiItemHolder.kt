@@ -10,8 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.utils.Constant
-import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
-import kotlinx.android.synthetic.main.item_autoplay_followcard.view.*
+import kotlinx.android.synthetic.main.item_auto_followcard.view.*
 import kotlinx.android.synthetic.main.item_banner.view.*
 import kotlinx.android.synthetic.main.item_briefcard.view.*
 import kotlinx.android.synthetic.main.item_video_detail_info.view.*
@@ -63,7 +62,7 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
 
         Constant.ITEM_TYPE_AUTO_PLAY_FOLLOW_CARD -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_autoplay_followcard, parent, false)
+                .inflate(R.layout.item_auto_followcard, parent, false)
             return AutoPlayFollowCardItemHolder(view)
         }
 
@@ -151,7 +150,7 @@ class AutoPlayFollowCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
     var autoPlayCardOwnerTv: TextView = view.autoPlayCardOwnerTv
     var titlePgcTv: TextView = view.titlePgcTv
     var descriptionTv: TextView = view.playDescriptionTv
-    var autoPlayer: StandardGSYVideoPlayer = view.autoPlayer
+    var autoPlayCardCoverIv: ImageView = view.autoPlayCardCoverIv
     var collectionCountTv: TextView = view.playCollectionCountTv
     var replyCountTv: TextView = view.playReplyCountTv
 }

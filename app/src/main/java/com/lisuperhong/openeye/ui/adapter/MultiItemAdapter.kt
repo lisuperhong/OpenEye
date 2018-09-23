@@ -92,7 +92,7 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
                 Logger.d("AutoPlayFollowCardItemHolder called, position = $position")
                 val autoPlayFollowCard =
                     gson.fromJson(dataJson.toString(), AutoPlayFollowCard::class.java)
-                bindAutoPlayFollowCardItemHolder(context!!, autoPlayFollowCard, holder, position)
+                bindAutoPlayFollowCardItemHolder(context!!, autoPlayFollowCard, holder)
             }
             is BannerItemHolder -> {
                 Logger.d("BannerItemHolder called, position = $position")

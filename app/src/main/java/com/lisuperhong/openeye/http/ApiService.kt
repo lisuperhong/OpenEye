@@ -2,6 +2,7 @@ package com.lisuperhong.openeye.http
 
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import com.lisuperhong.openeye.mvp.model.bean.CategoryTabInfo
+import com.lisuperhong.openeye.mvp.model.bean.LightTopicBean
 import com.lisuperhong.openeye.mvp.model.bean.TabInfoBean
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -56,4 +57,20 @@ interface ApiService {
     // 获取作品
     @GET("api/v6/community/tab/follow")
     fun getCommunityFollow(): Observable<BaseBean>
+
+    // 获取标签tab信息
+    @GET("api/v6/tag/index")
+    fun getTagTabInfo(@Query("id") id: Long): Observable<CategoryTabInfo>
+
+    // 根据标签id获取全部视频列表
+    @GET("api/v1/tag/videos")
+    fun getTagVideos(@Query("id") id: Long): Observable<BaseBean>
+
+    // 获取专题列表
+    @GET("api/v3/specialTopics")
+    fun getSpecialTopics(): Observable<BaseBean>
+
+    // 获取专题详情
+    @GET("api/v3/lightTopics/internal")
+    fun getSpecialTopicDetail(@Query("id") id: Long): Observable<LightTopicBean>
 }

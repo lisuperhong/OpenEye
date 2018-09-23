@@ -14,6 +14,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import kotlinx.android.synthetic.main.fragment_production.*
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import android.support.v7.widget.RecyclerView
+import com.lisuperhong.openeye.ui.adapter.AutoPlayListAdapter
 import com.lisuperhong.openeye.utils.DensityUtil
 import com.lisuperhong.openeye.utils.ScrollCalculatorHelper
 
@@ -26,11 +27,11 @@ import com.lisuperhong.openeye.utils.ScrollCalculatorHelper
 class ProductionFragment : BaseFragment(), ProductionContract.View {
 
     private val presenter by lazy { ProductionPresenter() }
-    private var multiItemAdapter: MultiItemAdapter? = null
+    private var autoPlayListAdapter: AutoPlayListAdapter? = null
     private var linearLayoutManager: LinearLayoutManager? = null
     private var isRefresh = false
     private var isFull = false
-    private var nextPageUrl = ""
+    private var nextPageUrl: String? = null
 
     private var scrollCalculatorHelper: ScrollCalculatorHelper? = null
 
@@ -40,23 +41,26 @@ class ProductionFragment : BaseFragment(), ProductionContract.View {
     override fun initView() {
         presenter.attachView(this)
 
-        refreshLayout.autoLoadMore()
         refreshLayout.setRefreshHeader(ClassicsHeader(activity))
+        refreshLayout.setEnableAutoLoadMore(true)
         refreshLayout.setOnRefreshListener {
             isRefresh = true
             initData()
         }
 
-
         refreshLayout.setOnLoadMoreListener {
             isRefresh = false
-            presenter.followLoadMore(nextPageUrl)
+            if (nextPageUrl != null) {
+                presenter.followLoadMore(nextPageUrl!!)
+            } else {
+                refreshLayout.setEnableLoadMore(false)
+            }
         }
 
-        multiItemAdapter = MultiItemAdapter(getContext()!!, ArrayList<BaseBean.Item>())
+        autoPlayListAdapter = AutoPlayListAdapter(getContext()!!, ArrayList<BaseBean.Item>())
         linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         autoPlayRecycleView.layoutManager = linearLayoutManager
-        autoPlayRecycleView.adapter = multiItemAdapter
+        autoPlayRecycleView.adapter = autoPlayListAdapter
         isRefresh = false
         showLoading()
 
@@ -106,9 +110,9 @@ class ProductionFragment : BaseFragment(), ProductionContract.View {
             return
         nextPageUrl = baseBean.nextPageUrl
         if (isRefresh) {
-            multiItemAdapter?.setRefreshData(baseBean.itemList)
+            autoPlayListAdapter?.setRefreshData(baseBean.itemList)
         } else {
-            multiItemAdapter?.setLoadMore(baseBean.itemList)
+            autoPlayListAdapter?.setLoadMore(baseBean.itemList)
         }
     }
 

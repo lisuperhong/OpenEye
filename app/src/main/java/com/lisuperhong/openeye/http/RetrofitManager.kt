@@ -82,7 +82,7 @@ class RetrofitManager private constructor() {
             val modifiedUrl = originalRequest.url().newBuilder()
                 .addQueryParameter("udid", "525fe2e3c24149e69947443589b7a9b137a01aaf")
                 .addQueryParameter("vc", "403")
-                .addQueryParameter("vn", "4.5.1")
+                .addQueryParameter("vn", CommonUtil.getVersionName())
                 .addQueryParameter("deviceModel", CommonUtil.getDeviceModel())
                 .addQueryParameter("first_channel", "eyepetizer_zhihuiyun_market")
                 .addQueryParameter("last_channel", "eyepetizer_zhihuiyun_market")

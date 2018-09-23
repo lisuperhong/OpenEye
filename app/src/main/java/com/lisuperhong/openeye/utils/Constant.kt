@@ -22,8 +22,7 @@ object Constant {
     const val ITEM_TYPE_BRIEF_CARD = 9
     const val ITEM_TYPE_VIDEO_COLLECTION_WITH_BRIEF = 10
     const val ITEM_TYPE_VIDEO_DETAIL = 11
-    const val ITEM_TYPE_SQUARE_CARD = 12
-    const val ITEM_TYPE_RECTANGLE_CARD = 13
+    const val ITEM_TYPE_END = 12
 
     // Activity跳转
     const val INTENT_VIDEO_DETAIL = "INTENT_VIDEO_DETAIL"
@@ -31,4 +30,6 @@ object Constant {
     const val AUTO_PLAY_TAG = "auto_play"
 
     const val INTENT_CATEGORY_ID = "INTENT_CATEGORY_ID"
+
+    const val INTENT_TAG_ID = "INTENT_TAG_ID"
 }

@@ -11,12 +11,12 @@ data class CategoryTabInfo(
         var dataType: String,
         var id: Int,
         var name: String,
-        var description: Any?,
-        var headerImage: Any?,
-        var bgPicture: Any?,
-        var actionUrl: Any?,
+        var description: String,
+        var headerImage: String,
+        var bgPicture: String,
+        var actionUrl: String?,
         var recType: Int,
-        var follow: Any?,
+        var follow: Follow?,
         var tagFollowCount: Int,
         var tagVideoCount: Int,
         var tagDynamicCount: Int
@@ -31,15 +31,7 @@ data class CategoryTabInfo(
         var headerImage: String,
         var actionUrl: String,
         var follow: Follow
-    ) {
-
-        data class Follow(
-            var itemType: String,
-            var itemId: Int,
-            var followed: Boolean
-        )
-    }
-
+    )
 
     data class TabInfo(
         var tabList: List<Tab>,
@@ -52,4 +44,10 @@ data class CategoryTabInfo(
             var apiUrl: String
         )
     }
+
+    data class Follow(
+        var itemType: String,
+        var itemId: Int,
+        var followed: Boolean
+    )
 }

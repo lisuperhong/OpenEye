@@ -22,15 +22,15 @@ class DailyFragment : BaseFragment(), DailyContract.View {
     private val presenter by lazy { DailyPresenter() }
     private var multiItemAdapter: MultiItemAdapter? = null
     private var isRefresh = false
-    private var nextPageUrl = ""
+    private var nextPageUrl: String? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_daily
 
     override fun initView() {
         presenter.attachView(this)
-        refreshLayout.autoLoadMore()
         refreshLayout.setRefreshHeader(ClassicsHeader(activity))
+        refreshLayout.setEnableAutoLoadMore(true)
         refreshLayout.setOnRefreshListener {
             isRefresh = true
             initData()
@@ -38,7 +38,11 @@ class DailyFragment : BaseFragment(), DailyContract.View {
 
         refreshLayout.setOnLoadMoreListener {
             isRefresh = false
-            presenter.feedLoadMore(nextPageUrl)
+            if (nextPageUrl != null) {
+                presenter.feedLoadMore(nextPageUrl!!)
+            } else {
+                presenter.feedLoadMore(nextPageUrl!!)
+            }
         }
 
         multiItemAdapter = MultiItemAdapter(getContext()!!, ArrayList<BaseBean.Item>())

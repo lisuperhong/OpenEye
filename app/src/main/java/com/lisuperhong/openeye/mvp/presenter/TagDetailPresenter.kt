@@ -1,7 +1,7 @@
 package com.lisuperhong.openeye.mvp.presenter
 
 import com.lisuperhong.openeye.base.BasePresenter
-import com.lisuperhong.openeye.mvp.contract.CategoryDetailContract
+import com.lisuperhong.openeye.mvp.contract.TagDetailContract
 import com.lisuperhong.openeye.mvp.model.DataRepository
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import com.lisuperhong.openeye.mvp.model.bean.CategoryTabInfo
@@ -9,19 +9,18 @@ import com.lisuperhong.openeye.rx.scheduler.BaseObserver
 
 /**
  * Author: lisuperhong
- * Time: Create on 2018/9/20 22:54
+ * Time: Create on 2018/9/23 01:21
  * Github: https://github.com/lisuperhong
- * Desc: 分类详情
+ * Desc: 标签详情
  */
-class CategoryDetailPresenter : BasePresenter<CategoryDetailContract.View>(),
-    CategoryDetailContract.Presenter {
+class TagDetailPresenter : BasePresenter<TagDetailContract.View>(), TagDetailContract.Presenter {
 
-    override fun getCategoryInfo(id: Long) {
+    override fun getTagInfo(id: Long) {
         checkViewAttached()
         DataRepository.getInstance()
-            .getCategoryInfo(id, object : BaseObserver<CategoryTabInfo>() {
+            .getTagInfo(id, object : BaseObserver<CategoryTabInfo>() {
                 override fun onSuccess(data: CategoryTabInfo) {
-                    rootView?.showCategoryInfo(data)
+                    rootView?.showTagInfo(data)
                 }
 
                 override fun onFailure(errorMsg: String) {
@@ -31,12 +30,12 @@ class CategoryDetailPresenter : BasePresenter<CategoryDetailContract.View>(),
             })
     }
 
-    override fun getVideoList(id: Long) {
+    override fun getVideos(id: Long) {
         DataRepository.getInstance()
-            .getCategoryVideoList(id, object : BaseObserver<BaseBean>() {
+            .getTagVideos(id, object : BaseObserver<BaseBean>() {
                 override fun onSuccess(data: BaseBean) {
                     rootView?.hideLoading()
-                    rootView?.showVideoList(data)
+                    rootView?.showVideos(data)
                 }
 
                 override fun onFailure(errorMsg: String) {
@@ -51,7 +50,7 @@ class CategoryDetailPresenter : BasePresenter<CategoryDetailContract.View>(),
             .loadMoreData(url, object : BaseObserver<BaseBean>() {
                 override fun onSuccess(data: BaseBean) {
                     rootView?.hideLoading()
-                    rootView?.showVideoList(data)
+                    rootView?.showVideos(data)
                 }
 
                 override fun onFailure(errorMsg: String) {

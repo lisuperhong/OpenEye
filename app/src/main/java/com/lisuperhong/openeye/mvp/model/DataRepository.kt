@@ -4,6 +4,7 @@ import com.lisuperhong.openeye.http.ApiService
 import com.lisuperhong.openeye.http.RetrofitManager
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import com.lisuperhong.openeye.mvp.model.bean.CategoryTabInfo
+import com.lisuperhong.openeye.mvp.model.bean.LightTopicBean
 import com.lisuperhong.openeye.mvp.model.bean.TabInfoBean
 import com.lisuperhong.openeye.rx.scheduler.BaseObserver
 import com.lisuperhong.openeye.rx.scheduler.IoMainScheduler
@@ -112,4 +113,37 @@ class DataRepository private constructor() {
             .compose(IoMainScheduler())
             .subscribe(baseObserver)
     }
+
+    fun getTagInfo(id: Long, baseObserver: BaseObserver<CategoryTabInfo>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getTagTabInfo(id)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getTagVideos(id: Long, baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getTagVideos(id)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getSpecialTopics(baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getSpecialTopics()
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
+    fun getSpecialTopicDetail(id: Long, baseObserver: BaseObserver<LightTopicBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getSpecialTopicDetail(id)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
 }

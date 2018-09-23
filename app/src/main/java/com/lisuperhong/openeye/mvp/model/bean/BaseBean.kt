@@ -10,7 +10,7 @@ import java.io.Serializable
 data class BaseBean(
     var count: Int,
     var total: Int,
-    var nextPageUrl: String,
+    var nextPageUrl: String?,
     var adExist: Boolean,
     var itemList: ArrayList<Item>
 ) : Serializable {
