@@ -1,5 +1,6 @@
 package com.lisuperhong.openeye.ui.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
@@ -28,6 +29,9 @@ class SpecialTopicsActivity : BaseActivity(), SpecialTopicsContract.View {
         refreshLayout.setRefreshHeader(ClassicsHeader(this))
         refreshLayout.setOnRefreshListener {
             presenter.getSpecialTopics()
+        }
+        toolbarBackIv.setOnClickListener {
+            onBackPressed()
         }
 
         multiItemAdapter = MultiItemAdapter(this, ArrayList<BaseBean.Item>())

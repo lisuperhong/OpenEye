@@ -58,8 +58,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="12sp"
-        android:text="色达"/>
+        android:textSize="14sp"
+        android:text="色达"
+        android:textColor="@color/auto_play_text"/>
 
     <ImageView
         android:id="@+id/autoPlayCardCoverIv"

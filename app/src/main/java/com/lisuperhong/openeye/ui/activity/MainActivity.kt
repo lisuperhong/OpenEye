@@ -8,12 +8,16 @@ import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
+import com.lisuperhong.openeye.event.RankEvent
 import com.lisuperhong.openeye.mvp.model.bean.TabEntity
 import com.lisuperhong.openeye.ui.fragment.follow.FollowFragment
 import com.lisuperhong.openeye.ui.fragment.home.HomeFragment
 import com.lisuperhong.openeye.ui.fragment.MyFragment
 import com.lisuperhong.openeye.ui.fragment.rank.RankFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : BaseActivity() {
 
@@ -49,6 +53,7 @@ class MainActivity : BaseActivity() {
         initTab()
         tabLayout.currentTab = curIndex
         setCurrentFragment(curIndex)
+        EventBus.getDefault().register(this)
     }
 
     override fun layoutId(): Int {
@@ -56,8 +61,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-//        //状态栏透明，字体设为黑色
-//        StatusBarUtil.darkMode(this)
+
     }
 
     override fun initData(savedInstanceState: Bundle?) {
@@ -147,4 +151,13 @@ class MainActivity : BaseActivity() {
         return super.onKeyDown(keyCode, event)
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun toRankFragment(rankEvent: RankEvent) {
+        setCurrentFragment(1)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
 }

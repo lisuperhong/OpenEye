@@ -164,9 +164,10 @@ class HorizontalScrollCardItemHolder(view: View) : RecyclerView.ViewHolder(view)
 }
 
 class BriefCardItemHolder(view: View) : RecyclerView.ViewHolder(view) {
-    var briefcardIconIv: ImageView = view.briefcardIconIv
-    var briefcardTitleTv: TextView = view.briefcardTitleTv
-    var briefcardDescriptionTv: TextView = view.briefcardDescriptionTv
+    var briefCardLl: LinearLayout = view.briefCardLl
+    var briefCardIconIv: ImageView = view.briefCardIconIv
+    var briefCardTitleTv: TextView = view.briefCardTitleTv
+    var briefCardDescriptionTv: TextView = view.briefCardDescriptionTv
 }
 
 class VideoCollectionWithBriefItemHolder(view: View) : RecyclerView.ViewHolder(view) {

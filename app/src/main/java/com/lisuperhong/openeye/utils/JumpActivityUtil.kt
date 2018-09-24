@@ -9,11 +9,14 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
 import android.view.View
 import com.lisuperhong.openeye.R
+import com.lisuperhong.openeye.event.ChangeTabEvent
+import com.lisuperhong.openeye.event.RankEvent
 import com.lisuperhong.openeye.mvp.model.bean.VideoSmallCard
 import com.lisuperhong.openeye.ui.activity.CategoryDetailActivity
 import com.lisuperhong.openeye.ui.activity.SpecialTopicsActivity
 import com.lisuperhong.openeye.ui.activity.TagDetailActivity
 import com.lisuperhong.openeye.ui.activity.VideoDetailActivity
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Author: lisuperhong
@@ -42,14 +45,14 @@ object JumpActivityUtil {
     fun parseActionUrl(context: Context, actionUrl: String) {
         val uri: Uri = Uri.parse(actionUrl)
         val host = uri.host
-        val path = uri.pathSegments[0]
         when (host) {
 
             "categories" -> { // 全部分类
-
+                EventBus.getDefault().post(ChangeTabEvent(3))
             }
 
             "category" -> { // 分类详情
+                val path = uri.pathSegments[0]
                 val intent = Intent(context, CategoryDetailActivity::class.java)
                 intent.putExtra(Constant.INTENT_CATEGORY_ID, path.toLong())
                 context.startActivity(intent)
@@ -57,6 +60,7 @@ object JumpActivityUtil {
 
 
             "tag" -> { // 标签详情
+                val path = uri.pathSegments[0]
                 val intent = Intent(context, TagDetailActivity::class.java)
                 intent.putExtra(Constant.INTENT_TAG_ID, path.toLong())
                 context.startActivity(intent)
@@ -68,7 +72,12 @@ object JumpActivityUtil {
             }
 
             "ranklist" -> { // 排行榜
+                EventBus.getDefault().post(RankEvent("ranklist"))
+            }
 
+            "feed" -> {
+                val tabIndex = uri.getQueryParameter("tabIndex").toInt()
+                EventBus.getDefault().post(ChangeTabEvent(tabIndex))
             }
 
             "common" -> {

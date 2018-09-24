@@ -13,6 +13,6 @@
     <color name="black">#000000</color>
     <color name="gray">#9a9a9a</color>
 
-    <!-- -->
+    <color name="auto_play_text">#141414</color>
     <color name="divider_line">#ece7e7e7</color>
 </resources>

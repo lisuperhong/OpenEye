@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.SpecialTopicDetailActivity">
+
+    <include
+        layout="@layout/custom_toolbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/headerIv"
+                android:layout_width="match_parent"
+                android:layout_height="240dp" />
+
+            <TextView
+                android:id="@+id/briefTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="216dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:background="@drawable/shape_text_bg"/>
+
+            <TextView
+                android:id="@+id/textTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/briefTv"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:textSize="12sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_below="@id/textTv"
+                android:background="@color/gray"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textTv"
+                android:layout_marginTop="8dp"
+                android:descendantFocusability="blocksDescendants">
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v4.widget.ContentLoadingProgressBar
+                android:id="@+id/loadingProgressBar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerInParent="true"
+                style="?android:attr/progressBarStyleInverse" />
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

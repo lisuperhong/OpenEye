@@ -13,6 +13,7 @@ def flycoTabVersion = "2.1.2@aar"
 def gsonVersion = "2.8.5"
 def smartRefreshVersion = "1.1.0-alpha-14"
 def playerVersion = "5.0.2"
+def eventBusVersion = "3.1.1"
 
 ext {
     android = [
@@ -82,6 +83,9 @@ ext {
 
             // 播放器
             gsyVideoPlayer                 : "com.shuyu:GSYVideoPlayer:${playerVersion}",
+
+            // EventBus
+            eventBus                       : "org.greenrobot:eventbus:${eventBusVersion}",
 
             //others
             ormlite_android                : "com.j256.ormlite:ormlite-android:5.0",

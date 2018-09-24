@@ -83,6 +83,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // 播放器
     implementation librarys.gsyVideoPlayer
+    // EventBus
+    implementation librarys.eventBus
 }
 repositories {
     mavenCentral()

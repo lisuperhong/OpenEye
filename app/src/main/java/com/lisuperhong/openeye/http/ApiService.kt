@@ -70,7 +70,7 @@ interface ApiService {
     @GET("api/v3/specialTopics")
     fun getSpecialTopics(): Observable<BaseBean>
 
-    // 获取专题详情
-    @GET("api/v3/lightTopics/internal")
-    fun getSpecialTopicDetail(@Query("id") id: Long): Observable<LightTopicBean>
+    // 获取专题详情   http://baobab.kaiyanapp.com/api/v3/lightTopics/internal/356
+    @GET
+    fun getSpecialTopicDetail(@Url url: String): Observable<LightTopicBean>
 }

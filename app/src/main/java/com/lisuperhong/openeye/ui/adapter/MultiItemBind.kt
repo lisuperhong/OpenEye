@@ -2,25 +2,14 @@ package com.lisuperhong.openeye.ui.adapter
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.content.res.Resources
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.util.Pair
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.ImageView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.*
-import com.lisuperhong.openeye.ui.activity.VideoDetailActivity
+import com.lisuperhong.openeye.ui.activity.SpecialTopicDetailActivity
 import com.lisuperhong.openeye.utils.*
-import com.shuyu.gsyvideoplayer.GSYVideoManager
-import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
-import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
-import com.shuyu.gsyvideoplayer.listener.VideoAllCallBack
-import java.text.FieldPosition
 
 /**
  * Author: lizhaohong
@@ -45,8 +34,9 @@ fun bindSquareCardItemHolder(
         viewHolder.squareSubTitle.text = header.subTitle
     }
 
-    viewHolder.squareTitle.setOnClickListener(View.OnClickListener {
-    })
+    viewHolder.squareTitle.setOnClickListener {
+        JumpActivityUtil.parseActionUrl(context, header.actionUrl)
+    }
 
     val followCardList: ArrayList<FollowCard> = ArrayList<FollowCard>()
     val itemList = squareCardCollection.itemList
@@ -78,6 +68,9 @@ fun bindSquareCardItemHolder(
         viewHolder.squareTitle.text = header.title
     }
     viewHolder.squareSubTitle.visibility = View.GONE
+    viewHolder.squareTitle.setOnClickListener {
+        JumpActivityUtil.parseActionUrl(context, header.actionUrl)
+    }
 
     val banners: ArrayList<Banner> = ArrayList<Banner>()
     val itemList = squareCardCollection2.itemList
@@ -275,6 +268,9 @@ fun bindBannerItemHolder(
 ) {
     val viewHolder: BannerItemHolder = holder as BannerItemHolder
     ImageLoad.loadImage(viewHolder.bannerIv, banner.image, 5)
+    viewHolder.bannerIv.setOnClickListener {
+        SpecialTopicDetailActivity.start(context, banner.id, banner.title)
+    }
 }
 
 fun bindHorizontalScrollCardItemHolder(
@@ -303,14 +299,18 @@ fun bindBriefCardItemHolder(
     holder: RecyclerView.ViewHolder
 ) {
     val viewHolder: BriefCardItemHolder = holder as BriefCardItemHolder
-    viewHolder.briefcardTitleTv.typeface =
+    viewHolder.briefCardTitleTv.typeface =
             TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
-    viewHolder.briefcardTitleTv.text = briefCard.title
-    viewHolder.briefcardDescriptionTv.text = briefCard.description
+    viewHolder.briefCardTitleTv.text = briefCard.title
+    viewHolder.briefCardDescriptionTv.text = briefCard.description
     when (briefCard.iconType) {
-        "round" -> ImageLoad.loadCircleImage(viewHolder.briefcardIconIv, briefCard.icon)
-        "square" -> ImageLoad.loadImage(viewHolder.briefcardIconIv, briefCard.icon, 5)
-        else -> ImageLoad.loadImage(viewHolder.briefcardIconIv, briefCard.icon)
+        "round" -> ImageLoad.loadCircleImage(viewHolder.briefCardIconIv, briefCard.icon)
+        "square" -> ImageLoad.loadImage(viewHolder.briefCardIconIv, briefCard.icon, 5)
+        else -> ImageLoad.loadImage(viewHolder.briefCardIconIv, briefCard.icon)
+    }
+
+    viewHolder.briefCardLl.setOnClickListener {
+        JumpActivityUtil.parseActionUrl(context, briefCard.actionUrl)
     }
 }
 
@@ -341,7 +341,7 @@ fun bindVideoCollectionWithBriefItemHolder(
     viewHolder.videoCollectionRecyclerView.adapter = adapter
 }
 
-fun bindVideoDetailInfoHolder(videoSmallCard: VideoSmallCard, holder: RecyclerView.ViewHolder) {
+fun bindVideoDetailInfoHolder(context: Context, videoSmallCard: VideoSmallCard, holder: RecyclerView.ViewHolder) {
     val viewHolder: VideoDetailInfoViewHolder = holder as VideoDetailInfoViewHolder
 
     viewHolder.videoDetailTitle.typeface =
@@ -362,6 +362,16 @@ fun bindVideoDetailInfoHolder(videoSmallCard: VideoSmallCard, holder: RecyclerVi
     ImageLoad.loadImage(viewHolder.secondTagIv, tags[1].headerImage, 5)
     viewHolder.thirdTagTv.text = "#${tags[2].name}#"
     ImageLoad.loadImage(viewHolder.thirdTagIv, tags[2].headerImage, 5)
+
+    viewHolder.firstTagIv.setOnClickListener {
+        JumpActivityUtil.parseActionUrl(context, tags[0].actionUrl)
+    }
+    viewHolder.secondTagIv.setOnClickListener {
+        JumpActivityUtil.parseActionUrl(context, tags[1].actionUrl)
+    }
+    viewHolder.thirdTagIv.setOnClickListener {
+        JumpActivityUtil.parseActionUrl(context, tags[2].actionUrl)
+    }
 
     val author = videoSmallCard.author
     viewHolder.authorName.typeface = TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)

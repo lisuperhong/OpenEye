@@ -138,10 +138,10 @@ class DataRepository private constructor() {
             .subscribe(baseObserver)
     }
 
-    fun getSpecialTopicDetail(id: Long, baseObserver: BaseObserver<LightTopicBean>) {
+    fun getSpecialTopicDetail(url: String, baseObserver: BaseObserver<LightTopicBean>) {
         RetrofitManager.getInstance()
             .initService(ApiService::class.java, Constant.HOST)
-            .getSpecialTopicDetail(id)
+            .getSpecialTopicDetail(url)
             .compose(IoMainScheduler())
             .subscribe(baseObserver)
     }

@@ -1,6 +1,7 @@
 package com.lisuperhong.openeye.ui.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.Banner
+import com.lisuperhong.openeye.ui.activity.SpecialTopicDetailActivity
 import com.lisuperhong.openeye.utils.ImageLoad
+import com.lisuperhong.openeye.utils.JumpActivityUtil
 import kotlinx.android.synthetic.main.item_horizontal_banner.view.*
 
 /**
@@ -40,6 +43,15 @@ RecyclerView.Adapter<HorizontalBannerAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val banner = dataList[position]
         ImageLoad.loadImage(holder.horizontalBannerIv, banner.image, 5)
+
+        holder.horizontalBannerIv.setOnClickListener {
+            val uri: Uri = Uri.parse(banner.actionUrl)
+            if (uri.host == "lightTopic") {
+                SpecialTopicDetailActivity.start(context!!, banner.id, banner.title)
+            } else {
+                JumpActivityUtil.parseActionUrl(context!!, banner.actionUrl)
+            }
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

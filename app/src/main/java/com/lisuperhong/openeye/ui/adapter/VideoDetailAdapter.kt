@@ -47,7 +47,7 @@ class VideoDetailAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
         val data = arrayList[position]
         if (position == 0) {
             val videoSmallCard: VideoSmallCard = data.data as VideoSmallCard
-            bindVideoDetailInfoHolder(videoSmallCard, holder)
+            bindVideoDetailInfoHolder(context!!, videoSmallCard, holder)
         } else {
             val gson = Gson()
             val dataMap = data.data as Map<*, *>

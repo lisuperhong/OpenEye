@@ -26,10 +26,9 @@ object Constant {
 
     // Activity跳转
     const val INTENT_VIDEO_DETAIL = "INTENT_VIDEO_DETAIL"
-
     const val AUTO_PLAY_TAG = "auto_play"
-
     const val INTENT_CATEGORY_ID = "INTENT_CATEGORY_ID"
-
     const val INTENT_TAG_ID = "INTENT_TAG_ID"
+    const val INTENT_SPECIAL_TOPIC_ID = "INTENT_SPECIAL_TOPIC_ID"
+    const val INTENT_SPECIAL_TOPIC_TITLE = "INTENT_SPECIAL_TOPIC_TITLE"
 }
