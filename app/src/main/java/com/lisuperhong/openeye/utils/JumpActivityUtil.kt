@@ -12,10 +12,7 @@ import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.event.ChangeTabEvent
 import com.lisuperhong.openeye.event.RankEvent
 import com.lisuperhong.openeye.mvp.model.bean.VideoSmallCard
-import com.lisuperhong.openeye.ui.activity.CategoryDetailActivity
-import com.lisuperhong.openeye.ui.activity.SpecialTopicsActivity
-import com.lisuperhong.openeye.ui.activity.TagDetailActivity
-import com.lisuperhong.openeye.ui.activity.VideoDetailActivity
+import com.lisuperhong.openeye.ui.activity.*
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -85,7 +82,10 @@ object JumpActivityUtil {
             }
             
             "webview" -> {
-
+                val url = uri.getQueryParameter("url")
+                val intent = Intent(context, WebViewActivity::class.java)
+                intent.putExtra(Constant.INTENT_WEB_VIEW_URL, url)
+                context.startActivity(intent)
             }
 
         }
