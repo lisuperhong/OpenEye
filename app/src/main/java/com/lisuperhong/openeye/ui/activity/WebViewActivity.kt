@@ -1,6 +1,6 @@
 package com.lisuperhong.openeye.ui.activity
 
-import android.os.Build
+import android.net.http.SslError
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.ViewGroup
@@ -36,35 +36,42 @@ class WebViewActivity : BaseActivity() {
         webSettings.loadWithOverviewMode = true
         webSettings.setSupportMultipleWindows(true)
         webSettings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
-        webSettings.loadsImagesAutomatically = Build.VERSION.SDK_INT >= 19
+        webSettings.loadsImagesAutomatically = true
         webSettings.useWideViewPort = true
         webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
         webSettings.domStorageEnabled = true
         webSettings.defaultTextEncodingName = "UTF-8"
+        webSettings.javaScriptEnabled = true
+        webSettings.allowContentAccess = true
+        webSettings.javaScriptCanOpenWindowsAutomatically = true
         deleteDatabase("WebView.db")
         deleteDatabase("WebViewCache.db")
         webView?.clearHistory()
         webView?.clearFormData()
 
         //设置不用系统浏览器打开,直接显示在当前Webview
-        webView?.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                request: WebResourceRequest?
-            ): Boolean {
-                view!!.loadUrl(url)
-                return true
-            }
+        webView?.webViewClient = CustomWebViewClient()
+        webView?.loadUrl(url)
+    }
 
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                if (!webView!!.settings.loadsImagesAutomatically) {
-                    webView!!.settings.loadsImagesAutomatically = true
-                }
+    private inner class CustomWebViewClient : WebViewClient() {
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): Boolean {
+            view!!.loadUrl(url)
+            return super.shouldOverrideUrlLoading(view, request)
+        }
+
+        override fun onPageFinished(view: WebView?, url: String?) {
+            super.onPageFinished(view, url)
+            if (!webView!!.settings.loadsImagesAutomatically) {
+                webView!!.settings.loadsImagesAutomatically = true
             }
         }
 
-        webView?.loadUrl(url)
+        override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) =
+            handler.proceed()
     }
 
     override fun onResume() {
