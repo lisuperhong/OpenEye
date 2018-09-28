@@ -269,7 +269,7 @@ fun bindBannerItemHolder(
     val viewHolder: BannerItemHolder = holder as BannerItemHolder
     ImageLoad.loadImage(viewHolder.bannerIv, banner.image, 5)
     viewHolder.bannerIv.setOnClickListener {
-        SpecialTopicDetailActivity.start(context, banner.id, banner.title)
+        JumpActivityUtil.parseActionUrl(context, banner.actionUrl)
     }
 }
 

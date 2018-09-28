@@ -78,7 +78,10 @@ object JumpActivityUtil {
             }
 
             "common" -> {
-
+                val url = uri.getQueryParameter("url")
+                val intent = Intent(context, HotContentActivity::class.java)
+                intent.putExtra(Constant.INTENT_TAG_POPULAR_URL, url)
+                context.startActivity(intent)
             }
             
             "webview" -> {
@@ -86,6 +89,12 @@ object JumpActivityUtil {
                 val intent = Intent(context, WebViewActivity::class.java)
                 intent.putExtra(Constant.INTENT_WEB_VIEW_URL, url)
                 context.startActivity(intent)
+            }
+
+            "lightTopic" -> {
+                val id = uri.pathSegments[1]
+                val title = uri.getQueryParameter("title")
+                SpecialTopicDetailActivity.start(context, id.toInt(), title)
             }
 
         }

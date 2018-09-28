@@ -22,7 +22,8 @@ object Constant {
     const val ITEM_TYPE_BRIEF_CARD = 9
     const val ITEM_TYPE_VIDEO_COLLECTION_WITH_BRIEF = 10
     const val ITEM_TYPE_VIDEO_DETAIL = 11
-    const val ITEM_TYPE_END = 12
+    const val ITEM_TYPE_AUTO_PLAY_VIDEO_AD = 12
+    const val ITEM_TYPE_END = 13
 
     // Activity跳转
     const val INTENT_VIDEO_DETAIL = "INTENT_VIDEO_DETAIL"
@@ -32,4 +33,5 @@ object Constant {
     const val INTENT_SPECIAL_TOPIC_ID = "INTENT_SPECIAL_TOPIC_ID"
     const val INTENT_SPECIAL_TOPIC_TITLE = "INTENT_SPECIAL_TOPIC_TITLE"
     const val INTENT_WEB_VIEW_URL = "INTENT_WEB_VIEW_URL"
+    const val INTENT_TAG_POPULAR_URL = "INTENT_TAG_POPULAR_URL"
 }

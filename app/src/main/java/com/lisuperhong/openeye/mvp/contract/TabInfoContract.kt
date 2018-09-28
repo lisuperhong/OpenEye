@@ -10,7 +10,7 @@ import com.lisuperhong.openeye.mvp.model.bean.TabInfoBean
  * Github: https://github.com/lisuperhong
  * Desc:
  */
-interface RankContract {
+interface TabInfoContract {
 
     interface View : IBaseView {
         /**
@@ -21,8 +21,13 @@ interface RankContract {
 
     interface Presenter : IBasePresenter<View> {
         /**
-         * 获取tab信息
+         * 获取排行榜tab信息
          */
-        fun getTabInfo()
+        fun getRankTabInfo()
+
+        /**
+         * 获取tag热门内容tab信息
+         */
+        fun getPopularTabInfo(url: String)
     }
 }

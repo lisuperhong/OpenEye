@@ -73,4 +73,8 @@ interface ApiService {
     // 获取专题详情   http://baobab.kaiyanapp.com/api/v3/lightTopics/internal/356
     @GET
     fun getSpecialTopicDetail(@Url url: String): Observable<LightTopicBean>
+
+    // 获取tag热门内容的tab信息
+    @GET
+    fun getPopularTabInfo(@Url url: String): Observable<TabInfoBean>
 }

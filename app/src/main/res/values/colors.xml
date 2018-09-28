@@ -15,4 +15,5 @@
 
     <color name="auto_play_text">#141414</color>
     <color name="divider_line">#ece7e7e7</color>
+    <color name="image_background">#62000000</color>
 </resources>

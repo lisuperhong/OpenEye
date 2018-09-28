@@ -48,7 +48,8 @@
         <activity android:name=".ui.activity.TagDetailActivity" />
         <activity android:name=".ui.activity.SpecialTopicsActivity" />
         <activity android:name=".ui.activity.SpecialTopicDetailActivity" />
-        <activity android:name=".ui.activity.WebViewActivity"></activity>
+        <activity android:name=".ui.activity.WebViewActivity" />
+        <activity android:name=".ui.activity.HotContentActivity"></activity>
     </application>
 
 </manifest>

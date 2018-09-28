@@ -113,6 +113,9 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
                     gson.fromJson(dataJson.toString(), VideoCollectionWithBrief::class.java)
                 bindVideoCollectionWithBriefItemHolder(context!!, videoCollectionWithBrief, holder)
             }
+            is AutoPlayAdViewHolder -> {
+
+            }
 
             else -> {
                 Logger.d("default TextCardItemHolder called, position = $position")
@@ -150,6 +153,8 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
             "briefCard" -> Constant.ITEM_TYPE_BRIEF_CARD
 
             "videoCollectionWithBrief" -> Constant.ITEM_TYPE_VIDEO_COLLECTION_WITH_BRIEF
+
+            "autoPlayVideoAd" -> Constant.ITEM_TYPE_AUTO_PLAY_VIDEO_AD
 
             else -> Constant.ITEM_TYPE_TEXT_CARD
         }

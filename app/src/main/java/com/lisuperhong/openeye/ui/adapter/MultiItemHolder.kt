@@ -96,6 +96,12 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
             return VideoDetailInfoViewHolder(view)
         }
 
+        Constant.ITEM_TYPE_AUTO_PLAY_VIDEO_AD -> {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_auto_play_video_ad, parent, false)
+            return AutoPlayAdViewHolder(view)
+        }
+
         else -> {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_textcard, parent, false)
@@ -195,4 +201,9 @@ class VideoDetailInfoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var authorName: TextView = view.authorName
     var authorDescription: TextView = view.authorDescription
 }
+
+class AutoPlayAdViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+}
+
 

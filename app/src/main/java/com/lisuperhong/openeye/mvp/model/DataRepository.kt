@@ -146,4 +146,12 @@ class DataRepository private constructor() {
             .subscribe(baseObserver)
     }
 
+    fun getPopularTabInfo(url: String, baseObserver: BaseObserver<TabInfoBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getPopularTabInfo(url)
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
+
 }
