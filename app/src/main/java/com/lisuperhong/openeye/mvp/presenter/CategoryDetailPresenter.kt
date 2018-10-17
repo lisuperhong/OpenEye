@@ -18,46 +18,49 @@ class CategoryDetailPresenter : BasePresenter<CategoryDetailContract.View>(),
 
     override fun getCategoryInfo(id: Long) {
         checkViewAttached()
-        DataRepository.getInstance()
-            .getCategoryInfo(id, object : BaseObserver<CategoryTabInfo>() {
-                override fun onSuccess(data: CategoryTabInfo) {
-                    rootView?.showCategoryInfo(data)
-                }
+        val observer = object : BaseObserver<CategoryTabInfo>() {
+            override fun onSuccess(data: CategoryTabInfo) {
+                rootView?.showCategoryInfo(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getCategoryInfo(id, observer)
     }
 
     override fun getVideoList(id: Long) {
-        DataRepository.getInstance()
-            .getCategoryVideoList(id, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showVideoList(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showVideoList(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getCategoryVideoList(id, observer)
     }
 
     override fun loadMore(url: String) {
-        DataRepository.getInstance()
-            .loadMoreData(url, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showVideoList(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showVideoList(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().loadMoreData(url, observer)
     }
 }

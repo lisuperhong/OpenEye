@@ -21,6 +21,14 @@ interface ProductionContract {
 
     interface Presenter : IBasePresenter<View> {
 
+        /**
+         * 获取全部作者
+         */
+        fun allAuthors()
+
+        /**
+         * 获取自动播放视频列表
+         */
         fun communityFollow()
 
         /**

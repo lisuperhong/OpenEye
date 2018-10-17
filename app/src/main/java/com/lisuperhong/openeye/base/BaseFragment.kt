@@ -105,20 +105,20 @@ abstract class BaseFragment : Fragment() {
         isPrepared = false
     }
 
-    protected fun onVisible() {
-        isFragmentVisible = true
-        lazyLoad()
-    }
-
-    protected fun onInvisible() {
-        isFragmentVisible = false
-    }
-
     /**
      * 忽略isFirstLoad的值，强制刷新数据，但仍要isFragmentVisible & isPrepared
      */
     fun setForceLoad() {
         forceLoad = true
+    }
+
+    private fun onVisible() {
+        isFragmentVisible = true
+        lazyLoad()
+    }
+
+    private fun onInvisible() {
+        isFragmentVisible = false
     }
 
     private fun lazyLoad() {

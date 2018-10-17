@@ -17,46 +17,49 @@ class TagDetailPresenter : BasePresenter<TagDetailContract.View>(), TagDetailCon
 
     override fun getTagInfo(id: Long) {
         checkViewAttached()
-        DataRepository.getInstance()
-            .getTagInfo(id, object : BaseObserver<CategoryTabInfo>() {
-                override fun onSuccess(data: CategoryTabInfo) {
-                    rootView?.showTagInfo(data)
-                }
+        val observer = object : BaseObserver<CategoryTabInfo>() {
+            override fun onSuccess(data: CategoryTabInfo) {
+                rootView?.showTagInfo(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getTagInfo(id, observer)
     }
 
     override fun getVideos(id: Long) {
-        DataRepository.getInstance()
-            .getTagVideos(id, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showVideos(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showVideos(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getTagVideos(id, observer)
     }
 
     override fun loadMore(url: String) {
-        DataRepository.getInstance()
-            .loadMoreData(url, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showVideos(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showVideos(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().loadMoreData(url, observer)
     }
 }

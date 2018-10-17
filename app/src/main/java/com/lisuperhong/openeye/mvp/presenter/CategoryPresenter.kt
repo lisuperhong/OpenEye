@@ -10,24 +10,25 @@ import com.lisuperhong.openeye.rx.scheduler.BaseObserver
  * Author: lisuperhong
  * Time: Create on 2018/9/17 10:27
  * Github: https://github.com/lisuperhong
- * Desc:
+ * Desc: 分类
  */
 class CategoryPresenter : BasePresenter<CategoryContract.View>(), CategoryContract.Presenter {
 
     override fun getAllCategory() {
         checkViewAttached()
-        DataRepository.getInstance()
-            .getCategories(object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showContent(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getCategories(observer)
     }
 
 }

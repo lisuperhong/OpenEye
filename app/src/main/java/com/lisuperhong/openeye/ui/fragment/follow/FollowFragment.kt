@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.fragment_follow.*
 
 class FollowFragment : BaseFragment() {
 
-    private val titleList = listOf("作品", "分类")
+    private val titleList = listOf("作者", "作品")
 
     override val layoutId: Int
         get() = R.layout.fragment_follow
@@ -17,8 +17,8 @@ class FollowFragment : BaseFragment() {
     override fun initView() {
         titleTv.text = "关注"
         val fragmentList = ArrayList<BaseFragment>()
+        fragmentList.add(AuthorFragment())
         fragmentList.add(ProductionFragment())
-        fragmentList.add(CategoryFragment())
         followViewPager.adapter = BaseFragmentAdapter(childFragmentManager, fragmentList, titleList)
         followViewPager.offscreenPageLimit = 2
         slidingTabLayout.setViewPager(followViewPager)

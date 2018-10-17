@@ -16,34 +16,52 @@ class ProductionPresenter : BasePresenter<ProductionContract.View>(), Production
 
     override fun communityFollow() {
         checkViewAttached()
-        DataRepository.getInstance()
-            .getCommunityFollow(object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showContent(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getCommunityFollow(observer)
+    }
 
+    override fun allAuthors() {
+        checkViewAttached()
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
+
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getAllAuthors(observer)
     }
 
     override fun followLoadMore(url: String) {
         checkViewAttached()
-        DataRepository.getInstance()
-            .loadMoreData(url, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showContent(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().loadMoreData(url, observer)
     }
 }

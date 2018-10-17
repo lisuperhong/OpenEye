@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter
  * Author: lisuperhong
  * Time: Create on 2018/8/4 10:55
  * Github: https://github.com/lisuperhong
- * Desc:
+ * Desc: Fragment实例存在内存中，适用于页数数目少的情况
  */
 class BaseFragmentAdapter(
     fm: FragmentManager,

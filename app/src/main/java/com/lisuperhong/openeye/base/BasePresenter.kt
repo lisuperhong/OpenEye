@@ -55,7 +55,6 @@ open class BasePresenter<T : IBaseView> : IBasePresenter<T> {
             throw MvpViewNotAttachedException()
     }
 
-
     private class MvpViewNotAttachedException internal constructor() :
         RuntimeException("Please call IPresenter.attachView(IBaseView) before" + " requesting data to the IPresenter")
 }

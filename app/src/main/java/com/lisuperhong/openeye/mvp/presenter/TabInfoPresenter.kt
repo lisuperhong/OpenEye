@@ -16,29 +16,31 @@ class TabInfoPresenter : BasePresenter<TabInfoContract.View>(), TabInfoContract.
 
     override fun getRankTabInfo() {
         checkViewAttached()
-        DataRepository.getInstance()
-            .getRankList(object : BaseObserver<TabInfoBean>() {
-                override fun onSuccess(data: TabInfoBean) {
-                    rootView?.showTabInfo(data)
-                }
+        val observer = object : BaseObserver<TabInfoBean>() {
+            override fun onSuccess(data: TabInfoBean) {
+                rootView?.showTabInfo(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getRankList(observer)
     }
 
     override fun getPopularTabInfo(url: String) {
         checkViewAttached()
-        DataRepository.getInstance()
-            .getPopularTabInfo(url, object : BaseObserver<TabInfoBean>() {
-                override fun onSuccess(data: TabInfoBean) {
-                    rootView?.showTabInfo(data)
-                }
+        val observer = object : BaseObserver<TabInfoBean>() {
+            override fun onSuccess(data: TabInfoBean) {
+                rootView?.showTabInfo(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getPopularTabInfo(url, observer)
     }
 }

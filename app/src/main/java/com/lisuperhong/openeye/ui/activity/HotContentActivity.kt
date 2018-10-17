@@ -64,5 +64,10 @@ class HotContentActivity : BaseActivity(), TabInfoContract.View {
 
     override fun showError(errorMsg: String) {
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
+    }
 }
 

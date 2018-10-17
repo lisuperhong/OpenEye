@@ -83,5 +83,4 @@ class TabRankFragment : BaseFragment(), TabRankContract.View {
         super.onDestroy()
         presenter.detachView()
     }
-
 }

@@ -69,7 +69,7 @@ object JumpActivityUtil {
             }
 
             "ranklist" -> { // 排行榜
-                EventBus.getDefault().post(RankEvent("ranklist"))
+                EventBus.getDefault().post(ChangeTabEvent(1))
             }
 
             "feed" -> {
@@ -97,6 +97,9 @@ object JumpActivityUtil {
                 SpecialTopicDetailActivity.start(context, id.toInt(), title)
             }
 
+            "pgcs" -> {
+                EventBus.getDefault().post(ChangeTabEvent(2))
+            }
         }
 
     }

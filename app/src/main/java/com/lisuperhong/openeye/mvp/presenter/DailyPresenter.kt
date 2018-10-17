@@ -16,33 +16,35 @@ class DailyPresenter : BasePresenter<DailyContract.View>(), DailyContract.Presen
 
     override fun feed(date: Long, num: Int) {
         checkViewAttached()
-        DataRepository.getInstance()
-            .feed(date, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showContent(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().feed(date, observer)
     }
 
     override fun feedLoadMore(url: String) {
         checkViewAttached()
-        DataRepository.getInstance()
-            .loadMoreData(url, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showContent(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().loadMoreData(url, observer)
     }
 }

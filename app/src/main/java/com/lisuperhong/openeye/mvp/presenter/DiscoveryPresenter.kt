@@ -17,17 +17,18 @@ class DiscoveryPresenter : BasePresenter<DiscoveryContract.View>(), DiscoveryCon
     override fun discovery() {
         // 检测是否绑定 View
         checkViewAttached()
-        DataRepository.getInstance()
-            .discovery(object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.hideLoading()
-                    rootView?.showContent(data)
-                }
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.hideLoading()
+                rootView?.showContent(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.showError(errorMsg)
-                    rootView?.hideLoading()
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.showError(errorMsg)
+                rootView?.hideLoading()
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().discovery(observer)
     }
 }

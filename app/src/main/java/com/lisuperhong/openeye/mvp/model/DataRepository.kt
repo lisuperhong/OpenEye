@@ -154,4 +154,11 @@ class DataRepository private constructor() {
             .subscribe(baseObserver)
     }
 
+    fun getAllAuthors(baseObserver: BaseObserver<BaseBean>) {
+        RetrofitManager.getInstance()
+            .initService(ApiService::class.java, Constant.HOST)
+            .getAllAuthors()
+            .compose(IoMainScheduler())
+            .subscribe(baseObserver)
+    }
 }

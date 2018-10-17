@@ -6,7 +6,6 @@ import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
 import com.lisuperhong.openeye.base.BaseFragmentAdapter
 import com.lisuperhong.openeye.event.ChangeTabEvent
-import com.lisuperhong.openeye.ui.fragment.follow.CategoryFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

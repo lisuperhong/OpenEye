@@ -61,4 +61,9 @@ class RankFragment : BaseFragment(), TabInfoContract.View {
     override fun showError(errorMsg: String) {
         Toast.makeText(activity, errorMsg, Toast.LENGTH_LONG).show()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
+    }
 }

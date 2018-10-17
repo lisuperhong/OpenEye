@@ -14,14 +14,14 @@ import com.lisuperhong.openeye.utils.Constant
  * Author: lisuperhong
  * Time: Create on 2018/8/5 13:58
  * Github: https://github.com/lisuperhong
- * Desc:
+ * Desc: 推荐
  */
 class RecommendPresenter : BasePresenter<RecommendContract.View>(), RecommendContract.Presenter {
 
     override fun requestAllRec(page: Int) {
         // 检测是否绑定 View
         checkViewAttached()
-        DataRepository.getInstance().allRec(page, object : BaseObserver<BaseBean>() {
+        val observer = object : BaseObserver<BaseBean>() {
             override fun onSuccess(data: BaseBean) {
                 rootView?.hideLoading()
                 rootView?.showContent(data)
@@ -31,6 +31,8 @@ class RecommendPresenter : BasePresenter<RecommendContract.View>(), RecommendCon
                 rootView?.showError(errorMsg)
                 rootView?.hideLoading()
             }
-        })
+        }
+        addDispose(observer)
+        DataRepository.getInstance().allRec(page, observer)
     }
 }

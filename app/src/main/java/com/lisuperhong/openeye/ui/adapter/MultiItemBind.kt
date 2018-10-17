@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.mvp.model.bean.*
-import com.lisuperhong.openeye.ui.activity.SpecialTopicDetailActivity
 import com.lisuperhong.openeye.utils.*
 
 /**

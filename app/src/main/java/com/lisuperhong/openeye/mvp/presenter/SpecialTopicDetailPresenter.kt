@@ -10,24 +10,25 @@ import com.lisuperhong.openeye.rx.scheduler.BaseObserver
  * Author: lisuperhong
  * Time: Create on 2018/9/23 23:02
  * Github: https://github.com/lisuperhong
- * Desc:
+ * Desc: 热门专题详情
  */
 class SpecialTopicDetailPresenter : BasePresenter<SpecialTopicDetailContract.View>(),
     SpecialTopicDetailContract.Presenter {
 
     override fun getSpecialTopicDetail(url: String) {
         checkViewAttached()
-        DataRepository.getInstance()
-            .getSpecialTopicDetail(url, object : BaseObserver<LightTopicBean>() {
-                override fun onSuccess(data: LightTopicBean) {
-                    rootView?.hideLoading()
-                    rootView?.showSpecialTopicDetail(data)
-                }
+        val observer = object : BaseObserver<LightTopicBean>() {
+            override fun onSuccess(data: LightTopicBean) {
+                rootView?.hideLoading()
+                rootView?.showSpecialTopicDetail(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.hideLoading()
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.hideLoading()
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().getSpecialTopicDetail(url, observer)
     }
 }

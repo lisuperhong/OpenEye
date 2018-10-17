@@ -11,7 +11,7 @@ import com.lisuperhong.openeye.rx.scheduler.BaseObserver
  * Author: lisuperhong
  * Time: Create on 2018/8/15 23:25
  * Github: https://github.com/lisuperhong
- * Desc:
+ * Desc: 视频详情页
  */
 class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(),
     VideoDetailContract.Presenter {
@@ -34,15 +34,17 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(),
     }
 
     override fun requestRelatedVideo(id: Long) {
-        DataRepository.getInstance()
-            .videoRelated(id, object : BaseObserver<BaseBean>() {
-                override fun onSuccess(data: BaseBean) {
-                    rootView?.showRelatedVideo(data)
-                }
+        checkViewAttached()
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.showRelatedVideo(data)
+            }
 
-                override fun onFailure(errorMsg: String) {
-                    rootView?.showError(errorMsg)
-                }
-            })
+            override fun onFailure(errorMsg: String) {
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().videoRelated(id, observer)
     }
 }

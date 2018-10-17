@@ -1,35 +1,34 @@
-package com.lisuperhong.openeye.ui.fragment.home
+package com.lisuperhong.openeye.ui.fragment.follow
 
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
-
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
-import com.lisuperhong.openeye.mvp.contract.DailyContract
+import com.lisuperhong.openeye.mvp.contract.ProductionContract
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
-import com.lisuperhong.openeye.mvp.presenter.DailyPresenter
+import com.lisuperhong.openeye.mvp.presenter.ProductionPresenter
 import com.lisuperhong.openeye.ui.adapter.MultiItemAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import kotlinx.android.synthetic.main.fragment_daily.*
+import kotlinx.android.synthetic.main.fragment_author.*
 
 /**
- * A simple [Fragment] subclass.
- *
+ * Author: lizhaohong
+ * Time: Create on 2018/10/17 15:01
+ * Desc: 全部作者
  */
-class DailyFragment : BaseFragment(), DailyContract.View {
+class AuthorFragment : BaseFragment(), ProductionContract.View {
 
-    private val presenter by lazy { DailyPresenter() }
+    private val presenter by lazy { ProductionPresenter() }
     private var multiItemAdapter: MultiItemAdapter? = null
     private var isRefresh = false
     private var nextPageUrl: String? = null
 
     override val layoutId: Int
-        get() = R.layout.fragment_daily
+        get() = R.layout.fragment_author
 
     override fun initView() {
         presenter.attachView(this)
-        refreshLayout.setRefreshHeader(ClassicsHeader(activity))
+        refreshLayout.setRefreshContent(ClassicsHeader(activity))
         refreshLayout.setEnableAutoLoadMore(true)
         refreshLayout.setOnRefreshListener {
             isRefresh = true
@@ -39,22 +38,22 @@ class DailyFragment : BaseFragment(), DailyContract.View {
         refreshLayout.setOnLoadMoreListener {
             isRefresh = false
             if (nextPageUrl != null) {
-                presenter.feedLoadMore(nextPageUrl!!)
+                presenter.followLoadMore(nextPageUrl!!)
             } else {
                 refreshLayout.setEnableLoadMore(false)
             }
         }
 
         multiItemAdapter = MultiItemAdapter(getContext()!!, ArrayList<BaseBean.Item>())
-        dailyRecycleView.layoutManager =
+        recycleView.layoutManager =
                 LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        dailyRecycleView.adapter = multiItemAdapter
+        recycleView.adapter = multiItemAdapter
         isRefresh = false
         showLoading()
     }
 
     override fun initData() {
-        presenter.feed(System.currentTimeMillis(), 2)
+        presenter.allAuthors()
     }
 
     override fun showContent(baseBean: BaseBean) {

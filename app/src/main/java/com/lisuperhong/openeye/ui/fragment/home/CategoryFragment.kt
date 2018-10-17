@@ -1,4 +1,4 @@
-package com.lisuperhong.openeye.ui.fragment.follow
+package com.lisuperhong.openeye.ui.fragment.home
 
 import android.support.v7.widget.GridLayoutManager
 import android.widget.Toast
@@ -76,5 +76,10 @@ class CategoryFragment : BaseFragment(), CategoryContract.View {
     override fun showError(errorMsg: String) {
         refreshLayout.finishRefresh()
         Toast.makeText(activity, errorMsg, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
 }
