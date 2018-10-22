@@ -81,4 +81,8 @@ interface ApiService {
     // 获取全部作者
     @GET("api/v4/tabs/follow")
     fun getAllAuthors(): Observable<BaseBean>
+
+    // 获取全部作者
+    @GET
+    fun loadMoreAuthors(@Url url: String): Observable<BaseBean>
 }

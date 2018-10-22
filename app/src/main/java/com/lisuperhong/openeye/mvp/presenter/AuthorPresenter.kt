@@ -1,20 +1,19 @@
 package com.lisuperhong.openeye.mvp.presenter
 
 import com.lisuperhong.openeye.base.BasePresenter
-import com.lisuperhong.openeye.mvp.contract.ProductionContract
+import com.lisuperhong.openeye.mvp.contract.AuthorContract
 import com.lisuperhong.openeye.mvp.model.DataRepository
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 import com.lisuperhong.openeye.rx.scheduler.BaseObserver
 
 /**
- * Author: lisuperhong
- * Time: Create on 2018/9/16 00:36
- * Github: https://github.com/lisuperhong
- * Desc:
+ * Author: lizhaohong
+ * Time: Create on 2018/10/22 17:38
+ * Desc: 全部作者
  */
-class ProductionPresenter : BasePresenter<ProductionContract.View>(), ProductionContract.Presenter {
+class AuthorPresenter : BasePresenter<AuthorContract.View>(), AuthorContract.Presenter {
 
-    override fun communityFollow() {
+    override fun allAuthors() {
         checkViewAttached()
         val observer = object : BaseObserver<BaseBean>() {
             override fun onSuccess(data: BaseBean) {
@@ -28,7 +27,7 @@ class ProductionPresenter : BasePresenter<ProductionContract.View>(), Production
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getCommunityFollow(observer)
+        DataRepository.getInstance().getAllAuthors(observer)
     }
 
     override fun followLoadMore(url: String) {
@@ -45,6 +44,6 @@ class ProductionPresenter : BasePresenter<ProductionContract.View>(), Production
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreData(url, observer)
+        DataRepository.getInstance().loadMoreAuthors(url, observer)
     }
 }

@@ -23,7 +23,7 @@ object ImageLoad {
 
     fun loadImage(imageView: ImageView, url: String) {
         val requestOptions = RequestOptions().centerCrop()
-            .placeholder(R.drawable.eye_loading_icon)
+            .placeholder(R.drawable.default_banner)
             .error(R.drawable.eye_loading_icon)
             .transform(CenterCrop())
             .format(DecodeFormat.PREFER_RGB_565)
@@ -35,7 +35,7 @@ object ImageLoad {
 
     fun loadImage(imageView: ImageView, url: String, round: Int) {
         val requestOptions = RequestOptions().centerCrop()
-            .placeholder(R.drawable.eye_loading_icon)
+            .placeholder(R.drawable.default_banner)
             .error(R.drawable.eye_loading_icon)
             .transforms(
                 CenterCrop(),
@@ -54,7 +54,7 @@ object ImageLoad {
         lp.height = DensityUtil.dip2px(BaseApplication.context, 36f)
         imageView.layoutParams = lp
         val requestOptions = RequestOptions().centerCrop()
-            .placeholder(R.drawable.eye_loading_icon)
+            .placeholder(R.drawable.default_banner)
             .error(R.drawable.eye_loading_icon)
             .format(DecodeFormat.PREFER_RGB_565)
             .transform(CenterCrop())
@@ -73,7 +73,7 @@ object ImageLoad {
         lp.height = height
         imageView.layoutParams = lp
         val requestOptions = RequestOptions().centerCrop()
-            .placeholder(R.drawable.eye_loading_icon)
+            .placeholder(R.drawable.default_banner)
             .error(R.drawable.eye_loading_icon)
             .transforms(CenterCrop())
             .override(width, height)
@@ -91,7 +91,7 @@ object ImageLoad {
         lp.height = height
         imageView.layoutParams = lp
         val requestOptions = RequestOptions().centerCrop()
-            .placeholder(R.drawable.eye_loading_icon)
+            .placeholder(R.drawable.default_banner)
             .error(R.drawable.eye_loading_icon)
             .transforms(
                 CenterCrop(),

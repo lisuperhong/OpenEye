@@ -2,6 +2,7 @@ package com.lisuperhong.openeye.http
 
 import com.lisuperhong.openeye.BaseApplication
 import com.lisuperhong.openeye.utils.CommonUtil
+import com.lisuperhong.openeye.utils.Constant
 import com.lisuperhong.openeye.utils.NetworkUtil
 import okhttp3.CacheControl
 import okhttp3.Interceptor
@@ -39,6 +40,20 @@ class RetrofitManager private constructor() {
 
             return instance!!
         }
+    }
+
+    /**
+     * 返回接口Service
+     *
+     * @param service 泛型接口
+     */
+    fun <T> initService(service: Class<T>?): T {
+        if (service == null) {
+            throw RuntimeException("Api service is null!")
+        }
+
+        val retrofit = builder!!.baseUrl(Constant.HOST).build()
+        return retrofit.create(service)
     }
 
     /**

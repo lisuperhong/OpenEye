@@ -5,7 +5,7 @@ import com.lisuperhong.openeye.BaseApplication
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
 import com.lisuperhong.openeye.base.BaseFragmentAdapter
-import com.lisuperhong.openeye.event.ChangeTabEvent
+import com.lisuperhong.openeye.event.HomeTabEvent
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -47,8 +47,8 @@ class HomeFragment : BaseFragment() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun toCategoryFragment(changeTabEvent: ChangeTabEvent) {
-        slidingTabLayout.setCurrentTab(changeTabEvent.tabIndex, true)
+    fun toCategoryFragment(homeTabEvent: HomeTabEvent) {
+        slidingTabLayout.setCurrentTab(homeTabEvent.tabIndex, true)
     }
 
     override fun onDestroy() {
