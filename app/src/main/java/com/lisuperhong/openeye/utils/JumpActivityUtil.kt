@@ -78,7 +78,7 @@ object JumpActivityUtil {
                 EventBus.getDefault().post(HomeTabEvent(tabIndex))
             }
 
-            "common" -> {
+            "common" -> { // 热门内容
                 val url = uri.getQueryParameter("url")
                 val intent = Intent(context, HotContentActivity::class.java)
                 intent.putExtra(Constant.INTENT_TAG_POPULAR_URL, url)

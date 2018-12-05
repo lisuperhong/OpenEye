@@ -35,12 +35,10 @@ class DailyPresenter : BasePresenter<DailyContract.View>(), DailyContract.Presen
         checkViewAttached()
         val observer = object : BaseObserver<BaseBean>() {
             override fun onSuccess(data: BaseBean) {
-                rootView?.hideLoading()
                 rootView?.showContent(data)
             }
 
             override fun onFailure(errorMsg: String) {
-                rootView?.hideLoading()
                 rootView?.showError(errorMsg)
             }
         }

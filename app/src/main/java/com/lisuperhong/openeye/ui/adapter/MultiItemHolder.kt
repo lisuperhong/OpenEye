@@ -104,8 +104,8 @@ fun createMultiViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHo
 
         else -> {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_textcard, parent, false)
-            return TextCardItemHolder(view)
+                .inflate(R.layout.item_empty, parent, false)
+            return EmptyViewHolder(view)
         }
     }
 }
@@ -202,8 +202,8 @@ class VideoDetailInfoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var authorDescription: TextView = view.authorDescription
 }
 
-class AutoPlayAdViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class AutoPlayAdViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-}
+class EmptyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
 

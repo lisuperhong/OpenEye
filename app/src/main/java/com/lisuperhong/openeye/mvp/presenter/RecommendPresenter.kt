@@ -35,4 +35,19 @@ class RecommendPresenter : BasePresenter<RecommendContract.View>(), RecommendCon
         addDispose(observer)
         DataRepository.getInstance().allRec(page, observer)
     }
+
+    override fun loadMoreData(url: String) {
+        checkViewAttached()
+        val observer = object : BaseObserver<BaseBean>() {
+            override fun onSuccess(data: BaseBean) {
+                rootView?.showContent(data)
+            }
+
+            override fun onFailure(errorMsg: String) {
+                rootView?.showError(errorMsg)
+            }
+        }
+        addDispose(observer)
+        DataRepository.getInstance().loadMoreData(url, observer)
+    }
 }
