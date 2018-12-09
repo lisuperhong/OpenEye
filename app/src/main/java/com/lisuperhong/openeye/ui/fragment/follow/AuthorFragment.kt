@@ -28,7 +28,7 @@ class AuthorFragment : BaseFragment(), ProductionContract.View {
 
     override fun initView() {
         presenter.attachView(this)
-        refreshLayout.setRefreshContent(ClassicsHeader(activity))
+        refreshLayout.setRefreshHeader(ClassicsHeader(activity))
         refreshLayout.setEnableAutoLoadMore(true)
         refreshLayout.setOnRefreshListener {
             isRefresh = true
@@ -45,9 +45,9 @@ class AuthorFragment : BaseFragment(), ProductionContract.View {
         }
 
         multiItemAdapter = MultiItemAdapter(getContext()!!, ArrayList<BaseBean.Item>())
-        recycleView.layoutManager =
+        authorRecycleView.layoutManager =
                 LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        recycleView.adapter = multiItemAdapter
+        authorRecycleView.adapter = multiItemAdapter
         isRefresh = false
         showLoading()
     }

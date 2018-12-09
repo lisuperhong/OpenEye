@@ -79,6 +79,6 @@ interface ApiService {
     fun getPopularTabInfo(@Url url: String): Observable<TabInfoBean>
 
     // 获取全部作者
-    @GET("api/v4/tabs/follow")
+    @GET("api/v3/tabs/follow")
     fun getAllAuthors(): Observable<BaseBean>
 }

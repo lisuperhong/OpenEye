@@ -10,6 +10,7 @@ import android.support.v4.util.Pair
 import android.view.View
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.event.ChangeTabEvent
+import com.lisuperhong.openeye.event.FollowEvent
 import com.lisuperhong.openeye.event.RankEvent
 import com.lisuperhong.openeye.mvp.model.bean.VideoSmallCard
 import com.lisuperhong.openeye.ui.activity.*
@@ -69,7 +70,7 @@ object JumpActivityUtil {
             }
 
             "ranklist" -> { // 排行榜
-                EventBus.getDefault().post(ChangeTabEvent(1))
+                EventBus.getDefault().post(RankEvent("rankList"))
             }
 
             "feed" -> {
@@ -98,7 +99,7 @@ object JumpActivityUtil {
             }
 
             "pgcs" -> {
-                EventBus.getDefault().post(ChangeTabEvent(2))
+                EventBus.getDefault().post(FollowEvent(0))
             }
         }
 

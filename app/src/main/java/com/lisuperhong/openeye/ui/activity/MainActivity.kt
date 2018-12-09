@@ -9,6 +9,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
 import com.lisuperhong.openeye.event.ChangeTabEvent
+import com.lisuperhong.openeye.event.FollowEvent
 import com.lisuperhong.openeye.event.RankEvent
 import com.lisuperhong.openeye.mvp.model.bean.TabEntity
 import com.lisuperhong.openeye.ui.fragment.follow.FollowFragment
@@ -43,7 +44,7 @@ class MainActivity : BaseActivity() {
     private var curIndex = 0
     private var homeFragment: HomeFragment? = null
     private var rankFragment: RankFragment? = null
-    private var attentionFragment: FollowFragment? = null
+    private var followFragment: FollowFragment? = null
     private var myFragment: MyFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,11 +103,11 @@ class MainActivity : BaseActivity() {
                 transaction.add(R.id.fragment_container, rankFragment, "rank")
             }
 
-            2 -> attentionFragment?.let {
+            2 -> followFragment?.let {
                 transaction.show(it)
             } ?: FollowFragment().let {
-                attentionFragment = it
-                transaction.add(R.id.fragment_container, attentionFragment, "attention")
+                followFragment = it
+                transaction.add(R.id.fragment_container, followFragment, "follow")
             }
 
             3 -> myFragment?.let {
@@ -129,7 +130,7 @@ class MainActivity : BaseActivity() {
     private fun hideAllFragment(transaction: FragmentTransaction) {
         homeFragment?.let { transaction.hide(it) }
         rankFragment?.let { transaction.hide(it) }
-        attentionFragment?.let { transaction.hide(it) }
+        followFragment?.let { transaction.hide(it) }
         myFragment?.let { transaction.hide(it) }
     }
 
@@ -153,8 +154,13 @@ class MainActivity : BaseActivity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun toFragment(changeTabEvent: ChangeTabEvent) {
-        setCurrentFragment(changeTabEvent.tabIndex)
+    fun toRankFragment(rankEvent: RankEvent) {
+        setCurrentFragment(1)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun toFollowFragment(followEvent: FollowEvent) {
+        setCurrentFragment(2)
     }
 
     override fun onDestroy() {
