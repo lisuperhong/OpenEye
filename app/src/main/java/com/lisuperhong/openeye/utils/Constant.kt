@@ -11,6 +11,7 @@ object Constant {
     const val HOST = "http://baobab.kaiyanapp.com/"
 
     // 列表类型
+    const val ITEM_TYPE_EMPTY = 0
     const val ITEM_TYPE_SQUARECARD_COLLECTION = 1
     const val ITEM_TYPE_TEXT_CARD = 2
     const val ITEM_TYPE_FOLLOW_CARD = 3

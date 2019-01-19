@@ -6,4 +6,4 @@ package com.lisuperhong.openeye.event
  * Github: https://github.com/lisuperhong
  * Desc:
  */
-class ChangeTabEvent(val tabIndex: Int)
+class HomeTabEvent(val tabIndex: Int)

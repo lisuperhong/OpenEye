@@ -4,8 +4,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
+import com.lisuperhong.openeye.mvp.contract.AuthorContract
 import com.lisuperhong.openeye.mvp.contract.ProductionContract
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
+import com.lisuperhong.openeye.mvp.presenter.AuthorPresenter
 import com.lisuperhong.openeye.mvp.presenter.ProductionPresenter
 import com.lisuperhong.openeye.ui.adapter.MultiItemAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -16,9 +18,9 @@ import kotlinx.android.synthetic.main.fragment_author.*
  * Time: Create on 2018/10/17 15:01
  * Desc: 全部作者
  */
-class AuthorFragment : BaseFragment(), ProductionContract.View {
+class AuthorFragment : BaseFragment(), AuthorContract.View {
 
-    private val presenter by lazy { ProductionPresenter() }
+    private val presenter by lazy { AuthorPresenter() }
     private var multiItemAdapter: MultiItemAdapter? = null
     private var isRefresh = false
     private var nextPageUrl: String? = null

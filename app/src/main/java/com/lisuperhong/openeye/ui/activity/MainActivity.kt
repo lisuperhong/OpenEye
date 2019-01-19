@@ -8,8 +8,7 @@ import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseActivity
-import com.lisuperhong.openeye.event.ChangeTabEvent
-import com.lisuperhong.openeye.event.FollowEvent
+import com.lisuperhong.openeye.event.FollowTagEvent
 import com.lisuperhong.openeye.event.RankEvent
 import com.lisuperhong.openeye.mvp.model.bean.TabEntity
 import com.lisuperhong.openeye.ui.fragment.follow.FollowFragment
@@ -159,7 +158,7 @@ class MainActivity : BaseActivity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun toFollowFragment(followEvent: FollowEvent) {
+    fun toFollowFragment(followTagEvent: FollowTagEvent) {
         setCurrentFragment(2)
     }
 

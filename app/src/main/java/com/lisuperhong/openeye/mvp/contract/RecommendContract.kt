@@ -26,5 +26,10 @@ interface RecommendContract {
          * 获取推荐接口数据
          */
         fun requestAllRec(page: Int)
+
+        /**
+         * 加载更多数据
+         */
+        fun loadMoreData(url: String)
     }
 }

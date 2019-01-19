@@ -5,7 +5,7 @@ import com.lisuperhong.openeye.BaseApplication
 import com.lisuperhong.openeye.R
 import com.lisuperhong.openeye.base.BaseFragment
 import com.lisuperhong.openeye.base.BaseFragmentAdapter
-import com.lisuperhong.openeye.event.FollowEvent
+import com.lisuperhong.openeye.event.FollowTagEvent
 import kotlinx.android.synthetic.main.fragment_follow.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -47,8 +47,8 @@ class FollowFragment : BaseFragment() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun toFollowFragment(followEvent: FollowEvent) {
-        slidingTabLayout.setCurrentTab(followEvent.tabIndex, false)
+    fun toAuthorFragment(followTagEvent: FollowTagEvent) {
+        slidingTabLayout.setCurrentTab(followTagEvent.tabIndex, false)
     }
 
     override fun onDestroy() {

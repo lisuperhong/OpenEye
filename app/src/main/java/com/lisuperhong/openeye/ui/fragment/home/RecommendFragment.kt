@@ -1,6 +1,5 @@
 package com.lisuperhong.openeye.ui.fragment.home
 
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
@@ -17,18 +16,16 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import kotlinx.android.synthetic.main.fragment_recommend.*
 
 /**
- * A simple [Fragment] subclass.
+ * 首页推荐页面
  *
  */
 class RecommendFragment : BaseFragment(), RecommendContract.View {
 
     private val presenter by lazy { RecommendPresenter() }
-
     private var multiItemAdapter: MultiItemAdapter? = null
-
     private var page = 0
-
     private var isRefresh = false
+    private var nextPageUrl: String? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_recommend
@@ -38,15 +35,17 @@ class RecommendFragment : BaseFragment(), RecommendContract.View {
         refreshLayout.setRefreshHeader(ClassicsHeader(activity))
         refreshLayout.setEnableAutoLoadMore(true)
         refreshLayout.setOnRefreshListener {
-            page = 0
             isRefresh = true
             initData()
         }
 
         refreshLayout.setOnLoadMoreListener {
-            page++
             isRefresh = false
-            initData()
+            if (nextPageUrl != null) {
+                presenter.loadMoreData(nextPageUrl!!)
+            } else {
+                refreshLayout.setEnableLoadMore(false)
+            }
         }
 
         multiItemAdapter = MultiItemAdapter(getContext()!!, ArrayList<BaseBean.Item>())
@@ -83,9 +82,10 @@ class RecommendFragment : BaseFragment(), RecommendContract.View {
         stopRefresh()
         if (baseBean.itemList.isEmpty())
             return
+        nextPageUrl = baseBean.nextPageUrl
         if (isRefresh) {
             multiItemAdapter?.setRefreshData(baseBean.itemList)
-        } else{
+        } else {
             multiItemAdapter?.setLoadMore(baseBean.itemList)
         }
     }

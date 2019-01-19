@@ -5,12 +5,11 @@ import com.lisuperhong.openeye.base.IBaseView
 import com.lisuperhong.openeye.mvp.model.bean.BaseBean
 
 /**
- * Author: lisuperhong
- * Time: Create on 2018/9/16 00:32
- * Github: https://github.com/lisuperhong
- * Desc:
+ * Author: lizhaohong
+ * Time: Create on 2018/10/22 17:37
+ * Desc: 全部作者
  */
-interface ProductionContract {
+interface AuthorContract {
 
     interface View : IBaseView {
         /**
@@ -22,9 +21,9 @@ interface ProductionContract {
     interface Presenter : IBasePresenter<View> {
 
         /**
-         * 获取自动播放视频列表
+         * 获取全部作者
          */
-        fun communityFollow()
+        fun allAuthors()
 
         /**
          * 加载更多数据

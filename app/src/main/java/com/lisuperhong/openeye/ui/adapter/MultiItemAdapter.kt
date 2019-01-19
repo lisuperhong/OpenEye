@@ -118,9 +118,9 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
             }
 
             else -> {
-                Logger.d("default TextCardItemHolder called, position = $position")
-                val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
-                bindTextCardItemHolder(context!!, textCard, holder, false)
+                Logger.d("default EmptyItemHolder called, position = $position")
+//                val textCard = gson.fromJson(dataJson.toString(), TextCard::class.java)
+//                bindTextCardItemHolder(context!!, textCard, holder, false)
             }
         }
     }
@@ -156,7 +156,7 @@ class MultiItemAdapter(context: Context, datas: ArrayList<BaseBean.Item>) :
 
             "autoPlayVideoAd" -> Constant.ITEM_TYPE_AUTO_PLAY_VIDEO_AD
 
-            else -> Constant.ITEM_TYPE_TEXT_CARD
+            else -> Constant.ITEM_TYPE_EMPTY
         }
     }
 

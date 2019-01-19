@@ -9,8 +9,8 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
 import android.view.View
 import com.lisuperhong.openeye.R
-import com.lisuperhong.openeye.event.ChangeTabEvent
-import com.lisuperhong.openeye.event.FollowEvent
+import com.lisuperhong.openeye.event.FollowTagEvent
+import com.lisuperhong.openeye.event.HomeTabEvent
 import com.lisuperhong.openeye.event.RankEvent
 import com.lisuperhong.openeye.mvp.model.bean.VideoSmallCard
 import com.lisuperhong.openeye.ui.activity.*
@@ -46,7 +46,7 @@ object JumpActivityUtil {
         when (host) {
 
             "categories" -> { // 全部分类
-                EventBus.getDefault().post(ChangeTabEvent(3))
+                EventBus.getDefault().post(HomeTabEvent(3))
             }
 
             "category" -> { // 分类详情
@@ -70,15 +70,15 @@ object JumpActivityUtil {
             }
 
             "ranklist" -> { // 排行榜
-                EventBus.getDefault().post(RankEvent("rankList"))
+                EventBus.getDefault().post(RankEvent("ranklist"))
             }
 
             "feed" -> {
                 val tabIndex = uri.getQueryParameter("tabIndex").toInt()
-                EventBus.getDefault().post(ChangeTabEvent(tabIndex))
+                EventBus.getDefault().post(HomeTabEvent(tabIndex))
             }
 
-            "common" -> {
+            "common" -> { // 热门内容
                 val url = uri.getQueryParameter("url")
                 val intent = Intent(context, HotContentActivity::class.java)
                 intent.putExtra(Constant.INTENT_TAG_POPULAR_URL, url)
@@ -99,7 +99,7 @@ object JumpActivityUtil {
             }
 
             "pgcs" -> {
-                EventBus.getDefault().post(FollowEvent(0))
+                EventBus.getDefault().post(FollowTagEvent(0))
             }
         }
 
