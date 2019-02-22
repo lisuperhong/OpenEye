@@ -29,7 +29,7 @@ class CategoryDetailPresenter : BasePresenter<CategoryDetailContract.View>(),
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getCategoryInfo(id, observer)
+        DataRepository.instance.getCategoryInfo(id, observer)
     }
 
     override fun getVideoList(id: Long) {
@@ -45,7 +45,7 @@ class CategoryDetailPresenter : BasePresenter<CategoryDetailContract.View>(),
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getCategoryVideoList(id, observer)
+        DataRepository.instance.getCategoryVideoList(id, observer)
     }
 
     override fun loadMore(url: String) {
@@ -61,6 +61,6 @@ class CategoryDetailPresenter : BasePresenter<CategoryDetailContract.View>(),
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreData(url, observer)
+        DataRepository.instance.loadMoreData(url, observer)
     }
 }

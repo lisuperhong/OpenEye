@@ -25,7 +25,7 @@ fun bindSquareCardItemHolder(
     val header = squareCardCollection.header
     if (header.font == "bigBold") {
         viewHolder.squareTitle.typeface =
-                TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
         viewHolder.squareTitle.text = header.title
     }
     if (header.subTitleFont == "lobster") {
@@ -62,7 +62,7 @@ fun bindSquareCardItemHolder(
     val header = squareCardCollection2.header
     if (header.font == "bold") {
         viewHolder.squareTitle.typeface =
-                TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
         viewHolder.squareTitle.textSize = 22f
         viewHolder.squareTitle.text = header.title
     }
@@ -147,7 +147,7 @@ fun bindFollowCardItemHolder(
     val viewHolder: FollowCardItemHolder = holder as FollowCardItemHolder
     val header = followCard.header
     viewHolder.followCardTitle.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.followCardTitle.text = header.title
     viewHolder.followCardSubTitle.text = header.description
     when (header.iconType) {
@@ -182,7 +182,7 @@ fun bindVideoSmallCardItemHolder(
 ) {
     val viewHolder: VideoSmallCardItemHolder = holder as VideoSmallCardItemHolder
     viewHolder.videoSmallCardTitle.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.videoSmallCardTitle.text = videoSmallCard.title
     viewHolder.videoSmallCardSubTitle.text = "#" + videoSmallCard.category
     val cover = videoSmallCard.cover
@@ -209,7 +209,7 @@ fun bindPictureFollowCardItemHolder(
     val viewHolder: PictureFollowCardItemHolder = holder as PictureFollowCardItemHolder
     val header = pictureFollowCard.header
     viewHolder.pictureCardOwner.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.pictureCardOwner.text = header.issuerName
     when (header.iconType) {
         "round" -> ImageLoad.loadCircleImage(viewHolder.pictureCardIconTv, header.icon)
@@ -235,9 +235,9 @@ fun bindAutoPlayFollowCardItemHolder(
     val viewHolder: AutoPlayFollowCardItemHolder = holder as AutoPlayFollowCardItemHolder
     val header = autoPlayFollowCard.header
     viewHolder.autoPlayCardOwnerTv.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.titlePgcTv.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.autoPlayCardOwnerTv.text = header.issuerName
     when (header.iconType) {
         "round" -> ImageLoad.loadCircleImage(viewHolder.autoPlayCardIconIv, header.icon)
@@ -299,7 +299,7 @@ fun bindBriefCardItemHolder(
 ) {
     val viewHolder: BriefCardItemHolder = holder as BriefCardItemHolder
     viewHolder.briefCardTitleTv.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.briefCardTitleTv.text = briefCard.title
     viewHolder.briefCardDescriptionTv.text = briefCard.description
     when (briefCard.iconType) {
@@ -322,7 +322,7 @@ fun bindVideoCollectionWithBriefItemHolder(
         holder as VideoCollectionWithBriefItemHolder
     val header = videoCollectionWithBrief.header
     viewHolder.videoCollectionTitleTv.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.videoCollectionTitleTv.text = header.title
     viewHolder.videoCollectionDescriptionTv.text = header.description
     when (header.iconType) {
@@ -340,11 +340,15 @@ fun bindVideoCollectionWithBriefItemHolder(
     viewHolder.videoCollectionRecyclerView.adapter = adapter
 }
 
-fun bindVideoDetailInfoHolder(context: Context, videoSmallCard: VideoSmallCard, holder: RecyclerView.ViewHolder) {
+fun bindVideoDetailInfoHolder(
+    context: Context,
+    videoSmallCard: VideoSmallCard,
+    holder: RecyclerView.ViewHolder
+) {
     val viewHolder: VideoDetailInfoViewHolder = holder as VideoDetailInfoViewHolder
 
     viewHolder.videoDetailTitle.typeface =
-            TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
+        TypefaceUtil.getTypefaceFromAsset(TypefaceUtil.FZLanTingCuHei)
     viewHolder.videoDetailTitle.text = videoSmallCard.title
     viewHolder.videoDetailCategory.text = "#${videoSmallCard.category}"
     viewHolder.videoDetailDescription.text = videoSmallCard.description

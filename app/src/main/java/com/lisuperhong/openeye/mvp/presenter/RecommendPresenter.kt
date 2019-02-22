@@ -33,7 +33,7 @@ class RecommendPresenter : BasePresenter<RecommendContract.View>(), RecommendCon
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().allRec(page, observer)
+        DataRepository.instance.allRec(page, observer)
     }
 
     override fun loadMoreData(url: String) {
@@ -48,6 +48,6 @@ class RecommendPresenter : BasePresenter<RecommendContract.View>(), RecommendCon
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreData(url, observer)
+        DataRepository.instance.loadMoreData(url, observer)
     }
 }

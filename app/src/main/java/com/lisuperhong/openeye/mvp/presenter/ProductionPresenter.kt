@@ -28,7 +28,7 @@ class ProductionPresenter : BasePresenter<ProductionContract.View>(), Production
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getCommunityFollow(observer)
+        DataRepository.instance.getCommunityFollow(observer)
     }
 
     override fun followLoadMore(url: String) {
@@ -45,6 +45,6 @@ class ProductionPresenter : BasePresenter<ProductionContract.View>(), Production
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreData(url, observer)
+        DataRepository.instance.loadMoreData(url, observer)
     }
 }

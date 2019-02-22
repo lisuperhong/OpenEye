@@ -45,6 +45,6 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(),
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().videoRelated(id, observer)
+        DataRepository.instance.videoRelated(id, observer)
     }
 }

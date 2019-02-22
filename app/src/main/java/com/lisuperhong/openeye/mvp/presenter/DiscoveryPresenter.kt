@@ -29,6 +29,6 @@ class DiscoveryPresenter : BasePresenter<DiscoveryContract.View>(), DiscoveryCon
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().discovery(observer)
+        DataRepository.instance.discovery(observer)
     }
 }

@@ -28,7 +28,7 @@ class DailyPresenter : BasePresenter<DailyContract.View>(), DailyContract.Presen
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().feed(date, observer)
+        DataRepository.instance.feed(date, observer)
     }
 
     override fun feedLoadMore(url: String) {
@@ -43,6 +43,6 @@ class DailyPresenter : BasePresenter<DailyContract.View>(), DailyContract.Presen
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreData(url, observer)
+        DataRepository.instance.loadMoreData(url, observer)
     }
 }

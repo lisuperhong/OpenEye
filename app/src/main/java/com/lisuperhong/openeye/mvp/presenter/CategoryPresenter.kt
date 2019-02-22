@@ -28,7 +28,7 @@ class CategoryPresenter : BasePresenter<CategoryContract.View>(), CategoryContra
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getCategories(observer)
+        DataRepository.instance.getCategories(observer)
     }
 
 }

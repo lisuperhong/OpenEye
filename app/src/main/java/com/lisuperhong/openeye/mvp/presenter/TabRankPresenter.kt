@@ -28,6 +28,6 @@ class TabRankPresenter : BasePresenter<TabRankContract.View>(), TabRankContract.
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreData(apiUrl, observer)
+        DataRepository.instance.loadMoreData(apiUrl, observer)
     }
 }

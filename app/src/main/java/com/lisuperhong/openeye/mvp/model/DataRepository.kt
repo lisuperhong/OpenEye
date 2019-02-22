@@ -25,23 +25,11 @@ import java.util.concurrent.TimeUnit
 class DataRepository private constructor() {
 
     companion object {
-        private var instance: DataRepository? = null
-
-        fun getInstance(): DataRepository {
-            if (instance == null) {
-                synchronized(DataRepository::class.java) {
-                    if (instance == null) {
-                        instance = DataRepository()
-                    }
-                }
-            }
-
-            return instance!!
-        }
+        val instance: DataRepository by lazy { DataRepository() }
     }
 
     fun allRec(page: Int, baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .allRec(page)
             .compose(IoMainScheduler())
@@ -49,7 +37,7 @@ class DataRepository private constructor() {
     }
 
     fun discovery(baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .discovery()
             .compose(IoMainScheduler())
@@ -57,7 +45,7 @@ class DataRepository private constructor() {
     }
 
     fun feed(date: Long, baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .feed(date)
             .compose(IoMainScheduler())
@@ -65,7 +53,7 @@ class DataRepository private constructor() {
     }
 
     fun loadMoreData(url: String, baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .loadMoreData(url)
             .compose(IoMainScheduler())
@@ -73,7 +61,7 @@ class DataRepository private constructor() {
     }
 
     fun videoRelated(id: Long, baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .videoRelated(id)
             .compose(IoMainScheduler())
@@ -81,7 +69,7 @@ class DataRepository private constructor() {
     }
 
     fun getRankList(baseObserver: BaseObserver<TabInfoBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getRankList()
             .compose(IoMainScheduler())
@@ -89,7 +77,7 @@ class DataRepository private constructor() {
     }
 
     fun getCommunityFollow(baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getCommunityFollow()
             .compose(IoMainScheduler())
@@ -97,7 +85,7 @@ class DataRepository private constructor() {
     }
 
     fun getCategories(baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getCategories()
             .compose(IoMainScheduler())
@@ -105,7 +93,7 @@ class DataRepository private constructor() {
     }
 
     fun getCategoryInfo(id: Long, baseObserver: BaseObserver<CategoryTabInfo>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getCategoryTabInfo(id)
             .compose(IoMainScheduler())
@@ -113,7 +101,7 @@ class DataRepository private constructor() {
     }
 
     fun getCategoryVideoList(id: Long, baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getCategoryVideoList(id)
             .compose(IoMainScheduler())
@@ -121,7 +109,7 @@ class DataRepository private constructor() {
     }
 
     fun getTagInfo(id: Long, baseObserver: BaseObserver<CategoryTabInfo>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getTagTabInfo(id)
             .compose(IoMainScheduler())
@@ -129,7 +117,7 @@ class DataRepository private constructor() {
     }
 
     fun getTagVideos(id: Long, baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getTagVideos(id)
             .compose(IoMainScheduler())
@@ -137,7 +125,7 @@ class DataRepository private constructor() {
     }
 
     fun getSpecialTopics(baseObserver: BaseObserver<BaseBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getSpecialTopics()
             .compose(IoMainScheduler())
@@ -145,7 +133,7 @@ class DataRepository private constructor() {
     }
 
     fun getSpecialTopicDetail(url: String, baseObserver: BaseObserver<LightTopicBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getSpecialTopicDetail(url)
             .compose(IoMainScheduler())
@@ -153,7 +141,7 @@ class DataRepository private constructor() {
     }
 
     fun getPopularTabInfo(url: String, baseObserver: BaseObserver<TabInfoBean>) {
-        RetrofitManager.getInstance()
+        RetrofitManager.instance
             .initService(ApiService::class.java)
             .getPopularTabInfo(url)
             .compose(IoMainScheduler())

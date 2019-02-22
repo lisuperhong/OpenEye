@@ -26,7 +26,7 @@ class TabInfoPresenter : BasePresenter<TabInfoContract.View>(), TabInfoContract.
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getRankList(observer)
+        DataRepository.instance.getRankList(observer)
     }
 
     override fun getPopularTabInfo(url: String) {
@@ -41,6 +41,6 @@ class TabInfoPresenter : BasePresenter<TabInfoContract.View>(), TabInfoContract.
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getPopularTabInfo(url, observer)
+        DataRepository.instance.getPopularTabInfo(url, observer)
     }
 }

@@ -29,6 +29,6 @@ class SpecialTopicDetailPresenter : BasePresenter<SpecialTopicDetailContract.Vie
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getSpecialTopicDetail(url, observer)
+        DataRepository.instance.getSpecialTopicDetail(url, observer)
     }
 }

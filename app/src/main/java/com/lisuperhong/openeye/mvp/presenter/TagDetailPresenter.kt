@@ -28,7 +28,7 @@ class TagDetailPresenter : BasePresenter<TagDetailContract.View>(), TagDetailCon
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getTagInfo(id, observer)
+        DataRepository.instance.getTagInfo(id, observer)
     }
 
     override fun getVideos(id: Long) {
@@ -44,7 +44,7 @@ class TagDetailPresenter : BasePresenter<TagDetailContract.View>(), TagDetailCon
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getTagVideos(id, observer)
+        DataRepository.instance.getTagVideos(id, observer)
     }
 
     override fun loadMore(url: String) {
@@ -60,6 +60,6 @@ class TagDetailPresenter : BasePresenter<TagDetailContract.View>(), TagDetailCon
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreData(url, observer)
+        DataRepository.instance.loadMoreData(url, observer)
     }
 }

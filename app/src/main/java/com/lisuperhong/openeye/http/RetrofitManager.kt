@@ -27,19 +27,7 @@ class RetrofitManager private constructor() {
 
     companion object {
         private const val DEFAULT_TIMEOUT: Long = 60L
-        private var instance: RetrofitManager? = null
-
-        fun getInstance(): RetrofitManager {
-            if (instance == null) {
-                synchronized(RetrofitManager::class.java) {
-                    if (instance == null) {
-                        instance = RetrofitManager()
-                    }
-                }
-            }
-
-            return instance!!
-        }
+        val instance: RetrofitManager by lazy { RetrofitManager() }
     }
 
     /**

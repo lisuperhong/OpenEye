@@ -27,7 +27,7 @@ class AuthorPresenter : BasePresenter<AuthorContract.View>(), AuthorContract.Pre
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().getAllAuthors(observer)
+        DataRepository.instance.getAllAuthors(observer)
     }
 
     override fun followLoadMore(url: String) {
@@ -44,6 +44,6 @@ class AuthorPresenter : BasePresenter<AuthorContract.View>(), AuthorContract.Pre
             }
         }
         addDispose(observer)
-        DataRepository.getInstance().loadMoreAuthors(url, observer)
+        DataRepository.instance.loadMoreAuthors(url, observer)
     }
 }
